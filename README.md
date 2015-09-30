@@ -1,10 +1,10 @@
-# pineapple-hungry
+# electric-pineapple
 Ice Xpress
 
-Team Members- 
-Patrick Bollenbach
-Michael Couture
-Jimmy Kugler
-Braedon
-Jeff
-Khaleel
+Team Members-  </br>
+Patrick Bollenbach </br>
+Michael Couture </br>
+Jimmy Kugler </br>
+Braedon </br>
+Jeff </br>
+Khaleel </br>

@@ -26,5 +26,10 @@ namespace ElectricPineapple.Controllers
 
             return View();
         }
+
+        public ActionResult NewPageTemplate()
+        {
+            return View();
+        }
     }
 }

@@ -57,7 +57,8 @@
     <!-- MetisMenu CSS -->
     <link href="~/Content/css/metisMenu.css" rel="stylesheet" />
     <!-- Custom CSS -->
-    <link href="~/Content/css/sb-admin-2.css" rel="stylesheet" />
+    @*<link href="~/Content/css/lightTheme.css" rel="stylesheet" />*@
+    <link href="~/Content/css/darkTheme.css" rel="stylesheet" />
     <!-- Font Awesome-->
     <link href="~/Content/css/font-awesome.css" rel="stylesheet" />
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -314,7 +315,7 @@
                             <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Charts<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="flot.html">Flot Charts</a>
+                                    @Html.ActionLink("testerino", "About", "Home")
                                 </li>
                                 <li>
                                     <a href="morris.html">Morris.js Charts</a>
@@ -386,7 +387,7 @@
                             <a href="#"><i class="fa fa-files-o fa-fw"></i> Sample Pages<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="blank.html">Blank Page</a>
+                                    @Html.ActionLink("New Page Template", "NewPageTemplate", "Home")
                                 </li>
                                 <li>
                                     <a href="login.html">Login Page</a>

@@ -3886,7 +3886,8 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 .nav > li > a {
   position: relative;
   display: block;
-  padding: 10px 15px;
+  padding: 15px 15px;
+  font-size: 15px;
 }
 .nav > li > a:hover,
 .nav > li > a:focus {
@@ -4178,7 +4179,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   float: left;
   height: 50px;
   padding: 18px 15px;
-  font-size: 22px;
+  font-size: 26px;
   line-height: 20px;
 }
 .navbar-brand:hover,

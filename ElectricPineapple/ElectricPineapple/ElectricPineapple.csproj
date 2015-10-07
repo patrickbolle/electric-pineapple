@@ -187,8 +187,7 @@
     <Content Include="Content\images\bf4.jpg" />
     <Content Include="Content\images\codghosts.jpg" />
     <Content Include="Content\images\gta5.jpg" />
-    <Content Include="Content\images\pineappleTemp.png" />
-    <Content Include="Content\images\pineappleTemp2.png" />
+    <Content Include="Content\images\tempLogo.png" />
     <Content Include="Content\js\bootstrap.js" />
     <Content Include="Content\js\bootstrap.min.js" />
     <Content Include="Content\js\jquery.js" />

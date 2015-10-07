@@ -4073,6 +4073,10 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   margin-bottom: 20px;
   border: 1px solid transparent;
 }
+
+.navbar img{
+    padding-top: 4px;
+}
 @media (min-width: 768px) {
   .navbar {
     border-radius: 4px;

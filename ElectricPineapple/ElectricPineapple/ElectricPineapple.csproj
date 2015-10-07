@@ -181,7 +181,14 @@
     <Content Include="Content\css\metisMenu.min.css" />
     <Content Include="Content\css\lightTheme.css" />
     <Content Include="Content\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\images\assasins.jpg" />
+    <Content Include="Content\images\Batman.jpg" />
+    <Content Include="Content\images\battlefield.jpg" />
+    <Content Include="Content\images\bf4.jpg" />
+    <Content Include="Content\images\codghosts.jpg" />
+    <Content Include="Content\images\gta5.jpg" />
     <Content Include="Content\images\pineappleTemp.png" />
+    <Content Include="Content\images\pineappleTemp2.png" />
     <Content Include="Content\js\bootstrap.js" />
     <Content Include="Content\js\bootstrap.min.js" />
     <Content Include="Content\js\jquery.js" />

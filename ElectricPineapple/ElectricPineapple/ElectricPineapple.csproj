@@ -181,6 +181,7 @@
     <Content Include="Content\css\metisMenu.min.css" />
     <Content Include="Content\css\lightTheme.css" />
     <Content Include="Content\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\images\assasins.jpg" />
     <Content Include="Content\images\Batman.jpg" />
     <Content Include="Content\images\battlefield.jpg" />
@@ -232,6 +233,10 @@
     <Content Include="Content\less\spinning.less" />
     <Content Include="Content\less\stacked.less" />
     <Content Include="Content\less\variables.less" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.woff2" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

@@ -186,6 +186,10 @@
     <Content Include="Content\images\Batman.jpg" />
     <Content Include="Content\images\battlefield.jpg" />
     <Content Include="Content\images\bf4.jpg" />
+    <Content Include="Content\images\box covers\fallout3_box.jpg" />
+    <Content Include="Content\images\box covers\halo1_box.jpg" />
+    <Content Include="Content\images\box covers\left4dead_box.jpg" />
+    <Content Include="Content\images\box covers\saintsrow2_box.jpg" />
     <Content Include="Content\images\codghosts.jpg" />
     <Content Include="Content\images\gta5.jpg" />
     <Content Include="Content\images\tempLogo.png" />
@@ -285,6 +289,7 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Home\NewPageTemplate.cshtml" />
+    <Content Include="Views\Home\GameCatalogue.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

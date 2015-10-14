@@ -3045,6 +3045,18 @@ fieldset[disabled] .btn {
   background-color: #fff;
   border-color: #ccc;
 }
+
+.btn-add-to-cart{
+    color: #CFCFCF;
+    background-color: #923434;
+    border-color: #222;
+    width: 140px;
+}
+
+.btn-add-to-cart:hover{
+    color: white;
+}
+
 .btn-default:hover,
 .btn-default:focus,
 .btn-default.focus,
@@ -3376,6 +3388,7 @@ input[type="reset"].btn-block,
 input[type="button"].btn-block {
   width: 100%;
 }
+
 .fade {
   opacity: 0;
   -webkit-transition: opacity .15s linear;
@@ -5626,6 +5639,10 @@ a.list-group-item-danger.active:focus {
 }
 .panel-info > .panel-footer + .panel-collapse > .panel-body {
   border-bottom-color: #bce8f1;
+}
+
+.panel-game-info {
+    float: right;
 }
 .panel-warning {
   border-color: #faebcc;

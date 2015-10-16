@@ -184,6 +184,7 @@
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\images\assasins.jpg" />
     <Content Include="Content\images\Batman.jpg" />
+    <Content Include="Content\images\batmanScreenshot.jpg" />
     <Content Include="Content\images\battlefield.jpg" />
     <Content Include="Content\images\bf4.jpg" />
     <Content Include="Content\images\box covers\fallout3_box.jpg" />
@@ -290,6 +291,7 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Home\NewPageTemplate.cshtml" />
     <Content Include="Views\Home\GameCatalogue.cshtml" />
+    <Content Include="Views\Home\Game.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

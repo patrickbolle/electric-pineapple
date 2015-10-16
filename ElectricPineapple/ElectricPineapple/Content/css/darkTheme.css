@@ -349,6 +349,11 @@ table.dataTable thead .sorting:after {
     border-color: #CFCFCF;
 }
 
+.panel-default > .panel-heading a:hover{
+    color: white;
+    text-decoration: none;
+}
+
 .panel-green {
     border-color: #5cb85c;
 }
@@ -401,4 +406,9 @@ table.dataTable thead .sorting:after {
 
 .panel-yellow a:hover {
     color: #df8a13;
+}
+
+.panel-title a:hover{
+    text-decoration: none;
+    color: white;
 }

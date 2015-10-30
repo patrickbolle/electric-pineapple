@@ -12,36 +12,44 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.title)
+            Title
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.releaseDate)
+            Genre
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.price)
+            Platform
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.description)
+            ESRB Rating
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ESRBRating1.rating)
+            Release Date
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Publisher1.publisher1)
+            Price
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Platform1.platform1)
+            Description
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Genre1.genre1)
+            Company
         </th>
-        <th></th>
     </tr>
 
 @foreach (var item in Model) {
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Genre1.genre1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Platform1.platform1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ESRBRating1.rating)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.releaseDate)
@@ -53,16 +61,7 @@
             @Html.DisplayFor(modelItem => item.description)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.ESRBRating1.rating)
-        </td>
-        <td>
             @Html.DisplayFor(modelItem => item.Publisher1.publisher1)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Platform1.platform1)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Genre1.genre1)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.gameID }) |

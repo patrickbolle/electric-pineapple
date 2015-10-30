@@ -1,0 +1,471 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CVGSModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="CreditCard">
+    <Key>
+      <PropertyRef Name="cardID" />
+    </Key>
+    <Property Name="cardID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="number" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="CVGSUsers" Relationship="Self.CreditCard_User" FromRole="CreditCard" ToRole="CVGSUser" />
+  </EntityType>
+  <EntityType Name="CVGSUser">
+    <Key>
+      <PropertyRef Name="userID" />
+    </Key>
+    <Property Name="userID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="firstName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="lastName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="userName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="email" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="city" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="province" Type="String" MaxLength="2" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="phone" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="password" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="gender" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="recievePromotions" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="profileInfo" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="userType" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Province1" Relationship="Self.FKCVGSUser15983" FromRole="CVGSUser" ToRole="Province" />
+    <NavigationProperty Name="UserType1" Relationship="Self.FKCVGSUser959909" FromRole="CVGSUser" ToRole="UserType" />
+    <NavigationProperty Name="Game_User" Relationship="Self.FKGame_User773432" FromRole="CVGSUser" ToRole="Game_User" />
+    <NavigationProperty Name="Messages" Relationship="Self.FKMessage572068" FromRole="CVGSUser" ToRole="Message" />
+    <NavigationProperty Name="Messages1" Relationship="Self.FKMessage593091" FromRole="CVGSUser" ToRole="Message" />
+    <NavigationProperty Name="Orders" Relationship="Self.FKOrder440788" FromRole="CVGSUser" ToRole="Order" />
+    <NavigationProperty Name="Ratings" Relationship="Self.FKRating250023" FromRole="CVGSUser" ToRole="Rating" />
+    <NavigationProperty Name="CreditCards" Relationship="Self.CreditCard_User" FromRole="CVGSUser" ToRole="CreditCard" />
+    <NavigationProperty Name="Events" Relationship="Self.EventSignup" FromRole="CVGSUser" ToRole="Event" />
+    <NavigationProperty Name="Genres" Relationship="Self.FavouriteGenres" FromRole="CVGSUser" ToRole="Genre" />
+    <NavigationProperty Name="Platforms" Relationship="Self.FavouritePlatforms" FromRole="CVGSUser" ToRole="Platform" />
+    <NavigationProperty Name="CVGSUser1" Relationship="Self.ContactList" FromRole="CVGSUser" ToRole="CVGSUser1" />
+    <NavigationProperty Name="CVGSUsers" Relationship="Self.ContactList" FromRole="CVGSUser1" ToRole="CVGSUser" />
+  </EntityType>
+  <EntityType Name="ESRBRating">
+    <Key>
+      <PropertyRef Name="ratingID" />
+    </Key>
+    <Property Name="ratingID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="rating" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Games" Relationship="Self.FKGame870814" FromRole="ESRBRating" ToRole="Game" />
+  </EntityType>
+  <EntityType Name="Event">
+    <Key>
+      <PropertyRef Name="eventID" />
+    </Key>
+    <Property Name="eventID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="description" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="startTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="endTime" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="CVGSUsers" Relationship="Self.EventSignup" FromRole="Event" ToRole="CVGSUser" />
+  </EntityType>
+  <EntityType Name="Game">
+    <Key>
+      <PropertyRef Name="gameID" />
+    </Key>
+    <Property Name="gameID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="title" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="genre" Type="Int32" Nullable="false" />
+    <Property Name="publisher" Type="Int32" Nullable="false" />
+    <Property Name="ESRBRating" Type="Int32" Nullable="false" />
+    <Property Name="releaseDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="price" Type="Int32" Nullable="false" />
+    <Property Name="description" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="platform" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="ESRBRating1" Relationship="Self.FKGame870814" FromRole="Game" ToRole="ESRBRating" />
+    <NavigationProperty Name="Game_User" Relationship="Self.FKGame_User947287" FromRole="Game" ToRole="Game_User" />
+    <NavigationProperty Name="Publisher1" Relationship="Self.FKGame110087" FromRole="Game" ToRole="Publisher" />
+    <NavigationProperty Name="Platform1" Relationship="Self.FKGame305795" FromRole="Game" ToRole="Platform" />
+    <NavigationProperty Name="Genre1" Relationship="Self.FKGame366831" FromRole="Game" ToRole="Genre" />
+    <NavigationProperty Name="Ratings" Relationship="Self.FKRating529302" FromRole="Game" ToRole="Rating" />
+    <NavigationProperty Name="Orders" Relationship="Self.Game_Order" FromRole="Game" ToRole="Order" />
+  </EntityType>
+  <EntityType Name="Game_User">
+    <Key>
+      <PropertyRef Name="gameID" />
+      <PropertyRef Name="userID" />
+    </Key>
+    <Property Name="gameID" Type="Int32" Nullable="false" />
+    <Property Name="userID" Type="Int32" Nullable="false" />
+    <Property Name="status" Type="Int32" Nullable="false" />
+    <Property Name="purchaseDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="CVGSUser" Relationship="Self.FKGame_User773432" FromRole="Game_User" ToRole="CVGSUser" />
+    <NavigationProperty Name="Game" Relationship="Self.FKGame_User947287" FromRole="Game_User" ToRole="Game" />
+    <NavigationProperty Name="GameUserStatu" Relationship="Self.FKGame_User10761" FromRole="Game_User" ToRole="GameUserStatus" />
+  </EntityType>
+  <EntityType Name="GameUserStatu">
+    <Key>
+      <PropertyRef Name="statusID" />
+    </Key>
+    <Property Name="statusID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="status" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Game_User" Relationship="Self.FKGame_User10761" FromRole="GameUserStatus" ToRole="Game_User" />
+  </EntityType>
+  <EntityType Name="Genre">
+    <Key>
+      <PropertyRef Name="genreID" />
+    </Key>
+    <Property Name="genreID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="genre1" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Games" Relationship="Self.FKGame366831" FromRole="Genre" ToRole="Game" />
+    <NavigationProperty Name="CVGSUsers" Relationship="Self.FavouriteGenres" FromRole="Genre" ToRole="CVGSUser" />
+  </EntityType>
+  <EntityType Name="Message">
+    <Key>
+      <PropertyRef Name="messageID" />
+    </Key>
+    <Property Name="messageID" Type="Int32" Nullable="false" />
+    <Property Name="senderID" Type="Int32" Nullable="false" />
+    <Property Name="recieverID" Type="Int32" Nullable="false" />
+    <Property Name="content" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="readStatus" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="CVGSUser" Relationship="Self.FKMessage572068" FromRole="Message" ToRole="CVGSUser" />
+    <NavigationProperty Name="CVGSUser1" Relationship="Self.FKMessage593091" FromRole="Message" ToRole="CVGSUser" />
+  </EntityType>
+  <EntityType Name="Order">
+    <Key>
+      <PropertyRef Name="orderID" />
+    </Key>
+    <Property Name="orderID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="userID" Type="Int32" Nullable="false" />
+    <Property Name="date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="status" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="CVGSUser" Relationship="Self.FKOrder440788" FromRole="Order" ToRole="CVGSUser" />
+    <NavigationProperty Name="Games" Relationship="Self.Game_Order" FromRole="Order" ToRole="Game" />
+  </EntityType>
+  <EntityType Name="Platform">
+    <Key>
+      <PropertyRef Name="platformID" />
+    </Key>
+    <Property Name="platformID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="platform1" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Games" Relationship="Self.FKGame305795" FromRole="Platform" ToRole="Game" />
+    <NavigationProperty Name="CVGSUsers" Relationship="Self.FavouritePlatforms" FromRole="Platform" ToRole="CVGSUser" />
+  </EntityType>
+  <EntityType Name="Province">
+    <Key>
+      <PropertyRef Name="provinceCode" />
+    </Key>
+    <Property Name="provinceCode" Type="String" MaxLength="2" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="province1" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="CVGSUsers" Relationship="Self.FKCVGSUser15983" FromRole="Province" ToRole="CVGSUser" />
+  </EntityType>
+  <EntityType Name="Publisher">
+    <Key>
+      <PropertyRef Name="publisherID" />
+    </Key>
+    <Property Name="publisherID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="publisher1" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Games" Relationship="Self.FKGame110087" FromRole="Publisher" ToRole="Game" />
+  </EntityType>
+  <EntityType Name="Rating">
+    <Key>
+      <PropertyRef Name="gameID" />
+      <PropertyRef Name="userID" />
+    </Key>
+    <Property Name="gameID" Type="Int32" Nullable="false" />
+    <Property Name="userID" Type="Int32" Nullable="false" />
+    <Property Name="rating1" Type="Int32" Nullable="false" />
+    <Property Name="review" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="CVGSUser" Relationship="Self.FKRating250023" FromRole="Rating" ToRole="CVGSUser" />
+    <NavigationProperty Name="Game" Relationship="Self.FKRating529302" FromRole="Rating" ToRole="Game" />
+  </EntityType>
+  <EntityType Name="UserType">
+    <Key>
+      <PropertyRef Name="typeID" />
+    </Key>
+    <Property Name="typeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="userType1" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="CVGSUsers" Relationship="Self.FKCVGSUser959909" FromRole="UserType" ToRole="CVGSUser" />
+  </EntityType>
+  <Association Name="FKCVGSUser15983">
+    <End Role="Province" Type="Self.Province" Multiplicity="1" />
+    <End Role="CVGSUser" Type="Self.CVGSUser" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Province">
+        <PropertyRef Name="provinceCode" />
+      </Principal>
+      <Dependent Role="CVGSUser">
+        <PropertyRef Name="province" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FKCVGSUser959909">
+    <End Role="UserType" Type="Self.UserType" Multiplicity="1" />
+    <End Role="CVGSUser" Type="Self.CVGSUser" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserType">
+        <PropertyRef Name="typeID" />
+      </Principal>
+      <Dependent Role="CVGSUser">
+        <PropertyRef Name="userType" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FKGame_User773432">
+    <End Role="CVGSUser" Type="Self.CVGSUser" Multiplicity="1" />
+    <End Role="Game_User" Type="Self.Game_User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CVGSUser">
+        <PropertyRef Name="userID" />
+      </Principal>
+      <Dependent Role="Game_User">
+        <PropertyRef Name="userID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FKMessage572068">
+    <End Role="CVGSUser" Type="Self.CVGSUser" Multiplicity="1" />
+    <End Role="Message" Type="Self.Message" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CVGSUser">
+        <PropertyRef Name="userID" />
+      </Principal>
+      <Dependent Role="Message">
+        <PropertyRef Name="recieverID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FKMessage593091">
+    <End Role="CVGSUser" Type="Self.CVGSUser" Multiplicity="1" />
+    <End Role="Message" Type="Self.Message" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CVGSUser">
+        <PropertyRef Name="userID" />
+      </Principal>
+      <Dependent Role="Message">
+        <PropertyRef Name="senderID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FKOrder440788">
+    <End Role="CVGSUser" Type="Self.CVGSUser" Multiplicity="1" />
+    <End Role="Order" Type="Self.Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CVGSUser">
+        <PropertyRef Name="userID" />
+      </Principal>
+      <Dependent Role="Order">
+        <PropertyRef Name="userID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FKRating250023">
+    <End Role="CVGSUser" Type="Self.CVGSUser" Multiplicity="1" />
+    <End Role="Rating" Type="Self.Rating" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CVGSUser">
+        <PropertyRef Name="userID" />
+      </Principal>
+      <Dependent Role="Rating">
+        <PropertyRef Name="userID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FKGame870814">
+    <End Role="ESRBRating" Type="Self.ESRBRating" Multiplicity="1" />
+    <End Role="Game" Type="Self.Game" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ESRBRating">
+        <PropertyRef Name="ratingID" />
+      </Principal>
+      <Dependent Role="Game">
+        <PropertyRef Name="ESRBRating" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FKGame_User947287">
+    <End Role="Game" Type="Self.Game" Multiplicity="1" />
+    <End Role="Game_User" Type="Self.Game_User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Game">
+        <PropertyRef Name="gameID" />
+      </Principal>
+      <Dependent Role="Game_User">
+        <PropertyRef Name="gameID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FKGame110087">
+    <End Role="Publisher" Type="Self.Publisher" Multiplicity="1" />
+    <End Role="Game" Type="Self.Game" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Publisher">
+        <PropertyRef Name="publisherID" />
+      </Principal>
+      <Dependent Role="Game">
+        <PropertyRef Name="publisher" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FKGame305795">
+    <End Role="Platform" Type="Self.Platform" Multiplicity="1" />
+    <End Role="Game" Type="Self.Game" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Platform">
+        <PropertyRef Name="platformID" />
+      </Principal>
+      <Dependent Role="Game">
+        <PropertyRef Name="platform" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FKGame366831">
+    <End Role="Genre" Type="Self.Genre" Multiplicity="1" />
+    <End Role="Game" Type="Self.Game" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Genre">
+        <PropertyRef Name="genreID" />
+      </Principal>
+      <Dependent Role="Game">
+        <PropertyRef Name="genre" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FKRating529302">
+    <End Role="Game" Type="Self.Game" Multiplicity="1" />
+    <End Role="Rating" Type="Self.Rating" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Game">
+        <PropertyRef Name="gameID" />
+      </Principal>
+      <Dependent Role="Rating">
+        <PropertyRef Name="gameID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FKGame_User10761">
+    <End Role="GameUserStatus" Type="Self.GameUserStatu" Multiplicity="1" />
+    <End Role="Game_User" Type="Self.Game_User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GameUserStatus">
+        <PropertyRef Name="statusID" />
+      </Principal>
+      <Dependent Role="Game_User">
+        <PropertyRef Name="status" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="CreditCard_User">
+    <End Role="CreditCard" Type="Self.CreditCard" Multiplicity="*" />
+    <End Role="CVGSUser" Type="Self.CVGSUser" Multiplicity="*" />
+  </Association>
+  <Association Name="EventSignup">
+    <End Role="Event" Type="Self.Event" Multiplicity="*" />
+    <End Role="CVGSUser" Type="Self.CVGSUser" Multiplicity="*" />
+  </Association>
+  <Association Name="FavouriteGenres">
+    <End Role="Genre" Type="Self.Genre" Multiplicity="*" />
+    <End Role="CVGSUser" Type="Self.CVGSUser" Multiplicity="*" />
+  </Association>
+  <Association Name="FavouritePlatforms">
+    <End Role="Platform" Type="Self.Platform" Multiplicity="*" />
+    <End Role="CVGSUser" Type="Self.CVGSUser" Multiplicity="*" />
+  </Association>
+  <Association Name="Game_Order">
+    <End Role="Game" Type="Self.Game" Multiplicity="*" />
+    <End Role="Order" Type="Self.Order" Multiplicity="*" />
+  </Association>
+  <Association Name="ContactList">
+    <End Role="CVGSUser" Type="Self.CVGSUser" Multiplicity="*" />
+    <End Role="CVGSUser1" Type="Self.CVGSUser" Multiplicity="*" />
+  </Association>
+  <EntityContainer Name="CVGSEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="CreditCards" EntityType="Self.CreditCard" />
+    <EntitySet Name="CVGSUsers" EntityType="Self.CVGSUser" />
+    <EntitySet Name="ESRBRatings" EntityType="Self.ESRBRating" />
+    <EntitySet Name="Events" EntityType="Self.Event" />
+    <EntitySet Name="Games" EntityType="Self.Game" />
+    <EntitySet Name="Game_User" EntityType="Self.Game_User" />
+    <EntitySet Name="GameUserStatus" EntityType="Self.GameUserStatu" />
+    <EntitySet Name="Genres" EntityType="Self.Genre" />
+    <EntitySet Name="Messages" EntityType="Self.Message" />
+    <EntitySet Name="Orders" EntityType="Self.Order" />
+    <EntitySet Name="Platforms" EntityType="Self.Platform" />
+    <EntitySet Name="Provinces" EntityType="Self.Province" />
+    <EntitySet Name="Publishers" EntityType="Self.Publisher" />
+    <EntitySet Name="Ratings" EntityType="Self.Rating" />
+    <EntitySet Name="UserTypes" EntityType="Self.UserType" />
+    <AssociationSet Name="FKCVGSUser15983" Association="Self.FKCVGSUser15983">
+      <End Role="Province" EntitySet="Provinces" />
+      <End Role="CVGSUser" EntitySet="CVGSUsers" />
+    </AssociationSet>
+    <AssociationSet Name="FKCVGSUser959909" Association="Self.FKCVGSUser959909">
+      <End Role="UserType" EntitySet="UserTypes" />
+      <End Role="CVGSUser" EntitySet="CVGSUsers" />
+    </AssociationSet>
+    <AssociationSet Name="FKGame_User773432" Association="Self.FKGame_User773432">
+      <End Role="CVGSUser" EntitySet="CVGSUsers" />
+      <End Role="Game_User" EntitySet="Game_User" />
+    </AssociationSet>
+    <AssociationSet Name="FKMessage572068" Association="Self.FKMessage572068">
+      <End Role="CVGSUser" EntitySet="CVGSUsers" />
+      <End Role="Message" EntitySet="Messages" />
+    </AssociationSet>
+    <AssociationSet Name="FKMessage593091" Association="Self.FKMessage593091">
+      <End Role="CVGSUser" EntitySet="CVGSUsers" />
+      <End Role="Message" EntitySet="Messages" />
+    </AssociationSet>
+    <AssociationSet Name="FKOrder440788" Association="Self.FKOrder440788">
+      <End Role="CVGSUser" EntitySet="CVGSUsers" />
+      <End Role="Order" EntitySet="Orders" />
+    </AssociationSet>
+    <AssociationSet Name="FKRating250023" Association="Self.FKRating250023">
+      <End Role="CVGSUser" EntitySet="CVGSUsers" />
+      <End Role="Rating" EntitySet="Ratings" />
+    </AssociationSet>
+    <AssociationSet Name="FKGame870814" Association="Self.FKGame870814">
+      <End Role="ESRBRating" EntitySet="ESRBRatings" />
+      <End Role="Game" EntitySet="Games" />
+    </AssociationSet>
+    <AssociationSet Name="FKGame_User947287" Association="Self.FKGame_User947287">
+      <End Role="Game" EntitySet="Games" />
+      <End Role="Game_User" EntitySet="Game_User" />
+    </AssociationSet>
+    <AssociationSet Name="FKGame110087" Association="Self.FKGame110087">
+      <End Role="Publisher" EntitySet="Publishers" />
+      <End Role="Game" EntitySet="Games" />
+    </AssociationSet>
+    <AssociationSet Name="FKGame305795" Association="Self.FKGame305795">
+      <End Role="Platform" EntitySet="Platforms" />
+      <End Role="Game" EntitySet="Games" />
+    </AssociationSet>
+    <AssociationSet Name="FKGame366831" Association="Self.FKGame366831">
+      <End Role="Genre" EntitySet="Genres" />
+      <End Role="Game" EntitySet="Games" />
+    </AssociationSet>
+    <AssociationSet Name="FKRating529302" Association="Self.FKRating529302">
+      <End Role="Game" EntitySet="Games" />
+      <End Role="Rating" EntitySet="Ratings" />
+    </AssociationSet>
+    <AssociationSet Name="FKGame_User10761" Association="Self.FKGame_User10761">
+      <End Role="GameUserStatus" EntitySet="GameUserStatus" />
+      <End Role="Game_User" EntitySet="Game_User" />
+    </AssociationSet>
+    <AssociationSet Name="CreditCard_User" Association="Self.CreditCard_User">
+      <End Role="CreditCard" EntitySet="CreditCards" />
+      <End Role="CVGSUser" EntitySet="CVGSUsers" />
+    </AssociationSet>
+    <AssociationSet Name="EventSignup" Association="Self.EventSignup">
+      <End Role="Event" EntitySet="Events" />
+      <End Role="CVGSUser" EntitySet="CVGSUsers" />
+    </AssociationSet>
+    <AssociationSet Name="FavouriteGenres" Association="Self.FavouriteGenres">
+      <End Role="Genre" EntitySet="Genres" />
+      <End Role="CVGSUser" EntitySet="CVGSUsers" />
+    </AssociationSet>
+    <AssociationSet Name="FavouritePlatforms" Association="Self.FavouritePlatforms">
+      <End Role="Platform" EntitySet="Platforms" />
+      <End Role="CVGSUser" EntitySet="CVGSUsers" />
+    </AssociationSet>
+    <AssociationSet Name="Game_Order" Association="Self.Game_Order">
+      <End Role="Game" EntitySet="Games" />
+      <End Role="Order" EntitySet="Orders" />
+    </AssociationSet>
+    <AssociationSet Name="ContactList" Association="Self.ContactList">
+      <End Role="CVGSUser" EntitySet="CVGSUsers" />
+      <End Role="CVGSUser1" EntitySet="CVGSUsers" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

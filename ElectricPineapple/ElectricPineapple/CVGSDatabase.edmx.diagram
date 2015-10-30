@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="62e2e364232d4ac386472d230c4d124c" Name="Diagram1">
+        <EntityTypeShape EntityType="CVGSModel.CreditCard" Width="1.5" PointX="0.75" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CVGSModel.CVGSUser" Width="1.5" PointX="3" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="CVGSModel.ESRBRating" Width="1.5" PointX="3.75" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CVGSModel.Event" Width="1.5" PointX="0.75" PointY="11" IsExpanded="true" />
+        <EntityTypeShape EntityType="CVGSModel.Game" Width="1.5" PointX="6" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="CVGSModel.Game_User" Width="1.5" PointX="8.25" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="CVGSModel.GameUserStatu" Width="1.5" PointX="6" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="CVGSModel.Genre" Width="1.5" PointX="0.75" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="CVGSModel.Message" Width="1.5" PointX="5.25" PointY="12" IsExpanded="true" />
+        <EntityTypeShape EntityType="CVGSModel.Order" Width="1.5" PointX="8.25" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="CVGSModel.Platform" Width="1.5" PointX="3.75" PointY="15.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="CVGSModel.Province" Width="1.5" PointX="0.75" PointY="13.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CVGSModel.Publisher" Width="1.5" PointX="3.75" PointY="17.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CVGSModel.Rating" Width="1.5" PointX="8.25" PointY="11.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="CVGSModel.UserType" Width="1.5" PointX="0.75" PointY="16.25" IsExpanded="true" />
+        <AssociationConnector Association="CVGSModel.FKCVGSUser15983" ManuallyRouted="false" />
+        <AssociationConnector Association="CVGSModel.FKCVGSUser959909" ManuallyRouted="false" />
+        <AssociationConnector Association="CVGSModel.FKGame_User773432" ManuallyRouted="false" />
+        <AssociationConnector Association="CVGSModel.FKMessage572068" ManuallyRouted="false" />
+        <AssociationConnector Association="CVGSModel.FKMessage593091" ManuallyRouted="false" />
+        <AssociationConnector Association="CVGSModel.FKOrder440788" ManuallyRouted="false" />
+        <AssociationConnector Association="CVGSModel.FKRating250023" ManuallyRouted="false" />
+        <AssociationConnector Association="CVGSModel.FKGame870814" ManuallyRouted="false" />
+        <AssociationConnector Association="CVGSModel.FKGame_User947287" ManuallyRouted="false" />
+        <AssociationConnector Association="CVGSModel.FKGame110087" ManuallyRouted="false" />
+        <AssociationConnector Association="CVGSModel.FKGame305795" ManuallyRouted="false" />
+        <AssociationConnector Association="CVGSModel.FKGame366831" ManuallyRouted="false" />
+        <AssociationConnector Association="CVGSModel.FKRating529302" ManuallyRouted="false" />
+        <AssociationConnector Association="CVGSModel.FKGame_User10761" ManuallyRouted="false" />
+        <AssociationConnector Association="CVGSModel.CreditCard_User" ManuallyRouted="false" />
+        <AssociationConnector Association="CVGSModel.EventSignup" ManuallyRouted="false" />
+        <AssociationConnector Association="CVGSModel.FavouriteGenres" ManuallyRouted="false" />
+        <AssociationConnector Association="CVGSModel.FavouritePlatforms" ManuallyRouted="false" />
+        <AssociationConnector Association="CVGSModel.Game_Order" ManuallyRouted="false" />
+        <AssociationConnector Association="CVGSModel.ContactList" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

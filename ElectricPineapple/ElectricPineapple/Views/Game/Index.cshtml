@@ -41,38 +41,85 @@
         </th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.title)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Genre1.genre1)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Platform1.platform1)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ESRBRating1.rating)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.releaseDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.price)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.description)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Publisher1.publisher1)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.gameID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.gameID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.gameID })
-        </td>
-    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Genre1.genre1)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Platform1.platform1)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ESRBRating1.rating)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.releaseDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Publisher1.publisher1)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.gameID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.gameID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.gameID })
+            </td>
+        </tr>
+    }
+</table>
+
+    @{int i = 0;}
+    @foreach (var item in Model)
+	{
+        if (i == 0)
+	    {
+		 @:<div class="row">
+         @:<div class="col-lg-12">
+	    }
+
+        <div class="col-md-3">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <a href=@Url.Action("Details", "Game", new {id = item.gameID})>
+                        <h3 class="panel-title">@item.title</h3>
+                    </a>
+                </div>
+                <div class="panel-body">
+                    <a href=@Url.Action("Details", "Game", new {id = item.gameID})>
+                        <img src="~/Content/images/box covers/halo1_box.jpg" width="155" height="220" />
+                    </a>
+                    <span class="panel-game-info">
+                        @item.price<br /><br />
+                        @item.Platform1.platform1, @item.Genre1.genre1<br /><br />
+                        @item.description<br /><br />
+                        <input class="btn btn-add-to-cart" type="button" value="Add To Cart" />
+                    </span>
+                </div>
+            </div>
+        </div>
+        
+        i++;
+        if (i == 4)
+        {
+            i = 0;
+            @:</div>
+            @:</div>
+        }
+        
+    }
+@if (i != 0)
+{
+    @:</div>
+    @:</div>
 }
 
-</table>
+

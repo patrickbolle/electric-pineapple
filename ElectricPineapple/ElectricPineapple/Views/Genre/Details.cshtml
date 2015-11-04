@@ -1,0 +1,30 @@
+﻿@model ElectricPineapple.Genre
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">Details</h1>
+    </div>
+</div>
+
+<div>
+    <h4>Genre</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.genre1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.genre1)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.genreID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

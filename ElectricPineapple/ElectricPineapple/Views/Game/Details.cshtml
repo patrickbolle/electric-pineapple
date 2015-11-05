@@ -84,3 +84,31 @@
     @Html.ActionLink("Edit", "Edit", new { id = Model.gameID }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
+
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">@Model.title</h1>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-8">
+        <div class="panel panel-default panel-center">
+            <div class="panel-heading">
+                <h3 class="panel-title">@Model.title</h3>
+            </div>
+            <div class="panel-body">
+                <img src="~/Content/images/batmanScreenshot.jpg" />
+                @*<img src="~/Content/images/@(Model.gameID)/screenshot.png" />*@
+                <span class="panel-game-details">
+                    @Model.price<br /><br />
+                    @Model.Platform1.platform1, @Model.Genre1.genre1<br /><br />
+                    @Model.Publisher1.publisher1 <br /><br />
+                    @Model.description<br /><br />
+                    <input class="btn btn-add-to-cart" type="button" value="Add To Cart" /><br /><br />
+                    <input class="btn btn-add-to-wishlist" type="button" value="Add To Wishlist" />
+                </span>
+            </div>
+        </div>
+    </div>
+</div>

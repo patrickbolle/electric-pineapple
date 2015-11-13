@@ -1,5 +1,5 @@
-# pineapple-hungry
-Ice Xpress Gaming Store - 
+# ICE XPRESS
+ELECTRIC PINEAPPLE GAMING STORE - 
 FOR ALL YOUR ICE NEEDS!
 
 CEO - 

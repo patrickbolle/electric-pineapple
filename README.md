@@ -1,13 +1,15 @@
 # pineapple-hungry
-Ice Xpress
+Ice Xpress Gaming Store - 
+FOR ALL YOUR ICE NEEDS!
 
 CEO - 
 You Wong (I White)
 
 Team Members- 
-Patrick Bollenbach
-Michael Couture
-Jimmy Kugler
-Braedon
-Jeff
-Khaleel
+Patrick,
+Michael,
+Jimmy,
+Braedon,
+Jeff,
+Khaleel,
+Devon

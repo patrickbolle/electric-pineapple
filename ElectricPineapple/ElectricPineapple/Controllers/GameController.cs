@@ -52,14 +52,21 @@ namespace ElectricPineapple.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "gameID,title,genre,publisher,ESRBRating,releaseDate,price,description,platform")] Game game, HttpPostedFileBase file)
+        public ActionResult Create([Bind(Include = "gameID,title,genre,publisher,ESRBRating,releaseDate,price,description,platform")] Game game, HttpPostedFileBase gameCover, HttpPostedFileBase gameScreenshot)
         {
 
-            if (file.ContentLength > 0)
+            if (gameCover.ContentLength > 0)
             {
-                var fileName = Path.GetFileName(file.FileName);
+                var fileName = Path.GetFileName(gameCover.FileName);
                 var path = Path.Combine(Server.MapPath("~/Content/images"), fileName);
-                file.SaveAs(path);
+                gameCover.SaveAs(path);
+            }
+
+            if (gameScreenshot.ContentLength > 0)
+            {
+                var fileName = Path.GetFileName(gameScreenshot.FileName);
+                var path = Path.Combine(Server.MapPath("~/Content/images"), fileName);
+                gameScreenshot.SaveAs(path);
             }
 
             if (ModelState.IsValid)
@@ -100,8 +107,22 @@ namespace ElectricPineapple.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "gameID,title,genre,publisher,ESRBRating,releaseDate,price,description,platform")] Game game)
+        public ActionResult Edit([Bind(Include = "gameID,title,genre,publisher,ESRBRating,releaseDate,price,description,platform")] Game game, HttpPostedFileBase gameCover, HttpPostedFileBase gameScreenshot)
         {
+            if (gameCover != null)
+            {
+                var fileName = Path.GetFileName(gameCover.FileName);
+                var path = Path.Combine(Server.MapPath("~/Content/images"), fileName);
+                gameCover.SaveAs(path);
+            }
+
+            if (gameScreenshot != null)
+            {
+                var fileName = Path.GetFileName(gameScreenshot.FileName);
+                var path = Path.Combine(Server.MapPath("~/Content/images"), fileName);
+                gameScreenshot.SaveAs(path);
+            }
+
             if (ModelState.IsValid)
             {
                 db.Entry(game).State = EntityState.Modified;

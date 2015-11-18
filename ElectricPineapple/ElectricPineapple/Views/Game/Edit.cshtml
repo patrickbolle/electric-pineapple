@@ -10,7 +10,7 @@
     </div>
 </div>
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("Edit", "Game", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
     
@@ -83,6 +83,12 @@
                 @Html.ValidationMessageFor(model => model.platform, "", new { @class = "text-danger" })
             </div>
         </div>
+
+        <label for="file">Upload Box Cover Image:</label>
+        <input type="file" name="gameCover" id="gameCover" /><br><br>
+
+        <label for="file">Upload Game Screenshot:</label>
+        <input type="file" name="gameScreenshot" id="gameScreenshot" /><br><br>
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">

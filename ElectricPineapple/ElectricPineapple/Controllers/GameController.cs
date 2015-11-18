@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using ElectricPineapple;
+using System.IO;
 
 namespace ElectricPineapple.Controllers
 {
@@ -51,8 +52,16 @@ namespace ElectricPineapple.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "gameID,title,genre,publisher,ESRBRating,releaseDate,price,description,platform")] Game game)
+        public ActionResult Create([Bind(Include = "gameID,title,genre,publisher,ESRBRating,releaseDate,price,description,platform")] Game game, HttpPostedFileBase file)
         {
+
+            if (file.ContentLength > 0)
+            {
+                var fileName = Path.GetFileName(file.FileName);
+                var path = Path.Combine(Server.MapPath("~/Content/images"), fileName);
+                file.SaveAs(path);
+            }
+
             if (ModelState.IsValid)
             {
                 db.Games.Add(game);

@@ -99,9 +99,17 @@
                         <img src="~/Content/images/@(item.gameID)/cover.jpg" width="155" height="220" />
                     </a>
                     <span class="panel-game-info">
-                        @item.price<br /><br />
+                        $@item.price<br /><br />
                         @item.Platform1.platform1, @item.Genre1.genre1<br /><br />
-                        @item.description<br /><br />
+                        @if(item.description.Length < 90)
+                        { 
+                            @item.description<br /><br />
+                        }
+                        else
+                        {
+                            @item.description.Substring(0, 95);
+                            @:...<br /><br />
+                        }
                         <input class="btn btn-add-to-cart" type="button" value="Add To Cart" />
                     </span>
                 </div>

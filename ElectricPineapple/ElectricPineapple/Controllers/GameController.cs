@@ -54,23 +54,26 @@ namespace ElectricPineapple.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "gameID,title,genre,publisher,ESRBRating,releaseDate,price,description,platform")] Game game, HttpPostedFileBase gameCover, HttpPostedFileBase gameScreenshot)
         {
-
-            if (gameCover.ContentLength > 0)
-            {
-                var fileName = Path.GetFileName(gameCover.FileName);
-                var path = Path.Combine(Server.MapPath("~/Content/images"), fileName);
-                gameCover.SaveAs(path);
-            }
-
-            if (gameScreenshot.ContentLength > 0)
-            {
-                var fileName = Path.GetFileName(gameScreenshot.FileName);
-                var path = Path.Combine(Server.MapPath("~/Content/images"), fileName);
-                gameScreenshot.SaveAs(path);
-            }
-
             if (ModelState.IsValid)
             {
+                if (gameCover != null)
+                {
+                    var fileName = Path.GetFileName(gameCover.FileName);
+                    var path = Path.Combine(Server.MapPath("~/Content/images/box covers"), fileName);
+                    gameCover.SaveAs(path);
+                    game.coverPath = fileName;
+                }
+
+
+                if (gameScreenshot != null)
+                {
+                    var fileName = Path.GetFileName(gameScreenshot.FileName);
+                    var path = Path.Combine(Server.MapPath("~/Content/images/screenshots"), fileName);
+                    gameScreenshot.SaveAs(path);
+                    game.screenshotPath = fileName;
+                }
+
+
                 db.Games.Add(game);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -109,23 +112,36 @@ namespace ElectricPineapple.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "gameID,title,genre,publisher,ESRBRating,releaseDate,price,description,platform")] Game game, HttpPostedFileBase gameCover, HttpPostedFileBase gameScreenshot)
         {
-            if (gameCover != null)
-            {
-                var fileName = Path.GetFileName(gameCover.FileName);
-                var path = Path.Combine(Server.MapPath("~/Content/images"), fileName);
-                gameCover.SaveAs(path);
-            }
-
-            if (gameScreenshot != null)
-            {
-                var fileName = Path.GetFileName(gameScreenshot.FileName);
-                var path = Path.Combine(Server.MapPath("~/Content/images"), fileName);
-                gameScreenshot.SaveAs(path);
-            }
-
             if (ModelState.IsValid)
             {
-                db.Entry(game).State = EntityState.Modified;
+                if (gameCover != null)
+                {
+                    var fileName = Path.GetFileName(gameCover.FileName);
+                    var path = Path.Combine(Server.MapPath("~/Content/images/box covers"), fileName);
+                    gameCover.SaveAs(path);
+                    game.coverPath = fileName;
+                }
+                else
+                {
+                    var oldCover = db.Games.Where(g => g.gameID == game.gameID).First();
+                    game.coverPath = oldCover.coverPath;
+                }
+
+                if (gameScreenshot != null)
+                {
+                    var fileName = Path.GetFileName(gameScreenshot.FileName);
+                    var path = Path.Combine(Server.MapPath("~/Content/images/screenshots"), fileName);
+                    gameScreenshot.SaveAs(path);
+                    game.screenshotPath = fileName;
+                }
+                else
+                {
+                    var oldScreenshot = db.Games.Where(g => g.gameID == game.gameID).First();
+                    game.screenshotPath = oldScreenshot.screenshotPath;
+                }
+
+                db.Entry(game).CurrentValues.SetValues(game);
+                //db.Entry(game).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

@@ -80,6 +80,8 @@
     <NavigationProperty Name="Genre1" Relationship="Self.FKGame366831" FromRole="Game" ToRole="Genre" />
     <NavigationProperty Name="Ratings" Relationship="Self.FKRating529302" FromRole="Game" ToRole="Rating" />
     <NavigationProperty Name="Orders" Relationship="Self.Game_Order" FromRole="Game" ToRole="Order" />
+    <Property Name="coverPath" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+    <Property Name="screenshotPath" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
   </EntityType>
   <EntityType Name="Game_User">
     <Key>

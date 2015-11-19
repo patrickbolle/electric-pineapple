@@ -52,6 +52,8 @@
     <EntitySetMapping Name="Games">
       <EntityTypeMapping TypeName="CVGSModel.Game">
         <MappingFragment StoreEntitySet="Game">
+          <ScalarProperty Name="screenshotPath" ColumnName="screenshotPath" />
+          <ScalarProperty Name="coverPath" ColumnName="coverPath" />
           <ScalarProperty Name="gameID" ColumnName="gameID" />
           <ScalarProperty Name="title" ColumnName="title" />
           <ScalarProperty Name="genre" ColumnName="genre" />

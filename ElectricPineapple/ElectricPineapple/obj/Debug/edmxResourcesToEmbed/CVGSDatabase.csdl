@@ -69,7 +69,7 @@
     <Property Name="genre" Type="Int32" Nullable="false" />
     <Property Name="publisher" Type="Int32" Nullable="false" />
     <Property Name="ESRBRating" Type="Int32" Nullable="false" />
-    <Property Name="releaseDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="releaseDate" Type="DateTime" Nullable="false" Precision="0" />
     <Property Name="price" Type="Int32" Nullable="false" />
     <Property Name="description" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="platform" Type="Int32" Nullable="false" />
@@ -112,6 +112,7 @@
     <Property Name="genre1" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
     <NavigationProperty Name="Games" Relationship="Self.FKGame366831" FromRole="Genre" ToRole="Game" />
     <NavigationProperty Name="CVGSUsers" Relationship="Self.FavouriteGenres" FromRole="Genre" ToRole="CVGSUser" />
+    <Property Name="imagePath" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
   </EntityType>
   <EntityType Name="Message">
     <Key>
@@ -160,6 +161,7 @@
     <Property Name="publisherID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="publisher1" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
     <NavigationProperty Name="Games" Relationship="Self.FKGame110087" FromRole="Publisher" ToRole="Game" />
+    <Property Name="imagePath" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
   </EntityType>
   <EntityType Name="Rating">
     <Key>

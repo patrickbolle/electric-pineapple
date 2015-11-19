@@ -23,6 +23,7 @@ namespace ElectricPineapple
     
         public int genreID { get; set; }
         public string genre1 { get; set; }
+        public string imagePath { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Game> Games { get; set; }

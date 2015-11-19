@@ -95,7 +95,7 @@ warning 6002: The table/view 'C:\USERS\MCOUTURE-CC\DESKTOP\ELECTRIC-PINEAPPLE\EL
     <Property Name="genre" Type="int" Nullable="false" />
     <Property Name="publisher" Type="int" Nullable="false" />
     <Property Name="ESRBRating" Type="int" Nullable="false" />
-    <Property Name="releaseDate" Type="datetime" Nullable="false" />
+    <Property Name="releaseDate" Type="date" Nullable="false" />
     <Property Name="price" Type="int" Nullable="false" />
     <Property Name="description" Type="varchar" MaxLength="255" Nullable="false" />
     <Property Name="platform" Type="int" Nullable="false" />
@@ -133,6 +133,7 @@ warning 6002: The table/view 'C:\USERS\MCOUTURE-CC\DESKTOP\ELECTRIC-PINEAPPLE\EL
     </Key>
     <Property Name="genreID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="genre" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="imagePath" Type="varchar" MaxLength="30" />
   </EntityType>
   <EntityType Name="Message">
     <Key>
@@ -173,6 +174,7 @@ warning 6002: The table/view 'C:\USERS\MCOUTURE-CC\DESKTOP\ELECTRIC-PINEAPPLE\EL
     </Key>
     <Property Name="publisherID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="publisher" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="imagePath" Type="varchar" MaxLength="30" />
   </EntityType>
   <EntityType Name="Rating">
     <Key>

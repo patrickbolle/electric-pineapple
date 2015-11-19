@@ -56,6 +56,8 @@ namespace ElectricPineapple.Controllers
         {
             if (ModelState.IsValid)
             {
+
+                //TO FIX: will crash if file name is too long
                 if (gameCover != null)
                 {
                     var fileName = Path.GetFileName(gameCover.FileName);
@@ -114,34 +116,42 @@ namespace ElectricPineapple.Controllers
         {
             if (ModelState.IsValid)
             {
+                var currentGame = db.Games.Where(g => g.gameID == game.gameID).First();
+                if (currentGame == null)
+                {
+                    return HttpNotFound();
+                }
+                else
+                {
+                    currentGame.title = game.title;
+                    currentGame.genre = game.genre;
+                    currentGame.publisher = game.publisher;
+                    currentGame.ESRBRating = game.ESRBRating;
+                    currentGame.releaseDate = game.releaseDate;
+                    currentGame.price = game.price;
+                    currentGame.description = game.description;
+                    currentGame.platform = game.platform;
+                }
+
+
+                //TO FIX: will crash if file name is too long
                 if (gameCover != null)
                 {
                     var fileName = Path.GetFileName(gameCover.FileName);
                     var path = Path.Combine(Server.MapPath("~/Content/images/box covers"), fileName);
                     gameCover.SaveAs(path);
-                    game.coverPath = fileName;
+                    currentGame.coverPath = fileName;
                 }
-                else
-                {
-                    var oldCover = db.Games.Where(g => g.gameID == game.gameID).First();
-                    game.coverPath = oldCover.coverPath;
-                }
+
 
                 if (gameScreenshot != null)
                 {
                     var fileName = Path.GetFileName(gameScreenshot.FileName);
                     var path = Path.Combine(Server.MapPath("~/Content/images/screenshots"), fileName);
                     gameScreenshot.SaveAs(path);
-                    game.screenshotPath = fileName;
+                    currentGame.screenshotPath = fileName;
                 }
-                else
-                {
-                    var oldScreenshot = db.Games.Where(g => g.gameID == game.gameID).First();
-                    game.screenshotPath = oldScreenshot.screenshotPath;
-                }
-
-                db.Entry(game).CurrentValues.SetValues(game);
-                //db.Entry(game).State = EntityState.Modified;
+                
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

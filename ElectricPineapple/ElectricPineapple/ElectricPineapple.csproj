@@ -395,6 +395,8 @@
     <Content Include="Views\Genre\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Content\images\genres\" />
+    <Folder Include="Content\images\publishers\" />
     <Folder Include="Content\images\screenshots\" />
   </ItemGroup>
   <ItemGroup>

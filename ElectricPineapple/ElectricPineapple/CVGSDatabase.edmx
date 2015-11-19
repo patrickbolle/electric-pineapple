@@ -100,7 +100,7 @@ warning 6002: The table/view 'C:\USERS\MCOUTURE-CC\DESKTOP\ELECTRIC-PINEAPPLE\EL
           <Property Name="genre" Type="int" Nullable="false" />
           <Property Name="publisher" Type="int" Nullable="false" />
           <Property Name="ESRBRating" Type="int" Nullable="false" />
-          <Property Name="releaseDate" Type="datetime" Nullable="false" />
+          <Property Name="releaseDate" Type="date" Nullable="false" />
           <Property Name="price" Type="int" Nullable="false" />
           <Property Name="description" Type="varchar" MaxLength="255" Nullable="false" />
           <Property Name="platform" Type="int" Nullable="false" />
@@ -138,6 +138,7 @@ warning 6002: The table/view 'C:\USERS\MCOUTURE-CC\DESKTOP\ELECTRIC-PINEAPPLE\EL
           </Key>
           <Property Name="genreID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="genre" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="imagePath" Type="varchar" MaxLength="30" />
         </EntityType>
         <EntityType Name="Message">
           <Key>
@@ -178,6 +179,7 @@ warning 6002: The table/view 'C:\USERS\MCOUTURE-CC\DESKTOP\ELECTRIC-PINEAPPLE\EL
           </Key>
           <Property Name="publisherID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="publisher" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="imagePath" Type="varchar" MaxLength="30" />
         </EntityType>
         <EntityType Name="Rating">
           <Key>
@@ -713,7 +715,7 @@ warning 6002: The table/view 'C:\USERS\MCOUTURE-CC\DESKTOP\ELECTRIC-PINEAPPLE\EL
           <Property Name="genre" Type="Int32" Nullable="false" />
           <Property Name="publisher" Type="Int32" Nullable="false" />
           <Property Name="ESRBRating" Type="Int32" Nullable="false" />
-          <Property Name="releaseDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="releaseDate" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="price" Type="Int32" Nullable="false" />
           <Property Name="description" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="platform" Type="Int32" Nullable="false" />
@@ -756,6 +758,7 @@ warning 6002: The table/view 'C:\USERS\MCOUTURE-CC\DESKTOP\ELECTRIC-PINEAPPLE\EL
           <Property Name="genre1" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Games" Relationship="Self.FKGame366831" FromRole="Genre" ToRole="Game" />
           <NavigationProperty Name="CVGSUsers" Relationship="Self.FavouriteGenres" FromRole="Genre" ToRole="CVGSUser" />
+          <Property Name="imagePath" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Message">
           <Key>
@@ -804,6 +807,7 @@ warning 6002: The table/view 'C:\USERS\MCOUTURE-CC\DESKTOP\ELECTRIC-PINEAPPLE\EL
           <Property Name="publisherID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="publisher1" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Games" Relationship="Self.FKGame110087" FromRole="Publisher" ToRole="Game" />
+          <Property Name="imagePath" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Rating">
           <Key>
@@ -1206,6 +1210,7 @@ warning 6002: The table/view 'C:\USERS\MCOUTURE-CC\DESKTOP\ELECTRIC-PINEAPPLE\EL
           <EntitySetMapping Name="Genres">
             <EntityTypeMapping TypeName="CVGSModel.Genre">
               <MappingFragment StoreEntitySet="Genre">
+                <ScalarProperty Name="imagePath" ColumnName="imagePath" />
                 <ScalarProperty Name="genreID" ColumnName="genreID" />
                 <ScalarProperty Name="genre1" ColumnName="genre" />
               </MappingFragment>
@@ -1251,6 +1256,7 @@ warning 6002: The table/view 'C:\USERS\MCOUTURE-CC\DESKTOP\ELECTRIC-PINEAPPLE\EL
           <EntitySetMapping Name="Publishers">
             <EntityTypeMapping TypeName="CVGSModel.Publisher">
               <MappingFragment StoreEntitySet="Publisher">
+                <ScalarProperty Name="imagePath" ColumnName="imagePath" />
                 <ScalarProperty Name="publisherID" ColumnName="publisherID" />
                 <ScalarProperty Name="publisher1" ColumnName="publisher" />
               </MappingFragment>

@@ -61,6 +61,11 @@ namespace ElectricPineapple.Controllers
                 if (gameCover != null)
                 {
                     var fileName = Path.GetFileName(gameCover.FileName);
+                    if(fileName.Length > 60)
+                    {
+                        fileName = fileName.Substring(0, 55) + fileName.Substring(fileName.Length - 5, 5);
+                    }
+
                     var path = Path.Combine(Server.MapPath("~/Content/images/box covers"), fileName);
                     gameCover.SaveAs(path);
                     game.coverPath = fileName;

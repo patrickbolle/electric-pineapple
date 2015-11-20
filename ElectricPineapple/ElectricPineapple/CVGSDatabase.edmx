@@ -4,9 +4,9 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="CVGSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="CVGSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <!--Errors Found During Generation:
-warning 6002: The table/view 'C:\USERS\PBOLLENBACH-CC\DESKTOP\ELECTRIC-PINEAPPLE\ELECTRICPINEAPPLE\ELECTRICPINEAPPLE\APP_DATA\CVGS.MDF.dbo.ContactList' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'C:\USERS\MCOUTURE-CC\DESKTOP\ELECTRIC-PINEAPPLE\ELECTRICPINEAPPLE\ELECTRICPINEAPPLE\APP_DATA\CVGS.MDF.dbo.ContactList' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="ContactList">
           <Key>
             <PropertyRef Name="user1" />
@@ -100,10 +100,12 @@ warning 6002: The table/view 'C:\USERS\PBOLLENBACH-CC\DESKTOP\ELECTRIC-PINEAPPLE
           <Property Name="genre" Type="int" Nullable="false" />
           <Property Name="publisher" Type="int" Nullable="false" />
           <Property Name="ESRBRating" Type="int" Nullable="false" />
-          <Property Name="releaseDate" Type="datetime" Nullable="false" />
+          <Property Name="releaseDate" Type="date" Nullable="false" />
           <Property Name="price" Type="int" Nullable="false" />
           <Property Name="description" Type="varchar" MaxLength="255" Nullable="false" />
           <Property Name="platform" Type="int" Nullable="false" />
+          <Property Name="coverPath" Type="varchar" MaxLength="60" />
+          <Property Name="screenshotPath" Type="varchar" MaxLength="60" />
         </EntityType>
         <EntityType Name="Game_Order">
           <Key>
@@ -136,6 +138,7 @@ warning 6002: The table/view 'C:\USERS\PBOLLENBACH-CC\DESKTOP\ELECTRIC-PINEAPPLE
           </Key>
           <Property Name="genreID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="genre" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="imagePath" Type="varchar" MaxLength="30" />
         </EntityType>
         <EntityType Name="Message">
           <Key>
@@ -176,6 +179,7 @@ warning 6002: The table/view 'C:\USERS\PBOLLENBACH-CC\DESKTOP\ELECTRIC-PINEAPPLE
           </Key>
           <Property Name="publisherID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="publisher" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="imagePath" Type="varchar" MaxLength="30" />
         </EntityType>
         <EntityType Name="Rating">
           <Key>
@@ -638,8 +642,7 @@ warning 6002: The table/view 'C:\USERS\PBOLLENBACH-CC\DESKTOP\ELECTRIC-PINEAPPLE
             <End Role="Rating" EntitySet="Rating" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="CVGSModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -712,7 +715,7 @@ warning 6002: The table/view 'C:\USERS\PBOLLENBACH-CC\DESKTOP\ELECTRIC-PINEAPPLE
           <Property Name="genre" Type="Int32" Nullable="false" />
           <Property Name="publisher" Type="Int32" Nullable="false" />
           <Property Name="ESRBRating" Type="Int32" Nullable="false" />
-          <Property Name="releaseDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="releaseDate" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="price" Type="Int32" Nullable="false" />
           <Property Name="description" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="platform" Type="Int32" Nullable="false" />
@@ -723,6 +726,8 @@ warning 6002: The table/view 'C:\USERS\PBOLLENBACH-CC\DESKTOP\ELECTRIC-PINEAPPLE
           <NavigationProperty Name="Genre1" Relationship="Self.FKGame366831" FromRole="Game" ToRole="Genre" />
           <NavigationProperty Name="Ratings" Relationship="Self.FKRating529302" FromRole="Game" ToRole="Rating" />
           <NavigationProperty Name="Orders" Relationship="Self.Game_Order" FromRole="Game" ToRole="Order" />
+          <Property Name="coverPath" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="screenshotPath" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Game_User">
           <Key>
@@ -753,6 +758,7 @@ warning 6002: The table/view 'C:\USERS\PBOLLENBACH-CC\DESKTOP\ELECTRIC-PINEAPPLE
           <Property Name="genre1" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Games" Relationship="Self.FKGame366831" FromRole="Genre" ToRole="Game" />
           <NavigationProperty Name="CVGSUsers" Relationship="Self.FavouriteGenres" FromRole="Genre" ToRole="CVGSUser" />
+          <Property Name="imagePath" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Message">
           <Key>
@@ -801,6 +807,7 @@ warning 6002: The table/view 'C:\USERS\PBOLLENBACH-CC\DESKTOP\ELECTRIC-PINEAPPLE
           <Property Name="publisherID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="publisher1" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Games" Relationship="Self.FKGame110087" FromRole="Publisher" ToRole="Game" />
+          <Property Name="imagePath" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Rating">
           <Key>
@@ -1168,6 +1175,8 @@ warning 6002: The table/view 'C:\USERS\PBOLLENBACH-CC\DESKTOP\ELECTRIC-PINEAPPLE
           <EntitySetMapping Name="Games">
             <EntityTypeMapping TypeName="CVGSModel.Game">
               <MappingFragment StoreEntitySet="Game">
+                <ScalarProperty Name="screenshotPath" ColumnName="screenshotPath" />
+                <ScalarProperty Name="coverPath" ColumnName="coverPath" />
                 <ScalarProperty Name="gameID" ColumnName="gameID" />
                 <ScalarProperty Name="title" ColumnName="title" />
                 <ScalarProperty Name="genre" ColumnName="genre" />
@@ -1201,6 +1210,7 @@ warning 6002: The table/view 'C:\USERS\PBOLLENBACH-CC\DESKTOP\ELECTRIC-PINEAPPLE
           <EntitySetMapping Name="Genres">
             <EntityTypeMapping TypeName="CVGSModel.Genre">
               <MappingFragment StoreEntitySet="Genre">
+                <ScalarProperty Name="imagePath" ColumnName="imagePath" />
                 <ScalarProperty Name="genreID" ColumnName="genreID" />
                 <ScalarProperty Name="genre1" ColumnName="genre" />
               </MappingFragment>
@@ -1246,6 +1256,7 @@ warning 6002: The table/view 'C:\USERS\PBOLLENBACH-CC\DESKTOP\ELECTRIC-PINEAPPLE
           <EntitySetMapping Name="Publishers">
             <EntityTypeMapping TypeName="CVGSModel.Publisher">
               <MappingFragment StoreEntitySet="Publisher">
+                <ScalarProperty Name="imagePath" ColumnName="imagePath" />
                 <ScalarProperty Name="publisherID" ColumnName="publisherID" />
                 <ScalarProperty Name="publisher1" ColumnName="publisher" />
               </MappingFragment>

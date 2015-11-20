@@ -105,7 +105,6 @@ C:\Users\mcouture-cc\Desktop\electric-pineapple\ElectricPineapple\ElectricPineap
 C:\Users\mcouture-cc\Desktop\electric-pineapple\ElectricPineapple\ElectricPineapple\bin\Microsoft.Owin.Security.Google.xml
 C:\Users\mcouture-cc\Desktop\electric-pineapple\ElectricPineapple\ElectricPineapple\bin\Microsoft.Owin.Security.Twitter.xml
 C:\Users\mcouture-cc\Desktop\electric-pineapple\ElectricPineapple\ElectricPineapple\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
-C:\Users\mcouture-cc\Desktop\electric-pineapple\ElectricPineapple\ElectricPineapple\obj\Debug\ElectricPineapple.csprojResolveAssemblyReference.cache
 C:\Users\mcouture-cc\Desktop\electric-pineapple\ElectricPineapple\ElectricPineapple\obj\Debug\ElectricPineapple.dll
 C:\Users\mcouture-cc\Desktop\electric-pineapple\ElectricPineapple\ElectricPineapple\obj\Debug\ElectricPineapple.pdb
 C:\Users\pbollenbach-cc\Downloads\electric-pineapple-master\electric-pineapple-master\ElectricPineapple\ElectricPineapple\bin\ElectricPineapple.dll.config
@@ -383,3 +382,4 @@ C:\Users\khamid-cc\Desktop\GitHub\electric-pineapple\ElectricPineapple\ElectricP
 C:\Users\khamid-cc\Desktop\GitHub\electric-pineapple\ElectricPineapple\ElectricPineapple\obj\Debug\ElectricPineapple.csprojResolveAssemblyReference.cache
 C:\Users\khamid-cc\Desktop\GitHub\electric-pineapple\ElectricPineapple\ElectricPineapple\obj\Debug\ElectricPineapple.dll
 C:\Users\khamid-cc\Desktop\GitHub\electric-pineapple\ElectricPineapple\ElectricPineapple\obj\Debug\ElectricPineapple.pdb
+C:\Users\mcouture-cc\Desktop\electric-pineapple\ElectricPineapple\ElectricPineapple\obj\Debug\ElectricPineapple.csprojResolveAssemblyReference.cache

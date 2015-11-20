@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="CVGSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
   <!--Errors Found During Generation:
-warning 6002: The table/view 'C:\USERS\PBOLLENBACH-CC\DESKTOP\ELECTRIC-PINEAPPLE\ELECTRICPINEAPPLE\ELECTRICPINEAPPLE\APP_DATA\CVGS.MDF.dbo.ContactList' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'C:\USERS\MCOUTURE-CC\DESKTOP\ELECTRIC-PINEAPPLE\ELECTRICPINEAPPLE\ELECTRICPINEAPPLE\APP_DATA\CVGS.MDF.dbo.ContactList' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="ContactList">
     <Key>
       <PropertyRef Name="user1" />
@@ -95,10 +95,12 @@ warning 6002: The table/view 'C:\USERS\PBOLLENBACH-CC\DESKTOP\ELECTRIC-PINEAPPLE
     <Property Name="genre" Type="int" Nullable="false" />
     <Property Name="publisher" Type="int" Nullable="false" />
     <Property Name="ESRBRating" Type="int" Nullable="false" />
-    <Property Name="releaseDate" Type="datetime" Nullable="false" />
+    <Property Name="releaseDate" Type="date" Nullable="false" />
     <Property Name="price" Type="int" Nullable="false" />
     <Property Name="description" Type="varchar" MaxLength="255" Nullable="false" />
     <Property Name="platform" Type="int" Nullable="false" />
+    <Property Name="coverPath" Type="varchar" MaxLength="60" />
+    <Property Name="screenshotPath" Type="varchar" MaxLength="60" />
   </EntityType>
   <EntityType Name="Game_Order">
     <Key>
@@ -131,6 +133,7 @@ warning 6002: The table/view 'C:\USERS\PBOLLENBACH-CC\DESKTOP\ELECTRIC-PINEAPPLE
     </Key>
     <Property Name="genreID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="genre" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="imagePath" Type="varchar" MaxLength="30" />
   </EntityType>
   <EntityType Name="Message">
     <Key>
@@ -171,6 +174,7 @@ warning 6002: The table/view 'C:\USERS\PBOLLENBACH-CC\DESKTOP\ELECTRIC-PINEAPPLE
     </Key>
     <Property Name="publisherID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="publisher" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="imagePath" Type="varchar" MaxLength="30" />
   </EntityType>
   <EntityType Name="Rating">
     <Key>

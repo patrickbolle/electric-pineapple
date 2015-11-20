@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using ElectricPineapple;
+using System.IO;
 
 namespace ElectricPineapple.Controllers
 {
@@ -51,10 +52,35 @@ namespace ElectricPineapple.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "gameID,title,genre,publisher,ESRBRating,releaseDate,price,description,platform")] Game game)
+        public ActionResult Create([Bind(Include = "gameID,title,genre,publisher,ESRBRating,releaseDate,price,description,platform")] Game game, HttpPostedFileBase gameCover, HttpPostedFileBase gameScreenshot)
         {
             if (ModelState.IsValid)
             {
+
+                //TO FIX: will crash if file name is too long
+                if (gameCover != null)
+                {
+                    var fileName = Path.GetFileName(gameCover.FileName);
+                    if(fileName.Length > 60)
+                    {
+                        fileName = fileName.Substring(0, 55) + fileName.Substring(fileName.Length - 5, 5);
+                    }
+
+                    var path = Path.Combine(Server.MapPath("~/Content/images/box covers"), fileName);
+                    gameCover.SaveAs(path);
+                    game.coverPath = fileName;
+                }
+
+
+                if (gameScreenshot != null)
+                {
+                    var fileName = Path.GetFileName(gameScreenshot.FileName);
+                    var path = Path.Combine(Server.MapPath("~/Content/images/screenshots"), fileName);
+                    gameScreenshot.SaveAs(path);
+                    game.screenshotPath = fileName;
+                }
+
+
                 db.Games.Add(game);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -91,11 +117,46 @@ namespace ElectricPineapple.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "gameID,title,genre,publisher,ESRBRating,releaseDate,price,description,platform")] Game game)
+        public ActionResult Edit([Bind(Include = "gameID,title,genre,publisher,ESRBRating,releaseDate,price,description,platform")] Game game, HttpPostedFileBase gameCover, HttpPostedFileBase gameScreenshot)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(game).State = EntityState.Modified;
+                var currentGame = db.Games.Where(g => g.gameID == game.gameID).First();
+                if (currentGame == null)
+                {
+                    return HttpNotFound();
+                }
+                else
+                {
+                    currentGame.title = game.title;
+                    currentGame.genre = game.genre;
+                    currentGame.publisher = game.publisher;
+                    currentGame.ESRBRating = game.ESRBRating;
+                    currentGame.releaseDate = game.releaseDate;
+                    currentGame.price = game.price;
+                    currentGame.description = game.description;
+                    currentGame.platform = game.platform;
+                }
+
+
+                //TO FIX: will crash if file name is too long
+                if (gameCover != null)
+                {
+                    var fileName = Path.GetFileName(gameCover.FileName);
+                    var path = Path.Combine(Server.MapPath("~/Content/images/box covers"), fileName);
+                    gameCover.SaveAs(path);
+                    currentGame.coverPath = fileName;
+                }
+
+
+                if (gameScreenshot != null)
+                {
+                    var fileName = Path.GetFileName(gameScreenshot.FileName);
+                    var path = Path.Combine(Server.MapPath("~/Content/images/screenshots"), fileName);
+                    gameScreenshot.SaveAs(path);
+                    currentGame.screenshotPath = fileName;
+                }
+                
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

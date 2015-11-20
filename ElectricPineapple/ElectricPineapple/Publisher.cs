@@ -22,6 +22,7 @@ namespace ElectricPineapple
     
         public int publisherID { get; set; }
         public string publisher1 { get; set; }
+        public string imagePath { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Game> Games { get; set; }

@@ -92,15 +92,17 @@
 </div>
 
 <div class="row">
+    
     <div class="col-md-8">
         <div class="panel panel-default panel-center">
             <div class="panel-heading">
                 <h3 class="panel-title">@Model.title</h3>
             </div>
             <div class="panel-body">
-                <img src="~/Content/images/batmanScreenshot.jpg" />
-                @*<img src="~/Content/images/@(Model.gameID)/screenshot.png" />*@
+                @*<img src="~/Content/images/batmanScreenshot.jpg" />*@
+                <img src="~/Content/images/screenshots/@Model.screenshotPath" width="800" height="450"/>
                 <span class="panel-game-details">
+                    <img src="~/Content/images/publishers/@Model.Publisher1.imagePath" width="250" height="250" />
                     @Model.price<br /><br />
                     @Model.Platform1.platform1, @Model.Genre1.genre1<br /><br />
                     @Model.Publisher1.publisher1 <br /><br />

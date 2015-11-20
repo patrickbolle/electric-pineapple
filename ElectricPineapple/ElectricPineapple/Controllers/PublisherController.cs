@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using ElectricPineapple;
+using System.IO;
 
 namespace ElectricPineapple.Controllers
 {
@@ -46,10 +47,18 @@ namespace ElectricPineapple.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "publisherID,publisher1")] Publisher publisher)
+        public ActionResult Create([Bind(Include = "publisherID,publisher1")] Publisher publisher, HttpPostedFileBase publisherImage)
         {
             if (ModelState.IsValid)
             {
+                if (publisherImage != null)
+                {
+                    var fileName = Path.GetFileName(publisherImage.FileName);
+                    var path = Path.Combine(Server.MapPath("~/Content/images/publishers"), fileName);
+                    publisherImage.SaveAs(path);
+                    publisher.imagePath = fileName;
+                }
+
                 db.Publishers.Add(publisher);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -78,11 +87,28 @@ namespace ElectricPineapple.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "publisherID,publisher1")] Publisher publisher)
+        public ActionResult Edit([Bind(Include = "publisherID,publisher1")] Publisher publisher, HttpPostedFileBase publisherImage)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(publisher).State = EntityState.Modified;
+                var currentPublisher = db.Publishers.Where(p => p.publisherID == publisher.publisherID).First();
+                if (currentPublisher == null)
+                {
+                    return HttpNotFound();
+                }
+                else
+                {
+                    currentPublisher.publisher1 = publisher.publisher1;
+                }
+
+                if(publisherImage != null)
+                {
+                    var fileName = Path.GetFileName(publisherImage.FileName);
+                    var path = Path.Combine(Server.MapPath("~/Content/images/publishers"), fileName);
+                    publisherImage.SaveAs(path);
+                    currentPublisher.imagePath = fileName;
+                }
+
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

@@ -52,6 +52,8 @@
     <EntitySetMapping Name="Games">
       <EntityTypeMapping TypeName="CVGSModel.Game">
         <MappingFragment StoreEntitySet="Game">
+          <ScalarProperty Name="screenshotPath" ColumnName="screenshotPath" />
+          <ScalarProperty Name="coverPath" ColumnName="coverPath" />
           <ScalarProperty Name="gameID" ColumnName="gameID" />
           <ScalarProperty Name="title" ColumnName="title" />
           <ScalarProperty Name="genre" ColumnName="genre" />
@@ -85,6 +87,7 @@
     <EntitySetMapping Name="Genres">
       <EntityTypeMapping TypeName="CVGSModel.Genre">
         <MappingFragment StoreEntitySet="Genre">
+          <ScalarProperty Name="imagePath" ColumnName="imagePath" />
           <ScalarProperty Name="genreID" ColumnName="genreID" />
           <ScalarProperty Name="genre1" ColumnName="genre" />
         </MappingFragment>
@@ -130,6 +133,7 @@
     <EntitySetMapping Name="Publishers">
       <EntityTypeMapping TypeName="CVGSModel.Publisher">
         <MappingFragment StoreEntitySet="Publisher">
+          <ScalarProperty Name="imagePath" ColumnName="imagePath" />
           <ScalarProperty Name="publisherID" ColumnName="publisherID" />
           <ScalarProperty Name="publisher1" ColumnName="publisher" />
         </MappingFragment>

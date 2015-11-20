@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using ElectricPineapple;
+using System.IO;
 
 namespace ElectricPineapple.Controllers
 {
@@ -46,10 +47,18 @@ namespace ElectricPineapple.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "genreID,genre1")] Genre genre)
+        public ActionResult Create([Bind(Include = "genreID,genre1")] Genre genre, HttpPostedFileBase genreImage)
         {
             if (ModelState.IsValid)
             {
+                if (genreImage != null)
+                {
+                    var fileName = Path.GetFileName(genreImage.FileName);
+                    var path = Path.Combine(Server.MapPath("~/Content/images/genres"), fileName);
+                    genreImage.SaveAs(path);
+                    genre.imagePath = fileName;
+                }
+
                 db.Genres.Add(genre);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -78,11 +87,29 @@ namespace ElectricPineapple.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "genreID,genre1")] Genre genre)
+        public ActionResult Edit([Bind(Include = "genreID,genre1")] Genre genre, HttpPostedFileBase genreImage)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(genre).State = EntityState.Modified;
+                var currentGenre = db.Genres.Where(g => g.genreID == genre.genreID).First();
+                if (currentGenre == null)
+                {
+                    return HttpNotFound();
+                }
+                else
+                {
+                    currentGenre.genre1 = genre.genre1;
+                }
+
+                if (genreImage != null)
+                {
+                    var fileName = Path.GetFileName(genreImage.FileName);
+                    var path = Path.Combine(Server.MapPath("~/Content/images/genres"), fileName);
+                    genreImage.SaveAs(path);
+                    currentGenre.imagePath = fileName;
+                }
+
+                db.SaveChanges();
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

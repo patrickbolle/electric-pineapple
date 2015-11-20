@@ -54,6 +54,10 @@ namespace ElectricPineapple.Controllers
                 if (genreImage != null)
                 {
                     var fileName = Path.GetFileName(genreImage.FileName);
+                    if (fileName.Length > 30)
+                    {
+                        fileName = fileName.Substring(0, 25) + fileName.Substring(fileName.Length - 5, 5);
+                    }
                     var path = Path.Combine(Server.MapPath("~/Content/images/genres"), fileName);
                     genreImage.SaveAs(path);
                     genre.imagePath = fileName;
@@ -104,6 +108,10 @@ namespace ElectricPineapple.Controllers
                 if (genreImage != null)
                 {
                     var fileName = Path.GetFileName(genreImage.FileName);
+                    if (fileName.Length > 30)
+                    {
+                        fileName = fileName.Substring(0, 25) + fileName.Substring(fileName.Length - 5, 5);
+                    }
                     var path = Path.Combine(Server.MapPath("~/Content/images/genres"), fileName);
                     genreImage.SaveAs(path);
                     currentGenre.imagePath = fileName;

@@ -54,6 +54,10 @@ namespace ElectricPineapple.Controllers
                 if (publisherImage != null)
                 {
                     var fileName = Path.GetFileName(publisherImage.FileName);
+                    if (fileName.Length > 30)
+                    {
+                        fileName = fileName.Substring(0, 25) + fileName.Substring(fileName.Length - 5, 5);
+                    }
                     var path = Path.Combine(Server.MapPath("~/Content/images/publishers"), fileName);
                     publisherImage.SaveAs(path);
                     publisher.imagePath = fileName;
@@ -104,6 +108,10 @@ namespace ElectricPineapple.Controllers
                 if(publisherImage != null)
                 {
                     var fileName = Path.GetFileName(publisherImage.FileName);
+                    if (fileName.Length > 30)
+                    {
+                        fileName = fileName.Substring(0, 25) + fileName.Substring(fileName.Length - 5, 5);
+                    }
                     var path = Path.Combine(Server.MapPath("~/Content/images/publishers"), fileName);
                     publisherImage.SaveAs(path);
                     currentPublisher.imagePath = fileName;

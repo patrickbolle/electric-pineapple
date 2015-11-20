@@ -343,13 +343,19 @@ table.dataTable thead .sorting:after {
     font-size: 40px;
 }
 
-.panel-default > .panel-heading {
+.panel-default > .panel-heading{
     color: #CFCFCF;
     background-color: #262829;
     border-color: #CFCFCF;
+    text-decoration: none;
 }
 
-.panel-default > .panel-heading a:hover{
+.panel-default > .panel-heading a:link{
+    color: #CFCFCF;
+    text-decoration: none;
+}
+
+.panel-default > .panel-heading a:hover, a:visited, a:active{
     color: white;
     text-decoration: none;
 }

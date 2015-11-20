@@ -283,6 +283,14 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="favicon.ico" />
+    <Content Include="ImageForTopStories\blackops.jpg" />
+    <Content Include="ImageForTopStories\blackops2.jpg" />
+    <Content Include="ImageForTopStories\fallout4.jpg" />
+    <Content Include="ImageForTopStories\halo5.jpg" />
+    <Content Include="ImageForTopStories\nfs.jpg" />
+    <Content Include="ImageForTopStories\ps4.jpg" />
+    <Content Include="ImageForTopStories\starwars.jpg" />
+    <Content Include="ImageForTopStories\starwars2.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Content\fonts\fontawesome-webfont.eot" />

@@ -355,7 +355,9 @@ table.dataTable thead .sorting:after {
     text-decoration: none;
 }
 
-.panel-default > .panel-heading a:hover, a:visited, a:active{
+.panel-default > .panel-heading a:active, 
+.panel-default > .panel-heading a:hover, 
+.panel-default > .panel-heading a:visited{
     color: white;
     text-decoration: none;
 }

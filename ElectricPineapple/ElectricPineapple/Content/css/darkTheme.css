@@ -36,6 +36,10 @@ a{
     text-decoration: none;
 }
 
+#SearchText{
+    width: 180px;
+}
+
 .nav > li > a:hover, .nav > li > a:focus {
     text-decoration: none;
     color: #CFCFCF;

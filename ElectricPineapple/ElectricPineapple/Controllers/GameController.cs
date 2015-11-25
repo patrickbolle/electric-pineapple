@@ -213,5 +213,13 @@ namespace ElectricPineapple.Controllers
             }
             base.Dispose(disposing);
         }
+
+        [HttpPost]
+        public ActionResult Search(string SearchText)
+        {
+            ViewData["SearchTerm"] = SearchText;
+            var games = db.Games.Include(g => g.ESRBRating1).Include(g => g.Publisher1).Include(g => g.Platform1).Include(g => g.Genre1).Where(n => n.title.Contains(SearchText) || n.description.Contains(SearchText) || n.Publisher1.publisher1.Contains(SearchText));
+            return View(games.ToList());
+        }
     }
 }

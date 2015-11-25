@@ -393,6 +393,7 @@
     <Content Include="Views\Genre\Details.cshtml" />
     <Content Include="Views\Genre\Edit.cshtml" />
     <Content Include="Views\Genre\Index.cshtml" />
+    <Content Include="Views\Game\Search.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\images\genres\" />

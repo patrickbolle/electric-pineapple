@@ -5387,11 +5387,16 @@ a.list-group-item-danger.active:focus {
   border-top: 1px solid #ddd;
   border-bottom-right-radius: 3px;
   border-bottom-left-radius: 3px;
+  color: #CFCFCF;
 }
 
-.panel-footer-top:hover{
-    color: white;
+.panel-footer-top:active,
+.panel-footer-top:visited,
+.panel-footer-top:hover
+{
+    color:white;
 }
+
 .panel > .list-group,
 .panel > .panel-collapse > .list-group {
   margin-bottom: 0;

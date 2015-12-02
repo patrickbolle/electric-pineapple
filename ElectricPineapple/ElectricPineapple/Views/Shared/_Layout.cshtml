@@ -120,12 +120,15 @@
                     <ul class="nav" id="side-menu">
                         <li class="sidebar-search">
                             <div class="input-group custom-search-form">
-                                <input type="text" class="form-control" placeholder="Search...">
+                            @using (Html.BeginForm("Search", "Game"))
+                            { 
+                                <input type="text" id="SearchText" name="SearchText" class="form-control" placeholder="Search..." value="@ViewData["SearchTerm"]">
                                 <span class="input-group-btn">
-                                    <button class="btn btn-default" type="button">
+                                    <button class="btn btn-default" type="submit">
                                         <i class="fa fa-search"></i>
                                     </button>
                                 </span>
+                            }
                             </div>
                             <!-- /input-group -->
                         </li>

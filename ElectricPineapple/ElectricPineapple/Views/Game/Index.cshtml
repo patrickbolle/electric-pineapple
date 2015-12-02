@@ -99,6 +99,7 @@
                     </a>
                     <span class="panel-game-info">
                         $@item.price<br /><br />
+                        @item.Publisher1.publisher1<br/><br/>
                         @item.Platform1.platform1, @item.Genre1.genre1<br /><br />
                         @if(item.description.Length < 95)
                         { 
@@ -109,8 +110,9 @@
                             @item.description.Substring(0, 95);
                             @:...<br /><br />
                         }
-                        <input class="btn btn-add-to-cart" type="button" value="Add To Cart" />
                     </span>
+                    <br /><br />
+                    <input class="btn btn-add-to-cart" type="button" value="Add To Cart" />
                 </div>
             </div>
         </div>

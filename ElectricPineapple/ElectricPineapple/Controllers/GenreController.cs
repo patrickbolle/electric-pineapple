@@ -33,6 +33,13 @@ namespace ElectricPineapple.Controllers
             {
                 return HttpNotFound();
             }
+
+            //var games = db.Games.Where(a => a.genre == id).ToList();
+            //ViewBag.stuff = games;
+
+            var games = db.Games.Include(g => g.ESRBRating1).Include(g => g.Publisher1).Include(g => g.Platform1).Include(g => g.Genre1).Where(a => a.genre == id);
+            ViewData["gameGenre"] = games.ToList();
+
             return View(genre);
         }
 

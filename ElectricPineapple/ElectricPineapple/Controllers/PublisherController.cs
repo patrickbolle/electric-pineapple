@@ -18,6 +18,8 @@ namespace ElectricPineapple.Controllers
         // GET: Publisher
         public ActionResult Index()
         {
+            //var publisher = db.Games.Include(a => a.gameID).Include(a => a.publisher);
+            //return View(publisher.ToList());
             return View(db.Publishers.ToList());
         }
 
@@ -33,7 +35,10 @@ namespace ElectricPineapple.Controllers
             {
                 return HttpNotFound();
             }
+            var games = db.Games.Include(g => g.ESRBRating1).Include(g => g.Publisher1).Include(g => g.Platform1).Include(g => g.Genre1).Where(n => n.Publisher1.publisherID == publisher.publisherID);
+            ViewData["publisherGames"] = games.ToList();
             return View(publisher);
+
         }
 
         // GET: Publisher/Create

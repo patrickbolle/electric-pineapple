@@ -151,7 +151,8 @@ namespace ElectricPineapple.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser { 
+                    UserName = model.UserName, FirstName = model.FirstName, LastName = model.LastName, Address = model.Address, City = model.City, Province = model.Province, Gender = model.Gender, PostalCode = model.PostalCode, Email = model.Email };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {

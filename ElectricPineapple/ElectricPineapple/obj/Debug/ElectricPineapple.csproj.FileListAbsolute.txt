@@ -382,3 +382,4 @@ C:\Users\pbollenbach-cc\Desktop\electric-pineapple\ElectricPineapple\ElectricPin
 C:\Users\pbollenbach-cc\Desktop\electric-pineapple\ElectricPineapple\ElectricPineapple\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 C:\Users\pbollenbach-cc\Desktop\electric-pineapple\ElectricPineapple\ElectricPineapple\obj\Debug\ElectricPineapple.dll
 C:\Users\pbollenbach-cc\Desktop\electric-pineapple\ElectricPineapple\ElectricPineapple\obj\Debug\ElectricPineapple.pdb
+C:\Users\pbollenbach-cc\Desktop\electric-pineapple\ElectricPineapple\ElectricPineapple\obj\Debug\ElectricPineapple.csprojResolveAssemblyReference.cache

@@ -18,6 +18,8 @@ namespace ElectricPineapple.Controllers
         // GET: Publisher
         public ActionResult Index()
         {
+            //var publisher = db.Games.Include(a => a.gameID).Include(a => a.publisher);
+            //return View(publisher.ToList());
             return View(db.Publishers.ToList());
         }
 

@@ -399,6 +399,7 @@
     <Folder Include="Content\images\genres\" />
     <Folder Include="Content\images\publishers\" />
     <Folder Include="Content\images\screenshots\" />
+    <Folder Include="Views\Shared2\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

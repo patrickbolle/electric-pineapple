@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'C:\Users\mcouture-cc\Desktop\electric-pineapple\ElectricPineapple\ElectricPineapple\CVGSDatabase.edmx'. 
+﻿// T4 code generation is enabled for model 'C:\Users\pbollenbach-cc\Desktop\electric-pineapple\ElectricPineapple\ElectricPineapple\CVGSDatabase.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

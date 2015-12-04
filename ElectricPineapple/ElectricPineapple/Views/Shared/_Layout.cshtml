@@ -19,6 +19,7 @@
 
 </head>
 <body>
+
     <div id="wrapper">
         <!-- Navigation -->
         <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
@@ -139,7 +140,15 @@
                             <a href=@Url.Action("Index", "Game")><i class="fa fa-gamepad"></i> Games</a>
                         </li>
                         <li>
-                            <a href=@Url.Action("Index", "Genre")><i class="fa fa-tasks"></i> Genres</a>
+                            <a href="#"><i class="fa fa-fighter-jet fa-fw"></i> Genres<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href=@Url.Action("Details", "Genre", new { id = 1 })>RPG</a>
+                                </li>
+                                <li>
+                                    <a href=@Url.Action("Details", "Genre", new { id = 2 })>FPS</a>
+                                </li>
+                            </ul>
                         </li>
                         <li>
                             <a href=@Url.Action("Index", "Publisher")><i class="fa fa-table fa-fw"></i> Publishers</a>

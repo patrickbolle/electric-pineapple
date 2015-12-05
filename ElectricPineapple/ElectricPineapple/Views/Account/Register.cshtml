@@ -1,10 +1,11 @@
 ﻿@model ElectricPineapple.Models.RegisterViewModel
-@{
-    ViewBag.Title = "Register";
-}
-<script type="text/javascript" src="~/Scripts/jquery.validate.js"></script>
 
-<h2>@ViewBag.Title.</h2>
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">Register</h1>
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
 
 @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {

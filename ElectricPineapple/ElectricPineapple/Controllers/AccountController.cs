@@ -164,10 +164,10 @@ namespace ElectricPineapple.Controllers
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
 
                     CVGSEntities db = new CVGSEntities();
-                    UserType role = new UserType();
-                    role.typeID = 1;
-                    role.userType1 = 1;
-                    db.UserTypes.Add(role);
+                    //UserType role = new UserType();
+                    //role.typeID = 1;
+                    //role.userType1 = 1;
+                    //db.UserTypes.Add(role);
 
                     CVGSUser newUser = new CVGSUser();
                     newUser.userID = 1;
@@ -183,9 +183,6 @@ namespace ElectricPineapple.Controllers
                     newUser.userType = 1;
                     db.CVGSUsers.Add(newUser);
                     db.SaveChanges();
-
-
-
 
                     return RedirectToAction("Index", "Home");
                 }

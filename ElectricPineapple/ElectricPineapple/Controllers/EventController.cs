@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using ElectricPineapple;
+using System.Security.Claims;
 
 namespace ElectricPineapple.Controllers
 {
@@ -49,26 +50,22 @@ namespace ElectricPineapple.Controllers
             {
                 return HttpNotFound();
             }
+            var claimsIdentity = User.Identity as ClaimsIdentity;
+            var userIdClaim = claimsIdentity.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier);
+            var userIdValue = "";
 
-            CVGSUser u = new CVGSUser();
-            u.firstName = "bob";
-            u.lastName = "saget";
-            u.userName = "ralphdread";
-            u.email = "dalsdfkj";
-            u.Province1.provinceCode = "AB";
-            u.password = "fdskjf";
-            u.gender = "jflasd";
-            u.recievePromotions = "1";
-            u.Events.Add(@event);
+            if (userIdClaim != null)
+            {
+                userIdValue = userIdClaim.Value;
+            }
 
 
-            db.CVGSUsers.Add(u);
-            @event.CVGSUsers.Add(u);
-
+            CVGSUser user = db.CVGSUsers.Where(u => u.userLink == userIdValue).First();
+            @event.CVGSUsers.Add(user);
+            user.Events.Add(@event);
             db.SaveChanges();
-            
+            return RedirectToAction("Index");
 
-            return View(@event);
         }
 
         // GET: Event/Create

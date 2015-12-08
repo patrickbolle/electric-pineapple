@@ -45,7 +45,7 @@
 @using (Html.BeginForm("Details", "Event", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {   
         @Html.HiddenFor(model => model.eventID)
-        @Html.ActionLink("Signup for this event!", "Details")
+        <input type="submit" value="Signup!" />
 }
     
 </div>

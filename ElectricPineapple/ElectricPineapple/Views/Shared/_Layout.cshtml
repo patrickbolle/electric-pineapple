@@ -70,9 +70,12 @@
                         <li>
                             <a href="#"><i class="fa fa-fighter-jet fa-fw"></i> Account Settings<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
+                            @if (!Request.IsAuthenticated)
+                            { 
                                 <li>
                                     <a href=@Url.Action("Register", "Account")>Register</a>
                                 </li>
+                            }
                                 <li>
                                     <a href=@Url.Action("About", "Home")>Settings</a>
                                 </li>
@@ -81,9 +84,11 @@
                                 {
                                     using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
                                     {
+                                        <ul class="nav nav-second-level">
                                         <li>
                                             <a href="javascript:document.getElementById('logoutForm').submit()">Logout</a>
                                         </li>
+                                        </ul>
                                     }
                                 }
                                 else
@@ -111,6 +116,7 @@
     @*@Scripts.Render("~/Content/js");*@
 
     <script type="text/javascript" src="~/Content/js/jquery.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery.validate.js"></script>
     <script type="text/javascript" src="~/Content/js/bootstrap.js"></script>
     <script type="text/javascript" src="~/Content/js/metisMenu.js"></script>
     <script type="text/javascript" src="~/Content/js/sb-admin-2.js"></script>

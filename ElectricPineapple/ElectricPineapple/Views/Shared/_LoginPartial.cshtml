@@ -94,9 +94,9 @@ else
                 <i class="fa fa-user fa-fw"></i> @User.Identity.GetUserName() <i class="fa fa-caret-down"></i>
             </a>
             <ul class="dropdown-menu dropdown-user">
-                <li>
+                @*<li>
                     <a href="@Url.Action("Login", "Account")"><i class="fa fa-user fa-fw"></i> vut is das</a>
-                </li>
+                </li>*@
                 <li>
                     <a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
                 </li>
@@ -187,7 +187,7 @@ else
                     </li>
                     <li class="divider"></li>
                     <li>
-                        <a href="#"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                        <a href="@Url.Action("Register", "Account")"><i class="fa fa-sign-out fa-fw"></i> Register</a>
                     </li>
                 </ul>
                 <!-- /.dropdown-user -->

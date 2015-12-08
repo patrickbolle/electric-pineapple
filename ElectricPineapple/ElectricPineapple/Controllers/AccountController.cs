@@ -163,6 +163,30 @@ namespace ElectricPineapple.Controllers
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
 
+                    CVGSEntities db = new CVGSEntities();
+                    UserType role = new UserType();
+                    role.typeID = 1;
+                    role.userType1 = 1;
+                    db.UserTypes.Add(role);
+
+                    CVGSUser newUser = new CVGSUser();
+                    newUser.userID = 1;
+                    newUser.firstName = model.FirstName;
+                    newUser.lastName = model.LastName;
+                    newUser.userName = model.UserName;
+                    newUser.email = model.Email;
+                    newUser.province = "ON";
+                    newUser.password = "sdlkfja";
+                    newUser.gender = model.Gender;
+                    newUser.recievePromotions = "1";
+                    newUser.userLink = user.Id;
+                    newUser.userType = 1;
+                    db.CVGSUsers.Add(newUser);
+                    db.SaveChanges();
+
+
+
+
                     return RedirectToAction("Index", "Home");
                 }
                 AddErrors(result);

@@ -5,7 +5,7 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="62e2e364232d4ac386472d230c4d124c" Name="Diagram1">
-        <EntityTypeShape EntityType="CVGSModel.CreditCard" Width="1.5" PointX="0.75" PointY="4.5" IsExpanded="true" FillColor="Red" />
+        <EntityTypeShape EntityType="CVGSModel.CreditCard" Width="1.5" PointX="0.75" PointY="4.5" IsExpanded="true" FillColor="Transparent" />
         <EntityTypeShape EntityType="CVGSModel.CVGSUser" Width="1.5" PointX="3" PointY="6.125" IsExpanded="true" />
         <EntityTypeShape EntityType="CVGSModel.ESRBRating" Width="1.5" PointX="3.75" PointY="2.875" IsExpanded="true" />
         <EntityTypeShape EntityType="CVGSModel.Event" Width="1.5" PointX="0.75" PointY="11" IsExpanded="true" />

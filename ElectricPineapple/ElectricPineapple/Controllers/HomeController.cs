@@ -1,16 +1,29 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.Entity;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using ElectricPineapple;
+using System.IO;
 
 namespace ElectricPineapple.Controllers
 {
+
+   
+
     public class HomeController : Controller
     {
+        private CVGSEntities db = new CVGSEntities();
+
         public ActionResult Index()
         {
-            return View();
+            var news = db.News;
+            ViewData["News items"] = news.ToList();
+            var games = db.Games.Where(n => n.releaseDate > DateTime.Now).Take(10).OrderBy(g => g.releaseDate);
+            return View(games.ToList());
         }
 
         public ActionResult GameCatalogue()

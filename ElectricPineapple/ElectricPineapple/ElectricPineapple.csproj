@@ -161,12 +161,12 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\CVGSUsersController.cs" />
     <Compile Include="Controllers\EventController.cs" />
     <Compile Include="Controllers\GameController.cs" />
     <Compile Include="Controllers\GenreController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\NewsController.cs" />
     <Compile Include="Controllers\PublisherController.cs" />
     <Compile Include="CreditCard.cs">
       <DependentUpon>CVGSDatabase.tt</DependentUpon>
@@ -216,6 +216,9 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="News.cs">
+      <DependentUpon>CVGSDatabase.tt</DependentUpon>
+    </Compile>
     <Compile Include="Order.cs">
       <DependentUpon>CVGSDatabase.tt</DependentUpon>
     </Compile>
@@ -403,11 +406,11 @@
     <Content Include="Views\Event\Details.cshtml" />
     <Content Include="Views\Event\Edit.cshtml" />
     <Content Include="Views\Event\Index.cshtml" />
-    <Content Include="Views\Account\Index.cshtml" />
-    <Content Include="Views\CVGSUsers\Delete.cshtml" />
-    <Content Include="Views\CVGSUsers\Details.cshtml" />
-    <Content Include="Views\CVGSUsers\Edit.cshtml" />
-    <Content Include="Views\CVGSUsers\Index.cshtml" />
+    <Content Include="Views\News\Create.cshtml" />
+    <Content Include="Views\News\Delete.cshtml" />
+    <Content Include="Views\News\Details.cshtml" />
+    <Content Include="Views\News\Edit.cshtml" />
+    <Content Include="Views\News\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\images\genres\" />

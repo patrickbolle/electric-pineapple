@@ -1,28 +1,22 @@
 ﻿@model IEnumerable<ElectricPineapple.CVGSUser>
 
-@{
-    ViewBag.Title = "User List";
-}
-
-<h2>User List</h2>
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">User List</h1>
+    </div>
+</div>
 
 
 <table class="table">
 
-
-
-
-
         @{int i = 0;}
         @foreach (var item in Model)
-	{
-         if (i == 0)
 	    {
-            @:<div class="row">
-            @:<div class="col-lg-12">
-	    }
-                
-
+            if (i == 0)
+	        {
+                @:<div class="row">
+                @:<div class="col-lg-12">
+	        }
                 
         <div class="col-md-3">
             <div class="panel panel-default">
@@ -33,20 +27,14 @@
                 </div>
                 <div class="panel-body">
                     <a href=@Url.Action("Details", "CVGSUsers", new {id = item.userID})>
-                    
-                    </a>
-                    
-                   
+                    </a>               
                      First Name:   @item.firstName<br /><br />
                      Last Name:   @item.lastName<br /><br />
-                     Province:   @item.province
-                     
-               
-                    </div>       
-                </div>
+                     Province:   @item.province                
+                </div>       
             </div>
+         </div>
 
 
-}
-
+        }
 </table>

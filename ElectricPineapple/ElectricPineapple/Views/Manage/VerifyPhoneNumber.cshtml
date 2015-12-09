@@ -1,9 +1,10 @@
 ﻿@model ElectricPineapple.Models.VerifyPhoneNumberViewModel
-@{
-    ViewBag.Title = "Verify Phone Number";
-}
 
-<h2>@ViewBag.Title.</h2>
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">Verify Phone Number</h1>
+    </div>
+</div>
 
 @using (Html.BeginForm("VerifyPhoneNumber", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {

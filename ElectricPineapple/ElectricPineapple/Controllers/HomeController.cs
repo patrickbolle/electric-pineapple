@@ -21,7 +21,12 @@ namespace ElectricPineapple.Controllers
         public ActionResult Index()
         {
             var news = db.News;
-            ViewData["News items"] = news.ToList();
+            ViewData["NewsList"] = news.ToList();
+
+            var events = db.Events;
+            ViewData["EventList"] = events.ToList();
+
+
             var games = db.Games.Where(n => n.releaseDate > DateTime.Now).Take(10).OrderBy(g => g.releaseDate);
             return View(games.ToList());
         }

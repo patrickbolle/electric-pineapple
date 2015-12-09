@@ -1,9 +1,9 @@
 ﻿@model ElectricPineapple.Models.SendCodeViewModel
-@{
-    ViewBag.Title = "Send";
-}
-
-<h2>@ViewBag.Title.</h2>
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">Send</h1>
+    </div>
+</div>
 
 @using (Html.BeginForm("SendCode", "Account", new { ReturnUrl = Model.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" })) {
     @Html.AntiForgeryToken()

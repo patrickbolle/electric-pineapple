@@ -1,0 +1,51 @@
+﻿@model IEnumerable<ElectricPineapple.News>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">News</h1>
+    </div>
+</div>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Title)
+        </td>
+        <td>
+            @if (item.Description.Length < 95)
+            {
+                @item.Description<br /><br />
+            }
+            else
+            {
+                @item.Description.Substring(0, 95);
+                @:...<br /><br />
+                        }
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.newsID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.newsID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.newsID })
+        </td>
+    </tr>
+}
+
+</table>

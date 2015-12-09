@@ -206,5 +206,14 @@
         <ScalarProperty Name="userID" ColumnName="user1" />
       </EndProperty>
     </AssociationSetMapping>
+    <EntitySetMapping Name="News">
+      <EntityTypeMapping TypeName="CVGSModel.News">
+        <MappingFragment StoreEntitySet="News">
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="newsID" ColumnName="newsID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

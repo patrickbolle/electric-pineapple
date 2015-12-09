@@ -17,7 +17,7 @@ namespace ElectricPineapple.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
-
+        private CVGSEntities db = new CVGSEntities();
         public AccountController()
         {
         }
@@ -258,6 +258,19 @@ namespace ElectricPineapple.Controllers
         {
             return code == null ? View("Error") : View();
         }
+
+
+        public ActionResult UserProfile(int? id)
+        {
+            return View();
+        }
+
+
+        public ActionResult Index()
+        {
+            return View();
+        }
+
 
         //
         // POST: /Account/ResetPassword

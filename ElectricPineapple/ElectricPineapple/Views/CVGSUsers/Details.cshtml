@@ -1,0 +1,84 @@
+﻿@model ElectricPineapple.CVGSUser
+
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">User Details</h1>
+    </div>
+</div>
+
+<div>
+    <h4>User Details</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            First Name:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.firstName)
+        </dd>
+
+        <dt>
+            Last name:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.lastName)
+        </dd>
+
+        <dt>
+            User Name:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.userName)
+        </dd>
+
+        <dt>
+            E-Mail Address:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.email)
+        </dd>
+
+        <dt>
+            City:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.city)
+        </dd>
+
+        <dt>
+            Gender:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.gender)
+        </dd>
+
+
+        <dt>
+            Personal Info:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.profileInfo)
+        </dd>
+
+
+        <dt>
+            Province:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Province1.province1)
+        </dd>
+
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>

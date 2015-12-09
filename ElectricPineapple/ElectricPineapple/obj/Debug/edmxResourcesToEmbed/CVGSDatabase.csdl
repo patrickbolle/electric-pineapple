@@ -472,5 +472,14 @@
       <End Role="CVGSUser" EntitySet="CVGSUsers" />
       <End Role="CVGSUser1" EntitySet="CVGSUsers" />
     </AssociationSet>
+    <EntitySet Name="News" EntityType="CVGSModel.News" />
   </EntityContainer>
+  <EntityType Name="News">
+    <Key>
+      <PropertyRef Name="newsID" />
+    </Key>
+    <Property Name="newsID" Type="Int32" Nullable="false" />
+    <Property Name="Title" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+  </EntityType>
 </Schema>

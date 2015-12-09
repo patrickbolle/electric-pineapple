@@ -161,6 +161,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CVGSUsersController.cs" />
     <Compile Include="Controllers\EventController.cs" />
     <Compile Include="Controllers\GameController.cs" />
     <Compile Include="Controllers\GenreController.cs" />
@@ -402,7 +403,11 @@
     <Content Include="Views\Event\Details.cshtml" />
     <Content Include="Views\Event\Edit.cshtml" />
     <Content Include="Views\Event\Index.cshtml" />
-    <Content Include="Views\Account\UserProfile.cshtml" />
+    <Content Include="Views\Account\Index.cshtml" />
+    <Content Include="Views\CVGSUsers\Delete.cshtml" />
+    <Content Include="Views\CVGSUsers\Details.cshtml" />
+    <Content Include="Views\CVGSUsers\Edit.cshtml" />
+    <Content Include="Views\CVGSUsers\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\images\genres\" />

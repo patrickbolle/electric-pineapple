@@ -328,7 +328,11 @@
                 <!-- /.panel body -->
                 <!-- /.panel -->
             </div>
+            @{var ev = (List<Event>)ViewData["event"];
+              foreach (var item in ev)
+              {
+                  @item.name <br /><br />
+              }}
         </div>
         <!-- /.col-lg-4 -->
     </div>
-    <!-- /.row -->

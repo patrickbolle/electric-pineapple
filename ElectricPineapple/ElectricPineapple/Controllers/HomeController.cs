@@ -8,8 +8,12 @@ namespace ElectricPineapple.Controllers
 {
     public class HomeController : Controller
     {
+        CVGSEntities db = new CVGSEntities();
+
         public ActionResult Index()
         {
+            var events = db.Events;
+            ViewData["event"] = events.ToList();
             return View();
         }
 

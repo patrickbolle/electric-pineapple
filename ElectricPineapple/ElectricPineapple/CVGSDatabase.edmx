@@ -6,7 +6,7 @@
     <edmx:StorageModels>
     <Schema Namespace="CVGSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <!--Errors Found During Generation:
-warning 6002: The table/view 'C:\USERS\PBOLLENBACH-CC\DESKTOP\ELECTRIC-PINEAPPLE\ELECTRICPINEAPPLE\ELECTRICPINEAPPLE\APP_DATA\CVGS.MDF.dbo.ContactList' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'C:\USERS\MCOUTURE-CC\DESKTOP\ELECTRIC-PINEAPPLE\ELECTRICPINEAPPLE\ELECTRICPINEAPPLE\APP_DATA\CVGS.MDF.dbo.ContactList' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="ContactList">
           <Key>
             <PropertyRef Name="user1" />
@@ -49,6 +49,7 @@ warning 6002: The table/view 'C:\USERS\PBOLLENBACH-CC\DESKTOP\ELECTRIC-PINEAPPLE
           <Property Name="recievePromotions" Type="char" MaxLength="1" Nullable="false" />
           <Property Name="profileInfo" Type="varchar" MaxLength="255" />
           <Property Name="userType" Type="int" Nullable="false" />
+          <Property Name="userLink" Type="nvarchar" MaxLength="128" Nullable="false" />
         </EntityType>
         <EntityType Name="ESRBRating">
           <Key>
@@ -686,6 +687,7 @@ warning 6002: The table/view 'C:\USERS\PBOLLENBACH-CC\DESKTOP\ELECTRIC-PINEAPPLE
           <NavigationProperty Name="Platforms" Relationship="Self.FavouritePlatforms" FromRole="CVGSUser" ToRole="Platform" />
           <NavigationProperty Name="CVGSUser1" Relationship="Self.ContactList" FromRole="CVGSUser" ToRole="CVGSUser1" />
           <NavigationProperty Name="CVGSUsers" Relationship="Self.ContactList" FromRole="CVGSUser1" ToRole="CVGSUser" />
+          <Property Name="userLink" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
         </EntityType>
         <EntityType Name="ESRBRating">
           <Key>
@@ -1136,6 +1138,7 @@ warning 6002: The table/view 'C:\USERS\PBOLLENBACH-CC\DESKTOP\ELECTRIC-PINEAPPLE
           <EntitySetMapping Name="CVGSUsers">
             <EntityTypeMapping TypeName="CVGSModel.CVGSUser">
               <MappingFragment StoreEntitySet="CVGSUser">
+                <ScalarProperty Name="userLink" ColumnName="userLink" />
                 <ScalarProperty Name="userID" ColumnName="userID" />
                 <ScalarProperty Name="firstName" ColumnName="firstName" />
                 <ScalarProperty Name="lastName" ColumnName="lastName" />

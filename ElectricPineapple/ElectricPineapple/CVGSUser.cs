@@ -44,6 +44,7 @@ namespace ElectricPineapple
         public string recievePromotions { get; set; }
         public string profileInfo { get; set; }
         public int userType { get; set; }
+        public string userLink { get; set; }
     
         public virtual Province Province1 { get; set; }
         public virtual UserType UserType1 { get; set; }

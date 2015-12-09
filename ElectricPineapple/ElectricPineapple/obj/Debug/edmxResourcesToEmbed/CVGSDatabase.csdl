@@ -40,6 +40,7 @@
     <NavigationProperty Name="Platforms" Relationship="Self.FavouritePlatforms" FromRole="CVGSUser" ToRole="Platform" />
     <NavigationProperty Name="CVGSUser1" Relationship="Self.ContactList" FromRole="CVGSUser" ToRole="CVGSUser1" />
     <NavigationProperty Name="CVGSUsers" Relationship="Self.ContactList" FromRole="CVGSUser1" ToRole="CVGSUser" />
+    <Property Name="userLink" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
   </EntityType>
   <EntityType Name="ESRBRating">
     <Key>

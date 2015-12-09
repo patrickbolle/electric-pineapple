@@ -436,7 +436,6 @@ C:\Users\Jmcdonald2-cc\Desktop\electric-pineapple\ElectricPineapple\ElectricPine
 C:\Users\Jmcdonald2-cc\Desktop\electric-pineapple\ElectricPineapple\ElectricPineapple\obj\Debug\ElectricPineapple.csprojResolveAssemblyReference.cache
 C:\Users\Jmcdonald2-cc\Desktop\electric-pineapple\ElectricPineapple\ElectricPineapple\obj\Debug\ElectricPineapple.dll
 C:\Users\Jmcdonald2-cc\Desktop\electric-pineapple\ElectricPineapple\ElectricPineapple\obj\Debug\ElectricPineapple.pdb
-C:\Users\djarvis-cc\Desktop\electric-pineapple\ElectricPineapple\ElectricPineapple\obj\Debug\ElectricPineapple.csprojResolveAssemblyReference.cache
 C:\Users\djarvis-cc\Desktop\electric-pineapple\ElectricPineapple\ElectricPineapple\obj\Debug\ElectricPineapple.dll
 C:\Users\djarvis-cc\Desktop\electric-pineapple\ElectricPineapple\ElectricPineapple\bin\ElectricPineapple.dll.config
 C:\Users\djarvis-cc\Desktop\electric-pineapple\ElectricPineapple\ElectricPineapple\bin\ElectricPineapple.dll

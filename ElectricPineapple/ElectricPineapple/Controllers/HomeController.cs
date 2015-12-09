@@ -11,7 +11,13 @@ using System.IO;
 
 namespace ElectricPineapple.Controllers
 {
-    
+
+    public class MainPageModel
+    {
+        public Game game { get; set; }
+        public News news { get; set; }
+    }
+
     public class HomeController : Controller
     {
         private CVGSEntities db = new CVGSEntities();

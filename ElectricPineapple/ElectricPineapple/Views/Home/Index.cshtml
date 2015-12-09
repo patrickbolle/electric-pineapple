@@ -125,14 +125,19 @@
             </div>
             <!-- /.panel-heading -->
             <div class="panel-body">
-                <!-- /.row -->
-                <p>- Rated as the number one gaming site on PCGamer</p>
-                <p>- Site will go under maintenance sometime this month we'll keep you updated</p>
-                <p>- We will be holding a draw this Christmas and the winner may choose any game from the site for free</p>
-                <p>- Bungie has announced that its Refer-A-Friend program kicks off on Monday 23rd of November</p>
-                <p>- Xbox One Special Edition Armed Forces Controller is back by popular demand</p>
-                <p>- NCSOFT announced today upcoming MMO Blade & Soul will launch in North America and Europe on January 19, 2016</p>
-                <p>- Black Friday sales will start Nov. 27 2015 to Nov. 29 2015</p>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Title)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", new { id = item.newsID }) |
+                            @Html.ActionLink("Details", "Details", new { id = item.newsID }) |
+                            @Html.ActionLink("Delete", "Delete", new { id = item.newsID })
+                        </td>
+                    </tr>
+                }
             </div>
             <!-- /.panel-body -->
         </div>

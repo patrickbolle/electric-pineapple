@@ -4,14 +4,14 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<h2>User Details</h2>
 
 <div>
-    <h4>CVGSUser</h4>
+    <h4>User Details</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.firstName)
+            First Name:
         </dt>
 
         <dd>
@@ -19,7 +19,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.lastName)
+            Last name:
         </dt>
 
         <dd>
@@ -27,7 +27,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.userName)
+            User Name:
         </dt>
 
         <dd>
@@ -35,7 +35,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.email)
+            E-Mail Address:
         </dt>
 
         <dd>
@@ -43,15 +43,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.address)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.address)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.city)
+            City:
         </dt>
 
         <dd>
@@ -59,72 +51,34 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.phone)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.phone)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.password)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.password)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.gender)
+            Gender:
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.gender)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.recievePromotions)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.recievePromotions)
-        </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.profileInfo)
+            Personal Info:
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.profileInfo)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.userLink)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.userLink)
-        </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Province1.province1)
+            Province:
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.Province1.province1)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.UserType1.typeID)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.UserType1.typeID)
-        </dd>
 
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.userID }) |
     @Html.ActionLink("Back to List", "Index")
 </p>

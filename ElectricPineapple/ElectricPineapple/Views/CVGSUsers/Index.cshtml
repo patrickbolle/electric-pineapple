@@ -8,40 +8,45 @@
 
 
 <table class="table">
-    <tr>
-       
-        <th>
-            User Name
-        </th>       
-        <th>
-            First Name
-        </th>
-        <th>
-            Province
-        </th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.userName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.firstName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelitem => item.Province1)
-        </td>
-
-       
 
 
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.userID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.userID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.userID })
-        </td>
-    </tr>
+
+
+
+        @{int i = 0;}
+        @foreach (var item in Model)
+	{
+         if (i == 0)
+	    {
+            @:<div class="row">
+            @:<div class="col-lg-12">
+	    }
+                
+
+                
+        <div class="col-md-3">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <a href=@Url.Action("Details", "CVGSUsers", new {id = item.userID})>
+                        <h3 class="panel-title">@item.userName</h3>
+                    </a>
+                </div>
+                <div class="panel-body">
+                    <a href=@Url.Action("Details", "CVGSUsers", new {id = item.userID})>
+                    
+                    </a>
+                    
+                   
+                     First Name:   @item.firstName<br /><br />
+                     Last Name:   @item.lastName<br /><br />
+                     Province:   @item.province
+                     
+               
+                    </div>       
+                </div>
+            </div>
+
+
 }
 
 </table>

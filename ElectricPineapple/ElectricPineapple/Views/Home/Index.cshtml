@@ -125,7 +125,8 @@
             </div>
             <!-- /.panel-heading -->
             <div class="panel-body">
-                @foreach (var item in Model)
+                @{var NewsItems = (List<News>)ViewData["News items"];}
+                @foreach (var item in NewsItems)
                 {
                     <tr>
                         <td>

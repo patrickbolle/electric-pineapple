@@ -12,11 +12,7 @@ using System.IO;
 namespace ElectricPineapple.Controllers
 {
 
-    public class MainPageModel
-    {
-        public Game game { get; set; }
-        public News news { get; set; }
-    }
+   
 
     public class HomeController : Controller
     {
@@ -24,6 +20,8 @@ namespace ElectricPineapple.Controllers
 
         public ActionResult Index()
         {
+            var news = db.News;
+            ViewData["News items"] = news.ToList();
             var games = db.Games.Where(n => n.releaseDate > DateTime.Now).Take(10).OrderBy(g => g.releaseDate);
             return View(games.ToList());
         }

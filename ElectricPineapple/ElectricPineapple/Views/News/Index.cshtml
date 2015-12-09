@@ -9,7 +9,7 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table">
+@*<table class="table">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Title)
@@ -23,7 +23,7 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Title)
+            @Html.ActionLink(item.Title, "Details", new { id = item.newsID }, new { @style = "color:#000000;" })
         </td>
         <td>
             @if (item.Description.Length < 95)
@@ -35,13 +35,52 @@
                 @item.Description.Substring(0, 95);
                 @:...<br /><br />
                         }
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.newsID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.newsID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.newsID })
-        </td>
     </tr>
 }
 
-</table>
+</table>*@
+
+@{int i = 0;}
+@foreach (var item in Model)
+{
+    if (i == 0)
+    {
+        @:<div class="row">
+            @:<div class="col-lg-12">
+	    }
+
+        <div class="col-md-3">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <a href=@Url.Action("Details", "News", new {id = item.newsID})>
+                        <h3 class="panel-title">@item.Title</h3>
+                    </a>
+                </div>
+                <div class="panel-body">
+                    <span class="panel-news-body">
+                        @if (item.Description.Length < 117)
+                        {
+                            @item.Description<br /><br />
+                        }
+                        else
+                        {
+                            @item.Description.Substring(0, 117);
+                            @:...<br /><br />
+                        }
+                    </span>
+                </div>
+            </div>
+        </div>
+
+                        i++;
+                        if (i == 4)
+                        {
+                            i = 0;
+        }
+
+}
+@if (i != 0)
+{
+    @:</div>
+    @:</div>
+}

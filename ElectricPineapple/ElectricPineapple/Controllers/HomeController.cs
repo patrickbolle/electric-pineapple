@@ -20,10 +20,10 @@ namespace ElectricPineapple.Controllers
 
         public ActionResult Index()
         {
-            var news = db.News;
+            var news = db.News.Take(10);
             ViewData["NewsList"] = news.ToList();
 
-            var events = db.Events;
+            var events = db.Events.Take(10);
             ViewData["EventList"] = events.ToList();
 
 

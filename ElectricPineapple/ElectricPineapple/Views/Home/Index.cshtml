@@ -1,4 +1,6 @@
-﻿@{
+﻿@model IEnumerable<ElectricPineapple.Game>
+
+@{
     ViewBag.Title = "Electric Pineapple";
 }
 <div class="row">
@@ -288,38 +290,17 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>Scalebound</td>
-                                    <td>Q4 2016</td>
-                                </tr>
-                                <tr>
-                                    <td>Fable Legends</td>
-                                    <td>Nov. 17 2015</td>
-                                </tr>
-                                <tr>
-                                    <td>Star Wars Battlfront</td>
-                                    <td>Nov. 17 2015</td>
-                                </tr>
-                                <tr>
-                                    <td>Kung Fu Panda: Showdown of Legendary Legends</td>
-                                    <td>Nov. 17 2015</td>
-                                </tr>
-                                <tr>
-                                    <td>Deadpool</td>
-                                    <td>Nov. 17 2015</td>
-                                <tr>
-                                    <td>Just Cause 3</td>
-                                    <td>Dec. 1 2015</td>
-                                </tr>
-                                <tr>
-                                    <td>Tom Clancy's Rainbow Six Siege</td>
-                                    <td>Dec. 1 2015</td>
-                                </tr>
-                                <tr>
-                                    <td>Naruto Shippuden: Ultimate Ninja Storm</td>
-                                    <td>Feb. 9 2016</td>
-                                </tr>
-
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.title)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.releaseDate)
+                                        </td>
+                                    </tr>
+                                }
                             </tbody>
                         </table>
                     </div>

@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using ElectricPineapple;
 using System.IO;
+using System.Security.Claims;
 
 namespace ElectricPineapple.Controllers
 {
@@ -34,7 +35,84 @@ namespace ElectricPineapple.Controllers
             {
                 return HttpNotFound();
             }
+
+            var ratings = db.Ratings.Where(r => r.gameID == id);
+            if (ratings.Count() > 0)
+            {
+                var gameRating = 0;
+
+                foreach (Rating item in ratings)
+                {
+                    gameRating += item.rating1;
+                }
+
+                gameRating = gameRating / ratings.Count();
+
+                ViewData["GameRating"] = "Game rating: " + gameRating + "/10"; 
+            }
+            else
+            {
+                ViewData["GameRating"] = "Game has no ratings";
+            }
+
+
             return View(game);
+        }
+
+        [HttpPost]
+        public ActionResult Details()
+        {
+            int? id = int.Parse(Request["gameID"]);
+            int rating = int.Parse(Request["gameRating"]);
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Game game = db.Games.Find(id);
+            if (game == null)
+            {
+                return HttpNotFound();
+            }
+
+            //Gets user ID
+            var claimsIdentity = User.Identity as ClaimsIdentity;
+            var userIdClaim = claimsIdentity.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier);
+            var userIdValue = "";
+
+            if (userIdClaim != null)
+            {
+                userIdValue = userIdClaim.Value;
+            }
+
+            CVGSUser user = db.CVGSUsers.Where(u => u.userLink == userIdValue).First();
+
+            Rating userRating = null;
+
+            //If the user already has a rating for the game, update that rating
+            try
+            {
+                userRating = db.Ratings.Where(a => a.gameID == id && a.userID == user.userID).First();
+            }
+            catch
+            {            
+            }
+
+            if (userRating == null)
+            {
+                //If the user has not yet rated that game, add a new rating to database
+                userRating = new Rating();
+                user.Ratings.Add(userRating);
+                game.Ratings.Add(userRating);
+            }            
+
+            //Set rating
+            userRating.rating1 = rating;
+            
+            db.SaveChanges();
+
+            TempData["message"] = "Rating added successfully!";
+
+            return RedirectToAction("Details", new { id = id });
         }
 
         // GET: Game/Create

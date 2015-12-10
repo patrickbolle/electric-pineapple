@@ -5667,6 +5667,10 @@ a.list-group-item-danger.active:focus {
   border-bottom-color: #bce8f1;
 }
 
+.panel-news-body{
+    width: 320px;
+    float: right;
+}
 .panel-game-info {
     width: 160px;
     float: right;

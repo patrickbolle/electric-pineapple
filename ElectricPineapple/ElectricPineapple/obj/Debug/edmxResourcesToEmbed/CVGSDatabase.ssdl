@@ -150,7 +150,7 @@ warning 6002: The table/view 'C:\USERS\DJARVIS-CC\DESKTOP\ELECTRIC-PINEAPPLE\ELE
     <Key>
       <PropertyRef Name="newsID" />
     </Key>
-    <Property Name="newsID" Type="int" Nullable="false" />
+    <Property Name="newsID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Title" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="Description" Type="varchar(max)" Nullable="false" />
   </EntityType>

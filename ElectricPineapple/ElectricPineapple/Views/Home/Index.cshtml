@@ -81,7 +81,7 @@
             </div>
             <a href="#">
                 <div class="panel-footer-top">
-                    <span class="pull-left">View Upcoming Events</span>
+                    <span class="pull-left">@Html.ActionLink("View Upcoming Events", "Index", "Event")</span>
                     <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
                     <div class="clearfix"></div>
                 </div>
@@ -117,7 +117,7 @@
         <!-- /.panel -->
         <div class="panel panel-default">
             <div class="panel-heading">
-                <i class="fa fa-bar-chart-o fa-fw"></i> News
+                <i class="fa fa-bar-chart-o fa-fw"></i> @Html.ActionLink("News", "Index", "News")
 
             </div>
             <!-- /.panel-heading -->
@@ -128,12 +128,7 @@
                     <table>
                         <tr>
                             <td>
-                                @Html.DisplayFor(modelItem => item.Title)
-                            </td>
-                            <td>
-                                @Html.ActionLink("Edit", "Edit", new { id = item.newsID }) |
-                                @Html.ActionLink("Details", "Details", new { id = item.newsID }) |
-                                @Html.ActionLink("Delete", "Delete", new { id = item.newsID })
+                                @Html.ActionLink(item.Title, "Details", "News", new { id = item.newsID} ,new {@style="color:#000000;" })
                             </td>
                         </tr>
                     </table>
@@ -282,7 +277,7 @@
 
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <i class="fa fa-clock-o fa-fw"></i> Upcoming Games
+                    <i class="fa fa-clock-o fa-fw"></i> @Html.ActionLink("Upcoming Games", "Index", "Game")
                 </div>
                 <!-- /.panel-heading -->
                 <div class="panel-body">
@@ -299,7 +294,7 @@
                                 {
                                     <tr>
                                         <td>
-                                            @Html.DisplayFor(modelItem => item.title)
+                                            @Html.ActionLink(item.title, "Details", "Game", new { id = item.gameID }, new { @style = "color:#000000;" })
                                         </td>
                                         <td>
                                             @Html.DisplayFor(modelItem => item.releaseDate)
@@ -315,7 +310,7 @@
 
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <i class="fa fa-clock-o fa-fw"></i> Upcoming Events
+                        <i class="fa fa-clock-o fa-fw"></i> @Html.ActionLink("Upcoming Events", "Index", "Event")
                     </div>
                     <!-- /.panel-heading -->
                     <div class="panel-body">
@@ -332,7 +327,7 @@
                                     foreach (var item in events)
                                     {
                                         <tr><td>
-                                        @Html.DisplayFor(modelItem => item.name);
+                                        @Html.ActionLink(item.name, "Details", "Event", new { id = item.eventID }, new { @style = "color:#000000;" })
                                             </td><td>
                                         @Html.DisplayFor(modelItem => item.description);
                                         </td></tr>

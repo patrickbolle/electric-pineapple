@@ -600,3 +600,4 @@ C:\Users\djarvis-cc\Desktop\electric-pineapple\ElectricPineapple\ElectricPineapp
 C:\Users\djarvis-cc\Desktop\electric-pineapple\ElectricPineapple\ElectricPineapple\obj\Debug\ElectricPineapple.csprojResolveAssemblyReference.cache
 C:\Users\djarvis-cc\Desktop\electric-pineapple\ElectricPineapple\ElectricPineapple\obj\Debug\ElectricPineapple.dll
 C:\Users\djarvis-cc\Desktop\electric-pineapple\ElectricPineapple\ElectricPineapple\obj\Debug\ElectricPineapple.pdb
+C:\Users\pbollenbach-cc\Desktop\electric-pineapple\ElectricPineapple\ElectricPineapple\obj\Debug\ElectricPineapple.csprojResolveAssemblyReference.cache

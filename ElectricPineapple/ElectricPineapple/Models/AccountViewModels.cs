@@ -140,4 +140,12 @@ namespace ElectricPineapple.Models
         [Display(Name = "Email")]
         public string Email { get; set; }
     }
+
+    public class AddFriend
+    {
+        [Required]
+        [EmailAddress]
+        [Display(Name = "UserName")]
+        public string UserName { get; set; }
+    }
 }

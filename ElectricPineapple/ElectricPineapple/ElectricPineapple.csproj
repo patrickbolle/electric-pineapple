@@ -434,6 +434,7 @@
     <Content Include="Views\Account\Index.cshtml">
       <SubType>Code</SubType>
     </Content>
+    <Content Include="Views\CVGSUsers\Search.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\images\genres\" />

@@ -1,0 +1,27 @@
+﻿@using ElectricPineapple.Models
+@model AddFriend
+
+<h4></h4>
+<h2>Please enter the friends username you would like to add!</h2>
+<hr />
+@using (Html.BeginForm("Search", "CVGSUsers", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        @*@Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })*@
+        <label class="col-md-2 control-label">Username</label>
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.UserName, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.UserName, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Search" class="btn btn-default" />
+        </div>
+    </div>
+
+}
+
+
+

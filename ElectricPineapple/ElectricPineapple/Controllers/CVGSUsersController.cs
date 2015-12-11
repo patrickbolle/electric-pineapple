@@ -132,5 +132,10 @@ namespace ElectricPineapple.Controllers
             }
             base.Dispose(disposing);
         }
+
+        public ActionResult Search()
+        {
+            return View();
+        }
     }
 }

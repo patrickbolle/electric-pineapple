@@ -170,6 +170,7 @@
     <Compile Include="Controllers\NewsController.cs" />
     <Compile Include="Controllers\PublisherController.cs" />
     <Compile Include="Controllers\RatingsController.cs" />
+    <Compile Include="Controllers\RoleController.cs" />
     <Compile Include="CreditCard.cs">
       <DependentUpon>CVGSDatabase.tt</DependentUpon>
     </Compile>
@@ -434,6 +435,9 @@
     <Content Include="Views\Account\Index.cshtml">
       <SubType>Code</SubType>
     </Content>
+    <Content Include="Views\Role\Index.cshtml" />
+    <Content Include="Views\Role\Create.cshtml" />
+    <Content Include="Views\Shared\AuthorizeFailed.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\images\genres\" />

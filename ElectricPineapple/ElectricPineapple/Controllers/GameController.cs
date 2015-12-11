@@ -115,6 +115,7 @@ namespace ElectricPineapple.Controllers
             return RedirectToAction("Details", new { id = id });
         }
 
+        [Authorize(Roles = "Admin")]
         // GET: Game/Create
         public ActionResult Create()
         {
@@ -176,6 +177,7 @@ namespace ElectricPineapple.Controllers
         }
 
         // GET: Game/Edit/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -258,6 +260,7 @@ namespace ElectricPineapple.Controllers
         }
 
         // GET: Game/Delete/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)

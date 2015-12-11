@@ -41,6 +41,7 @@ namespace ElectricPineapple.Controllers
         }
 
         // GET: Publisher/Create
+        [Authorize(Roles = "Admin")]
         public ActionResult Create()
         {
             return View();
@@ -76,6 +77,7 @@ namespace ElectricPineapple.Controllers
         }
 
         // GET: Publisher/Edit/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -128,6 +130,7 @@ namespace ElectricPineapple.Controllers
         }
 
         // GET: Publisher/Delete/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)

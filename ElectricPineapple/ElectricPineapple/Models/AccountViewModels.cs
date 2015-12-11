@@ -89,7 +89,6 @@ namespace ElectricPineapple.Models
         [Display(Name = "City")]
         public string City { get; set; }
 
-        [Required]
         [Display(Name = "Province")]
         public string Province { get; set; }
 

@@ -139,6 +139,8 @@ namespace ElectricPineapple.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
+            db = new CVGSEntities();
+            ViewBag.Province = new SelectList(db.Provinces, "provinceCode", "province1");
             return View();
         }
 
@@ -163,7 +165,7 @@ namespace ElectricPineapple.Controllers
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
 
-                    CVGSEntities db = new CVGSEntities();
+                    CVGSEntities db1 = new CVGSEntities();
                     //UserType role = new UserType();
                     //role.typeID = 1;
                     //role.userType1 = 1;
@@ -175,14 +177,14 @@ namespace ElectricPineapple.Controllers
                     newUser.lastName = model.LastName;
                     newUser.userName = model.UserName;
                     newUser.email = model.Email;
-                    newUser.province = "ON";
+                    newUser.province = model.Province;
                     newUser.password = "sdlkfja";
                     newUser.gender = model.Gender;
                     newUser.recievePromotions = "1";
                     newUser.userLink = user.Id;
                     newUser.userType = 1;
-                    db.CVGSUsers.Add(newUser);
-                    db.SaveChanges();
+                    db1.CVGSUsers.Add(newUser);
+                    db1.SaveChanges();
 
                     return RedirectToAction("Index", "Home");
                 }
@@ -190,6 +192,7 @@ namespace ElectricPineapple.Controllers
             }
 
             // If we got this far, something failed, redisplay form
+            ViewBag.Province = new SelectList(db.Provinces, "provinceCode", "province1");
             return View(model);
         }
 

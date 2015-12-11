@@ -59,8 +59,8 @@ namespace ElectricPineapple.Controllers
                 userIdValue = userIdClaim.Value;
             }
 
-
             CVGSUser user = db.CVGSUsers.Where(u => u.userLink == userIdValue).First();
+
             @event.CVGSUsers.Add(user);
             user.Events.Add(@event);
             db.SaveChanges();

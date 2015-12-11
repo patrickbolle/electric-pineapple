@@ -138,9 +138,13 @@
                     @Model.Platform1.platform1, @Model.Genre1.genre1<br /><br />
                     @Model.Publisher1.publisher1 <br /><br />
                     @Model.description<br /><br />
-                    <input class="btn btn-add-to-cart" type="button" value="Add To Cart" /><br /><br />
                     @if (Request.IsAuthenticated)
                     {
+                        using (Html.BeginForm("AddToCart", "Game", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                        {
+                            @Html.HiddenFor(model => model.gameID)
+                            <input class="btn btn-add-to-wishlist" type="submit" value="Add To Cart" />
+                        }
                         using (Html.BeginForm("AddToWishList", "Game", FormMethod.Post, new { enctype = "multipart/form-data" }))
                         {
                             @Html.HiddenFor(model => model.gameID)

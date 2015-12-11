@@ -118,7 +118,7 @@ namespace ElectricPineapple.Controllers
         [HttpPost]
         public ActionResult AddToWishList()
         {
-            int? id = int.Parse(Request["gameID"]);
+            int id = int.Parse(Request["gameID"]);
             Game game = db.Games.Find(id);
 
             //Gets user ID
@@ -132,7 +132,6 @@ namespace ElectricPineapple.Controllers
             }
 
             CVGSUser user = db.CVGSUsers.Where(u => u.userLink == userIdValue).First();
-
             Game_User gameUser = null;
 
             try
@@ -150,14 +149,20 @@ namespace ElectricPineapple.Controllers
                 user.Game_User.Add(gameUser);
                 game.Game_User.Add(gameUser);
                 db.SaveChanges();
-                TempData["message"] = "Added to wishlist.";
-                return RedirectToAction("Details", new { id = id });
+                TempData["message"] = ("Added to wishlist.");
             }
             else
             {
-                TempData["message"] = "Game already on wishlist.";
-                return RedirectToAction("Details", new { id = id });
-            }                     
+                TempData["message"] = ("Game already in wishlist.");
+            }  
+            return RedirectToAction("Details", new { id = id });
+        }
+
+        [HttpPost]
+        public ActionResult AddToCart()
+        {
+            return null;
+            //todo
         }
 
         // GET: Game/Create

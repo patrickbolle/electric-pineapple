@@ -10,6 +10,14 @@ namespace ElectricPineapple.Models
         public string Email { get; set; }
     }
 
+    public class RegisterModel
+    {
+
+        [Required]
+        [Display(Name = "Role")]
+        public string Role { get; set; }
+    }
+
     public class ExternalLoginListViewModel
     {
         public string ReturnUrl { get; set; }

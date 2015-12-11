@@ -132,5 +132,42 @@ namespace ElectricPineapple.Controllers
             }
             base.Dispose(disposing);
         }
+
+
+
+        [Authorize(Roles = "Admin")]
+        public ActionResult AdminEdit(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            CVGSUser cVGSUser = db.CVGSUsers.Find(id);
+            if (cVGSUser == null)
+            {
+                return HttpNotFound();
+            }
+            ViewBag.province = new SelectList(db.Provinces, "provinceCode", "province1", cVGSUser.province);
+            ViewBag.userType = new SelectList(db.UserTypes, "typeID", "typeID", cVGSUser.userType);
+            return View(cVGSUser);
+        }
+
+        // POST: CVGSUsers/Edit/5
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult AdminEdit([Bind(Include = "userID,firstName,lastName,userName,email,address,city,province,phone,password,gender,recievePromotions,profileInfo,userType,userLink")] CVGSUser cVGSUser)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(cVGSUser).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            ViewBag.province = new SelectList(db.Provinces, "provinceCode", "province1", cVGSUser.province);
+            ViewBag.userType = new SelectList(db.UserTypes, "typeID", "typeID", cVGSUser.userType);
+            return View(cVGSUser);
+        }
     }
 }

@@ -139,7 +139,14 @@
                     @Model.Publisher1.publisher1 <br /><br />
                     @Model.description<br /><br />
                     <input class="btn btn-add-to-cart" type="button" value="Add To Cart" /><br /><br />
-                    <input class="btn btn-add-to-wishlist" type="button" value="Add To Wishlist" />
+                    @if (Request.IsAuthenticated)
+                    {
+                        using (Html.BeginForm("AddToWishList", "Game", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                        {
+                            @Html.HiddenFor(model => model.gameID)
+                            <input class="btn btn-add-to-wishlist" type="submit" value="Add To Wishlist" />
+                        }
+                    }                    
                 </span>
             </div>
         </div>
@@ -149,9 +156,7 @@
             {
          
                 @Html.HiddenFor(model => model.gameID)
-                <p>Rate this game:</p>
-            
-            
+                <p>Rate this game:</p>                       
                 <select id="gameRating" name="gameRating">
                     <option value="1">1</option>
                     <option value="2">2</option>
@@ -166,8 +171,6 @@
                 </select>
                 <input type="submit" value="Submit" />
             }
-        }
-        
-
+        }      
     </div>
 </div>

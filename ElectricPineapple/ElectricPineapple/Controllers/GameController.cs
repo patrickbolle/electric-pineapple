@@ -115,6 +115,51 @@ namespace ElectricPineapple.Controllers
             return RedirectToAction("Details", new { id = id });
         }
 
+        [HttpPost]
+        public ActionResult AddToWishList()
+        {
+            int? id = int.Parse(Request["gameID"]);
+            Game game = db.Games.Find(id);
+
+            //Gets user ID
+            var claimsIdentity = User.Identity as ClaimsIdentity;
+            var userIdClaim = claimsIdentity.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier);
+            var userIdValue = "";
+
+            if (userIdClaim != null)
+            {
+                userIdValue = userIdClaim.Value;
+            }
+
+            CVGSUser user = db.CVGSUsers.Where(u => u.userLink == userIdValue).First();
+
+            Game_User gameUser = null;
+
+            try
+            {
+                gameUser = db.Game_User.Where(a => a.gameID == id && a.userID == user.userID).First();
+            }
+            catch
+            {
+            }
+
+            if (gameUser == null)
+            {
+                gameUser = new Game_User();
+                gameUser.status = 2;
+                user.Game_User.Add(gameUser);
+                game.Game_User.Add(gameUser);
+                db.SaveChanges();
+                TempData["message"] = "Added to wishlist.";
+                return RedirectToAction("Details", new { id = id });
+            }
+            else
+            {
+                TempData["message"] = "Game already on wishlist.";
+                return RedirectToAction("Details", new { id = id });
+            }                     
+        }
+
         // GET: Game/Create
         public ActionResult Create()
         {

@@ -28,5 +28,20 @@
         <dd>
             @Html.ActionLink("Credit Card Settings", "Index", "CreditCards")
         </dd>
+        <dd>
+            @using (Html.BeginForm("Index", "Manage", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                <p>Receive promotional emails:           
+                @Html.CheckBoxFor(x => x.ReceivePromotions)</p>
+                <p>Choose a favourite genre</p>
+                <select>
+                    @foreach (Genre item in (List<Genre>)ViewData["GenreList"])
+                    {
+                        <option value="@item.genreID">@item.genre1</option>
+                    }
+                </select>         
+                <input type="submit" value="Save"/> 
+            }
+        </dd>
     </dl>
 </div>

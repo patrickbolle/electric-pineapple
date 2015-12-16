@@ -54,6 +54,8 @@ namespace ElectricPineapple.Controllers
         // GET: /Manage/Index
         public async Task<ActionResult> Index(ManageMessageId? message)
         {
+            CVGSEntities db = new CVGSEntities();
+
             ViewBag.StatusMessage =
                 message == ManageMessageId.ChangePasswordSuccess ? "Your password has been changed."
                 : message == ManageMessageId.SetPasswordSuccess ? "Your password has been set."
@@ -64,14 +66,51 @@ namespace ElectricPineapple.Controllers
                 : "";
 
             var userId = User.Identity.GetUserId();
+            CVGSUser user = db.CVGSUsers.Where(u => u.userLink == userId).First();
+            bool receivePromotions = false;
+
+            if(user.recievePromotions == "1")
+            {
+                receivePromotions = true;
+            }
+
+            ViewData["GenreList"] = db.Genres.ToList();           
+
             var model = new IndexViewModel
             {
                 HasPassword = HasPassword(),
                 PhoneNumber = await UserManager.GetPhoneNumberAsync(userId),
                 TwoFactor = await UserManager.GetTwoFactorEnabledAsync(userId),
                 Logins = await UserManager.GetLoginsAsync(userId),
-                BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(userId)
+                BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(userId),
+                ReceivePromotions = receivePromotions                
             };
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult Index(IndexViewModel model)
+        {
+            CVGSEntities db = new CVGSEntities();
+
+            var userId = User.Identity.GetUserId();
+            CVGSUser user = db.CVGSUsers.Where(u => u.userLink == userId).First();
+
+            ViewData["GenreList"] = db.Genres.ToList();
+            //TODO save favourite genre. Requires new field in database
+
+
+
+            if (model.ReceivePromotions == true)
+            {
+                user.recievePromotions = "1";
+            }
+            else
+            {
+                user.recievePromotions = "0";
+            }
+            db.SaveChanges();
+
             return View(model);
         }
 

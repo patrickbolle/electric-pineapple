@@ -9,28 +9,6 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-@*<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.publisher1)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.publisher1)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.publisherID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.publisherID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.publisherID })
-        </td>
-    </tr>
-}
-
-</table>*@
 
 @{int i = 0;}
 @foreach (var item in Model)
@@ -41,7 +19,7 @@
         @:<div class="col-lg-12">
 	}
 
-        <div class="col-md-3">
+        <div class="col-md-2">
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <a href=@Url.Action("Details", "Publisher", new {id = item.publisherID})>
@@ -50,13 +28,8 @@
                 </div>
                 <div class="panel-body">
                     <a href=@Url.Action("Details", "Publisher", new {id = item.publisherID})>
-                        <img src="~/Content/images/publishers/@item.imagePath" width="155" height="220" />
+                        <img src="~/Content/images/publishers/@item.imagePath" width="200" height="220" />
                     </a>
-                    <span class="panel-game-info">
-                        @item.publisher1<br /><br />
-
-                        <input class="btn btn-add-to-cart" type="button" value="Details" />
-                    </span>
                 </div>
             </div>
         </div>

@@ -203,11 +203,7 @@ namespace ElectricPineapple.Controllers
             }
             order.Games.Add(game);
             db.SaveChanges();
-            TempData["message"] = ("Added to card.");
-            
-                
-            
-            
+            TempData["message"] = ("Added to card.");                                                  
 
             return RedirectToAction("Details", new { id = id });
         }

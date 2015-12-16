@@ -14,33 +14,30 @@
     {
         double total = 0;
         
-    <table class="table table-bordered table-hover table-striped">
-        <thead>
-        <tr><td>Title</td><td>Price</td><td></td>
-        </tr>
-        </thead>
-        <tbody>
-        @foreach (Game item in Model.Games)
-        {
-            <tr>
-                <td>@item.title</td>
-                <td>$@item.price</td>
-                <td><a href="@Url.Action("RemoveCartItem", "Account", new { id = item.gameID })" >Remove from cart</a></td>            
+        <table class="table table-bordered table-hover table-striped">
+            <thead>
+            <tr><td>Title</td><td>Price</td><td></td>
             </tr>
-            total += @item.price;
-        }
-        <tr><td></td><td>Total: $@total</td><td></td></tr>
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+            @foreach (Game item in Model.Games)
+            {
+                <tr>
+                    <td>@item.title</td>
+                    <td>$@item.price</td>
+                    <td><a href="@Url.Action("RemoveCartItem", "Account", new { id = item.gameID })" >Remove from cart</a></td>            
+                </tr>
+                total += @item.price;
+            }
+            <tr><td></td><td>Total: $@total</td><td></td></tr>
+            </tbody>
+        </table>
+        <a href="@Url.Action("Checkout", "Account")" class="btn btn-continue">Checkout</a>
     }
     else
     {
         <p>Your cart is empty.</p>
     }
-    }
-    else
-    {
-        <p>Your cart is empty.</p>
     }        
     </div>
 </div>

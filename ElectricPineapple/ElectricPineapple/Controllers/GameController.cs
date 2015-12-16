@@ -121,6 +121,97 @@ namespace ElectricPineapple.Controllers
             return RedirectToAction("Details", new { id = id });
         }
 
+        [HttpPost]
+        public ActionResult AddToWishList()
+        {
+            int id = int.Parse(Request["gameID"]);
+            Game game = db.Games.Find(id);
+
+            //Gets user ID
+            var claimsIdentity = User.Identity as ClaimsIdentity;
+            var userIdClaim = claimsIdentity.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier);
+            var userIdValue = "";
+
+            if (userIdClaim != null)
+            {
+                userIdValue = userIdClaim.Value;
+            }
+
+            CVGSUser user = db.CVGSUsers.Where(u => u.userLink == userIdValue).First();
+            Game_User gameUser = null;
+
+            try
+            {
+                gameUser = db.Game_User.Where(a => a.gameID == id && a.userID == user.userID).First();
+            }
+            catch
+            {
+            }
+
+            if (gameUser == null)
+            {
+                gameUser = new Game_User();
+                gameUser.status = 2;
+                user.Game_User.Add(gameUser);
+                game.Game_User.Add(gameUser);
+                db.SaveChanges();
+                TempData["message"] = ("Added to wishlist.");
+            }
+            else
+            {
+                TempData["message"] = ("Game already in wishlist.");
+            }  
+            return RedirectToAction("Details", new { id = id });
+        }
+
+        [HttpPost]
+        public ActionResult AddToCart()
+        {
+            int id = int.Parse(Request["gameID"]);
+            Game game = db.Games.Find(id);
+
+            //Gets user ID
+            var claimsIdentity = User.Identity as ClaimsIdentity;
+            var userIdClaim = claimsIdentity.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier);
+            var userIdValue = "";
+
+            if (userIdClaim != null)
+            {
+                userIdValue = userIdClaim.Value;
+            }
+
+            CVGSUser user = db.CVGSUsers.Where(u => u.userLink == userIdValue).First();
+            Order order = null;          
+
+            try
+            {
+                //Will search for a cart from the user that has not been checked out
+                order = db.Orders.Where(a => a.status == "1" && a.userID == user.userID).First();
+            }
+            catch
+            {
+            }
+
+            //If user does not
+            if (order == null)
+            {
+                order = new Order();
+                order.status = "1";
+                order.date = DateTime.Now;
+                order.CVGSUser = user;
+                user.Orders.Add(order);
+            }
+            order.Games.Add(game);
+            db.SaveChanges();
+            TempData["message"] = ("Added to card.");
+            
+                
+            
+            
+
+            return RedirectToAction("Details", new { id = id });
+        }
+
         // GET: Game/Create
         public ActionResult Create()
         {

@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using ElectricPineapple.Models;
+using System.Collections.Generic;
 
 namespace ElectricPineapple.Controllers
 {
@@ -331,10 +332,17 @@ namespace ElectricPineapple.Controllers
             }
             CVGSUser user = db.CVGSUsers.Where(u => u.userLink == userIdValue).First();
 
-            var creditCards = db.CreditCards.Where(a => a.CVGSUsers.Contains(user));
+            List<CreditCard> cards = new List<CreditCard>();
 
-            //TODO: need to limit to credit cards registered to current user
-            ViewBag.CreditCard = new SelectList(db.CreditCards,  "cardID", "name");
+            foreach (CreditCard item in db.CreditCards)
+            {
+                if(item.CVGSUsers.Contains(user))
+                {
+                    cards.Add(item);
+                }
+            }
+
+            ViewBag.CreditCard = new SelectList(cards,  "cardID", "name");
 
             try
             {

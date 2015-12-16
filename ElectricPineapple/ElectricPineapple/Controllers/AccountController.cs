@@ -274,6 +274,51 @@ namespace ElectricPineapple.Controllers
             return View();
         }
 
+        public ActionResult ViewCart()
+        {
+            var claimsIdentity = User.Identity as ClaimsIdentity;
+            var userIdClaim = claimsIdentity.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier);
+            var userIdValue = "";
+
+            if (userIdClaim != null)
+            {
+                userIdValue = userIdClaim.Value;
+            }
+            CVGSUser user = db.CVGSUsers.Where(u => u.userLink == userIdValue).First();
+
+            try
+            {
+                Order order = db.Orders.Where(a => a.status == "1" && a.userID == user.userID).First();
+                return View(order);
+            }
+            catch
+            {
+                return View();
+            }           
+        }
+
+        public ActionResult RemoveCartItem(int? id)
+        {
+            var claimsIdentity = User.Identity as ClaimsIdentity;
+            var userIdClaim = claimsIdentity.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier);
+            var userIdValue = "";
+
+            if (userIdClaim != null)
+            {
+                userIdValue = userIdClaim.Value;
+            }
+            CVGSUser user = db.CVGSUsers.Where(u => u.userLink == userIdValue).First();
+
+            Order order = db.Orders.Where(a => a.status == "1" && a.userID == user.userID).First();
+
+            Game game = db.Games.Find(id);
+
+            order.Games.Remove(game);
+            db.SaveChanges();
+
+            return View("ViewCart", order);
+        }
+
 
         //
         // POST: /Account/ResetPassword

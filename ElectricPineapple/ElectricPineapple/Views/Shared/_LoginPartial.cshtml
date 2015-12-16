@@ -27,9 +27,17 @@ else
         using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
         {
         @Html.AntiForgeryToken()
-
+        
+        
+       
+        
+        
     <ul class="nav navbar-top-links navbar-right">
         <li class="dropdown">
+            <a class="nav" href="@Url.Action("ViewCart", "Account")"><i class="fa fa-shopping-cart"></i> Cart</a>
+        </li>
+
+        @*<li class="dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                 <i class="fa fa-bell fa-fw"></i>  <i class="fa fa-caret-down"></i>
             </a>
@@ -87,7 +95,7 @@ else
                 </li>
             </ul>
             <!-- /.dropdown-alerts -->
-        </li>
+        </li>*@
         <!-- /.dropdown -->
         <li class="dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown" href="#">

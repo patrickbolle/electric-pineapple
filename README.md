@@ -11,6 +11,7 @@ Khaleel,
 Devon
 
 TODO LIST - 
+
 -Finish Users 
 
 -add roles  
@@ -24,5 +25,3 @@ TODO LIST -
 -User profiles, user list 
 
 -create/update/delete a shipping address new 
-
--add credit card 

@@ -36,25 +36,28 @@ namespace ElectricPineapple.Controllers
                 return HttpNotFound();
             }
 
-            var ratings = db.Ratings.Where(r => r.gameID == id);
-            if (ratings.Count() > 0)
+            List<Rating> gameRatings = new List<Rating>();
+
+            gameRatings = db.Ratings.Where(r => r.gameID == id).ToList();
+
+            if (gameRatings.Count() > 0)
             {
                 var gameRating = 0;
 
-                foreach (Rating item in ratings)
+                foreach (Rating item in gameRatings)
                 {
                     gameRating += item.rating1;
                 }
 
-                gameRating = gameRating / ratings.Count();
+                gameRating = gameRating / gameRatings.Count();
 
-                ViewData["GameRating"] = "Game rating: " + gameRating + "/10"; 
+                ViewData["GameRating"] = "Game rating: " + gameRating + "/10";
+                ViewData["RatingList"] = gameRatings;
             }
             else
             {
                 ViewData["GameRating"] = "Game has no ratings";
             }
-
 
             return View(game);
         }
@@ -64,6 +67,8 @@ namespace ElectricPineapple.Controllers
         {
             int? id = int.Parse(Request["gameID"]);
             int rating = int.Parse(Request["gameRating"]);
+            string reviewText = Request["reviewText"];
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -107,6 +112,7 @@ namespace ElectricPineapple.Controllers
 
             //Set rating
             userRating.rating1 = rating;
+            userRating.review = reviewText;
             
             db.SaveChanges();
 

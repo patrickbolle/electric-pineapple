@@ -319,6 +319,39 @@ namespace ElectricPineapple.Controllers
             return View("ViewCart", order);
         }
 
+        public ActionResult Checkout(int? id)
+        {
+            var claimsIdentity = User.Identity as ClaimsIdentity;
+            var userIdClaim = claimsIdentity.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier);
+            var userIdValue = "";
+
+            if (userIdClaim != null)
+            {
+                userIdValue = userIdClaim.Value;
+            }
+            CVGSUser user = db.CVGSUsers.Where(u => u.userLink == userIdValue).First();
+
+            var creditCards = db.CreditCards.Where(a => a.CVGSUsers.Contains(user));
+
+            //TODO: need to limit to credit cards registered to current user
+            ViewBag.CreditCard = new SelectList(db.CreditCards,  "cardID", "name");
+
+            try
+            {
+                Order order = db.Orders.Where(a => a.status == "1" && a.userID == user.userID).First();
+                return View(order);
+            }
+            catch
+            {
+                return View();
+            } 
+        }
+
+        [HttpPost]
+        public ActionResult Checkout()
+        {
+            return RedirectToAction("Index", "Home");
+        }
 
         //
         // POST: /Account/ResetPassword

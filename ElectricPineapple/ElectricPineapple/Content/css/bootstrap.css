@@ -2260,6 +2260,10 @@ th {
   max-width: 100%;
   margin-bottom: 20px;
 }
+
+.table-thin {
+  width: 50%;
+}
 .table > thead > tr > th,
 .table > tbody > tr > th,
 .table > tfoot > tr > th,
@@ -2505,6 +2509,9 @@ label {
   max-width: 100%;
   margin-bottom: 5px;
   font-weight: bold;
+}
+.label-short {
+    max-width: 50%;
 }
 input[type="search"] {
   -webkit-box-sizing: border-box;
@@ -3065,6 +3072,17 @@ fieldset[disabled] .btn {
 }
 
 .btn-add-to-wishlist:hover{
+    color: white;
+}
+
+.btn-continue{
+    color: #CFCFCF;
+    background-color: #923434;
+    border-color: #222;
+    width: 100px;
+}
+
+.btn-continue:hover{
     color: white;
 }
 

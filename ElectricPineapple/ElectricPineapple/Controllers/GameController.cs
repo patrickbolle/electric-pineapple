@@ -57,6 +57,7 @@ namespace ElectricPineapple.Controllers
             else
             {
                 ViewData["GameRating"] = "Game has no ratings";
+                ViewData["RatingList"] = null;
             }
 
             return View(game);

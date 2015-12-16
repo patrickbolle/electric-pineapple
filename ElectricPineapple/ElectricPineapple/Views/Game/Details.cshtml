@@ -69,7 +69,7 @@
                         using (Html.BeginForm("AddToCart", "Game", FormMethod.Post, new { enctype = "multipart/form-data" }))
                         {
                             @Html.HiddenFor(model => model.gameID)
-                            <input class="btn btn-add-to-wishlist" type="submit" value="Add To Cart" />
+                            <input class="btn btn-add-to-wishlist" type="submit" value="Add To Cart" /><br/><br/>
                         }
                         using (Html.BeginForm("AddToWishList", "Game", FormMethod.Post, new { enctype = "multipart/form-data" }))
                         {
@@ -122,8 +122,9 @@
         }
 
 
-
-        @foreach (Rating item in (List<Rating>)ViewData["RatingList"])
+        @if (ViewData["RatingList"] != null)
+        { 
+        foreach (Rating item in (List<Rating>)ViewData["RatingList"])
         {
             <div class="row">
                 <div class="col-md-8">
@@ -144,4 +145,5 @@
                     </div>
                 </div>
             </div>
+        }
         }

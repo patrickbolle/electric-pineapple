@@ -434,6 +434,8 @@
     <Content Include="Views\CreditCards\Details.cshtml" />
     <Content Include="Views\CreditCards\Edit.cshtml" />
     <Content Include="Views\CreditCards\Index.cshtml" />
+    <Content Include="Views\Account\ViewCart.cshtml" />
+    <Content Include="Views\Account\Checkout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\images\genres\" />

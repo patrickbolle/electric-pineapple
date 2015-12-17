@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using ElectricPineapple;
+using System.Security.Claims;
 
 namespace ElectricPineapple.Controllers
 {
@@ -131,6 +132,79 @@ namespace ElectricPineapple.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        public ActionResult Search()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult SearchResults(string SearchText)
+        {
+            ViewData["SearchTerm"] = SearchText;
+            var users = db.CVGSUsers.Where(a => a.userName.Contains(SearchText) || a.email.Contains(SearchText));
+            return View(users.ToList());
+        }
+
+        //[HttpPost]
+        public ActionResult AddFriend(int? id)
+        {
+            CVGSUser friend = db.CVGSUsers.Find(id);
+
+            var claimsIdentity = User.Identity as ClaimsIdentity;
+            var userIdClaim = claimsIdentity.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier);
+            var userIdValue = "";
+
+            if (userIdClaim != null)
+            {
+                userIdValue = userIdClaim.Value;
+            }
+
+            CVGSUser user = db.CVGSUsers.Where(u => u.userLink == userIdValue).First();
+
+            Friend newfriendship = new Friend();
+            newfriendship.FriendID = friend.userID;
+            newfriendship.UserID = user.userID;
+            db.Friends.Add(newfriendship);
+            
+            db.SaveChanges();
+
+            var AllFriends = db.Friends.Where(a => a.UserID == user.userID);
+
+            List<CVGSUser> friends = new List<CVGSUser>();
+
+            foreach (Friend item in AllFriends)
+            {
+                friends.Add(db.CVGSUsers.Find(item.FriendID));
+            }
+            
+            return View("FriendsList", friends.ToList());
+        }
+
+        public ActionResult FriendsList()
+        {
+            var claimsIdentity = User.Identity as ClaimsIdentity;
+            var userIdClaim = claimsIdentity.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier);
+            var userIdValue = "";
+
+            if (userIdClaim != null)
+            {
+                userIdValue = userIdClaim.Value;
+            }
+
+            CVGSUser user = db.CVGSUsers.Where(u => u.userLink == userIdValue).First();
+
+            var AllFriends = db.Friends.Where(a => a.UserID == user.userID);
+
+            List<CVGSUser> friends = new List<CVGSUser>();
+
+            foreach (Friend item in AllFriends)
+            {
+                friends.Add(db.CVGSUsers.Find(item.FriendID));
+            }
+
+            return View(friends.ToList());
         }
     }
 }

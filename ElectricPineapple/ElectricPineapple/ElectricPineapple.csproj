@@ -161,7 +161,6 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\CreditCardsController.cs" />
     <Compile Include="Controllers\CVGSUsersController.cs" />
     <Compile Include="Controllers\EventController.cs" />
     <Compile Include="Controllers\GameController.cs" />
@@ -170,6 +169,7 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\NewsController.cs" />
     <Compile Include="Controllers\PublisherController.cs" />
+    <Compile Include="Controllers\RatingsController.cs" />
     <Compile Include="CreditCard.cs">
       <DependentUpon>CVGSDatabase.tt</DependentUpon>
     </Compile>
@@ -195,6 +195,9 @@
       <DependentUpon>CVGSDatabase.tt</DependentUpon>
     </Compile>
     <Compile Include="Event.cs">
+      <DependentUpon>CVGSDatabase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Friend.cs">
       <DependentUpon>CVGSDatabase.tt</DependentUpon>
     </Compile>
     <Compile Include="Game.cs">
@@ -417,6 +420,11 @@
     <Content Include="Views\Event\Details.cshtml" />
     <Content Include="Views\Event\Edit.cshtml" />
     <Content Include="Views\Event\Index.cshtml" />
+    <Content Include="Views\Ratings\Create.cshtml" />
+    <Content Include="Views\Ratings\Delete.cshtml" />
+    <Content Include="Views\Ratings\Details.cshtml" />
+    <Content Include="Views\Ratings\Edit.cshtml" />
+    <Content Include="Views\Ratings\Index.cshtml" />
     <Content Include="Views\CVGSUsers\Delete.cshtml" />
     <Content Include="Views\CVGSUsers\Details.cshtml" />
     <Content Include="Views\CVGSUsers\Edit.cshtml" />
@@ -429,13 +437,9 @@
     <Content Include="Views\Account\Index.cshtml">
       <SubType>Code</SubType>
     </Content>
-    <Content Include="Views\CreditCards\Create.cshtml" />
-    <Content Include="Views\CreditCards\Delete.cshtml" />
-    <Content Include="Views\CreditCards\Details.cshtml" />
-    <Content Include="Views\CreditCards\Edit.cshtml" />
-    <Content Include="Views\CreditCards\Index.cshtml" />
-    <Content Include="Views\Account\ViewCart.cshtml" />
-    <Content Include="Views\Account\Checkout.cshtml" />
+    <Content Include="Views\CVGSUsers\Search.cshtml" />
+    <Content Include="Views\CVGSUsers\SearchResults.cshtml" />
+    <Content Include="Views\CVGSUsers\FriendsList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\images\genres\" />

@@ -6,7 +6,7 @@
     <edmx:StorageModels>
     <Schema Namespace="CVGSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <!--Errors Found During Generation:
-warning 6002: The table/view 'C:\USERS\DJARVIS-CC\DESKTOP\ELECTRIC-PINEAPPLE\ELECTRICPINEAPPLE\ELECTRICPINEAPPLE\APP_DATA\CVGS.MDF.dbo.ContactList' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'C:\USERS\MICHAEL\DESKTOP\ELECTRIC-PINEAPPLE\ELECTRICPINEAPPLE\ELECTRICPINEAPPLE\APP_DATA\CVGS.MDF.dbo.ContactList' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="ContactList">
           <Key>
             <PropertyRef Name="user1" />
@@ -91,6 +91,14 @@ warning 6002: The table/view 'C:\USERS\DJARVIS-CC\DESKTOP\ELECTRIC-PINEAPPLE\ELE
           </Key>
           <Property Name="PlatformplatformID" Type="int" Nullable="false" />
           <Property Name="UseruserID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Friends">
+          <Key>
+            <PropertyRef Name="FriendshipID" />
+          </Key>
+          <Property Name="FriendshipID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserID" Type="int" />
+          <Property Name="FriendID" Type="int" />
         </EntityType>
         <EntityType Name="Game">
           <Key>
@@ -528,6 +536,7 @@ warning 6002: The table/view 'C:\USERS\DJARVIS-CC\DESKTOP\ELECTRIC-PINEAPPLE\ELE
           <EntitySet Name="EventSignup" EntityType="Self.EventSignup" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="FavouriteGenres" EntityType="Self.FavouriteGenres" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="FavouritePlatforms" EntityType="Self.FavouritePlatforms" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Friends" EntityType="Self.Friends" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Game" EntityType="Self.Game" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Game_Order" EntityType="Self.Game_Order" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Game_User" EntityType="Self.Game_User" Schema="dbo" store:Type="Tables" />
@@ -1129,6 +1138,7 @@ warning 6002: The table/view 'C:\USERS\DJARVIS-CC\DESKTOP\ELECTRIC-PINEAPPLE\ELE
             <End Role="CVGSUser1" EntitySet="CVGSUsers" />
           </AssociationSet>
           <EntitySet Name="News" EntityType="CVGSModel.News" />
+          <EntitySet Name="Friends" EntityType="CVGSModel.Friend" />
         </EntityContainer>
         <EntityType Name="News">
           <Key>
@@ -1137,6 +1147,14 @@ warning 6002: The table/view 'C:\USERS\DJARVIS-CC\DESKTOP\ELECTRIC-PINEAPPLE\ELE
           <Property Name="newsID" Type="Int32" Nullable="false" />
           <Property Name="Title" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Friend">
+          <Key>
+            <PropertyRef Name="FriendshipID" />
+          </Key>
+          <Property Name="FriendshipID" Type="Int32" Nullable="false" />
+          <Property Name="UserID" Type="Int32" />
+          <Property Name="FriendID" Type="Int32" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1355,6 +1373,15 @@ warning 6002: The table/view 'C:\USERS\DJARVIS-CC\DESKTOP\ELECTRIC-PINEAPPLE\ELE
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
                 <ScalarProperty Name="newsID" ColumnName="newsID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Friends">
+            <EntityTypeMapping TypeName="CVGSModel.Friend">
+              <MappingFragment StoreEntitySet="Friends">
+                <ScalarProperty Name="FriendID" ColumnName="FriendID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="FriendshipID" ColumnName="FriendshipID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

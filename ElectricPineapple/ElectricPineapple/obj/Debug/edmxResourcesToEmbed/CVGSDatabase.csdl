@@ -473,6 +473,7 @@
       <End Role="CVGSUser1" EntitySet="CVGSUsers" />
     </AssociationSet>
     <EntitySet Name="News" EntityType="CVGSModel.News" />
+    <EntitySet Name="Friends" EntityType="CVGSModel.Friend" />
   </EntityContainer>
   <EntityType Name="News">
     <Key>
@@ -481,5 +482,13 @@
     <Property Name="newsID" Type="Int32" Nullable="false" />
     <Property Name="Title" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Friend">
+    <Key>
+      <PropertyRef Name="FriendshipID" />
+    </Key>
+    <Property Name="FriendshipID" Type="Int32" Nullable="false" />
+    <Property Name="UserID" Type="Int32" />
+    <Property Name="FriendID" Type="Int32" />
   </EntityType>
 </Schema>

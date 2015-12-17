@@ -197,6 +197,9 @@
     <Compile Include="Event.cs">
       <DependentUpon>CVGSDatabase.tt</DependentUpon>
     </Compile>
+    <Compile Include="Friend.cs">
+      <DependentUpon>CVGSDatabase.tt</DependentUpon>
+    </Compile>
     <Compile Include="Game.cs">
       <DependentUpon>CVGSDatabase.tt</DependentUpon>
     </Compile>
@@ -435,6 +438,8 @@
       <SubType>Code</SubType>
     </Content>
     <Content Include="Views\CVGSUsers\Search.cshtml" />
+    <Content Include="Views\CVGSUsers\SearchResults.cshtml" />
+    <Content Include="Views\CVGSUsers\FriendsList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\images\genres\" />

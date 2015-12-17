@@ -41,5 +41,6 @@ namespace ElectricPineapple
         public virtual DbSet<Rating> Ratings { get; set; }
         public virtual DbSet<UserType> UserTypes { get; set; }
         public virtual DbSet<News> News { get; set; }
+        public virtual DbSet<Friend> Friends { get; set; }
     }
 }

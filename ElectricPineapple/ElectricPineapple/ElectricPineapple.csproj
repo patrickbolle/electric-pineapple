@@ -243,6 +243,9 @@
     <Compile Include="Rating.cs">
       <DependentUpon>CVGSDatabase.tt</DependentUpon>
     </Compile>
+    <Compile Include="ShippingAddress.cs">
+      <DependentUpon>CVGSDatabase.tt</DependentUpon>
+    </Compile>
     <Compile Include="Startup.cs" />
     <Compile Include="UserType.cs">
       <DependentUpon>CVGSDatabase.tt</DependentUpon>

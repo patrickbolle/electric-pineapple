@@ -42,6 +42,9 @@
         <AssociationConnector Association="CVGSModel.ContactList" ManuallyRouted="false" />
         <EntityTypeShape EntityType="CVGSModel.News" Width="1.5" PointX="7.375" PointY="1.375" />
         <EntityTypeShape EntityType="CVGSModel.Friend" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="CVGSModel.ShippingAddress" Width="1.5" PointX="9.375" PointY="1" />
+        <AssociationConnector Association="CVGSModel.FKCVGSUsergenres" />
+        <AssociationConnector Association="CVGSModel.ShippingAddress_User" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

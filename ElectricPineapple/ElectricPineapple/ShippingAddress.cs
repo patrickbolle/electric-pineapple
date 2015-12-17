@@ -12,25 +12,22 @@ namespace ElectricPineapple
     using System;
     using System.Collections.Generic;
     
-    public partial class Genre
+    public partial class ShippingAddress
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Genre()
+        public ShippingAddress()
         {
-            this.Games = new HashSet<Game>();
             this.CVGSUsers = new HashSet<CVGSUser>();
-            this.CVGSUsers1 = new HashSet<CVGSUser>();
         }
     
-        public int genreID { get; set; }
-        public string genre1 { get; set; }
-        public string imagePath { get; set; }
+        public int addressID { get; set; }
+        public string address { get; set; }
+        public string City { get; set; }
+        public string Province { get; set; }
+        public string Country { get; set; }
+        public string Postal_Code { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Game> Games { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CVGSUser> CVGSUsers { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CVGSUser> CVGSUsers1 { get; set; }
     }
 }

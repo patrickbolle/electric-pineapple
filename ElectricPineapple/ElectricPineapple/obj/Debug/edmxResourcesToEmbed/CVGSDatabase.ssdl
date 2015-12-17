@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="CVGSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
   <!--Errors Found During Generation:
-warning 6002: The table/view 'C:\USERS\MICHAEL\DESKTOP\ELECTRIC-PINEAPPLE\ELECTRICPINEAPPLE\ELECTRICPINEAPPLE\APP_DATA\CVGS.MDF.dbo.ContactList' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'C:\USERS\MICHAEL\DESKTOP\MERGES\ELECTRICPINEAPPLE\ELECTRICPINEAPPLE\APP_DATA\CVGS.MDF.dbo.ContactList' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="ContactList">
     <Key>
       <PropertyRef Name="user1" />
@@ -45,6 +45,7 @@ warning 6002: The table/view 'C:\USERS\MICHAEL\DESKTOP\ELECTRIC-PINEAPPLE\ELECTR
     <Property Name="profileInfo" Type="varchar" MaxLength="255" />
     <Property Name="userType" Type="int" Nullable="false" />
     <Property Name="userLink" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="favouriteGenre" Type="int" />
   </EntityType>
   <EntityType Name="ESRBRating">
     <Key>
@@ -202,6 +203,26 @@ warning 6002: The table/view 'C:\USERS\MICHAEL\DESKTOP\ELECTRIC-PINEAPPLE\ELECTR
     <Property Name="userID" Type="int" Nullable="false" />
     <Property Name="rating" Type="int" Nullable="false" />
     <Property Name="review" Type="varchar" MaxLength="255" />
+    <Property Name="approved" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ShippingAddress">
+    <Key>
+      <PropertyRef Name="addressID" />
+    </Key>
+    <Property Name="addressID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="address" Type="varchar" MaxLength="100" />
+    <Property Name="City" Type="varchar" MaxLength="50" />
+    <Property Name="Province" Type="varchar" MaxLength="50" />
+    <Property Name="Country" Type="varchar" MaxLength="50" />
+    <Property Name="Postal Code" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="ShippingAddress_User">
+    <Key>
+      <PropertyRef Name="addressID" />
+      <PropertyRef Name="userID" />
+    </Key>
+    <Property Name="addressID" Type="int" Nullable="false" />
+    <Property Name="userID" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="UserType">
     <Key>
@@ -279,6 +300,18 @@ warning 6002: The table/view 'C:\USERS\MICHAEL\DESKTOP\ELECTRIC-PINEAPPLE\ELECTR
       </Principal>
       <Dependent Role="CVGSUser">
         <PropertyRef Name="userType" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FKCVGSUsergenres">
+    <End Role="Genre" Type="Self.Genre" Multiplicity="0..1" />
+    <End Role="CVGSUser" Type="Self.CVGSUser" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Genre">
+        <PropertyRef Name="genreID" />
+      </Principal>
+      <Dependent Role="CVGSUser">
+        <PropertyRef Name="favouriteGenre" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -522,6 +555,30 @@ warning 6002: The table/view 'C:\USERS\MICHAEL\DESKTOP\ELECTRIC-PINEAPPLE\ELECTR
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FKShippingAddress434034">
+    <End Role="ShippingAddress" Type="Self.ShippingAddress" Multiplicity="1" />
+    <End Role="ShippingAddress_User" Type="Self.ShippingAddress_User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ShippingAddress">
+        <PropertyRef Name="addressID" />
+      </Principal>
+      <Dependent Role="ShippingAddress_User">
+        <PropertyRef Name="addressID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FKShippingAddress992583">
+    <End Role="CVGSUser" Type="Self.CVGSUser" Multiplicity="1" />
+    <End Role="ShippingAddress_User" Type="Self.ShippingAddress_User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CVGSUser">
+        <PropertyRef Name="userID" />
+      </Principal>
+      <Dependent Role="ShippingAddress_User">
+        <PropertyRef Name="userID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <EntityContainer Name="CVGSModelStoreContainer">
     <EntitySet Name="CreditCard" EntityType="Self.CreditCard" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="CreditCard_User" EntityType="Self.CreditCard_User" Schema="dbo" store:Type="Tables" />
@@ -544,6 +601,8 @@ warning 6002: The table/view 'C:\USERS\MICHAEL\DESKTOP\ELECTRIC-PINEAPPLE\ELECTR
     <EntitySet Name="Province" EntityType="Self.Province" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Publisher" EntityType="Self.Publisher" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Rating" EntityType="Self.Rating" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ShippingAddress" EntityType="Self.ShippingAddress" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ShippingAddress_User" EntityType="Self.ShippingAddress_User" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="UserType" EntityType="Self.UserType" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ContactList" EntityType="Self.ContactList" store:Type="Tables" store:Schema="dbo">
       <DefiningQuery>SELECT 
@@ -573,6 +632,10 @@ warning 6002: The table/view 'C:\USERS\MICHAEL\DESKTOP\ELECTRIC-PINEAPPLE\ELECTR
     </AssociationSet>
     <AssociationSet Name="FKCVGSUser959909" Association="Self.FKCVGSUser959909">
       <End Role="UserType" EntitySet="UserType" />
+      <End Role="CVGSUser" EntitySet="CVGSUser" />
+    </AssociationSet>
+    <AssociationSet Name="FKCVGSUsergenres" Association="Self.FKCVGSUsergenres">
+      <End Role="Genre" EntitySet="Genre" />
       <End Role="CVGSUser" EntitySet="CVGSUser" />
     </AssociationSet>
     <AssociationSet Name="FKEventSignu135747" Association="Self.FKEventSignu135747">
@@ -654,6 +717,14 @@ warning 6002: The table/view 'C:\USERS\MICHAEL\DESKTOP\ELECTRIC-PINEAPPLE\ELECTR
     <AssociationSet Name="FKRating529302" Association="Self.FKRating529302">
       <End Role="Game" EntitySet="Game" />
       <End Role="Rating" EntitySet="Rating" />
+    </AssociationSet>
+    <AssociationSet Name="FKShippingAddress434034" Association="Self.FKShippingAddress434034">
+      <End Role="ShippingAddress" EntitySet="ShippingAddress" />
+      <End Role="ShippingAddress_User" EntitySet="ShippingAddress_User" />
+    </AssociationSet>
+    <AssociationSet Name="FKShippingAddress992583" Association="Self.FKShippingAddress992583">
+      <End Role="CVGSUser" EntitySet="CVGSUser" />
+      <End Role="ShippingAddress_User" EntitySet="ShippingAddress_User" />
     </AssociationSet>
   </EntityContainer>
 </Schema>

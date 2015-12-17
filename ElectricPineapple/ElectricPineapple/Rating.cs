@@ -18,6 +18,7 @@ namespace ElectricPineapple
         public int userID { get; set; }
         public int rating1 { get; set; }
         public string review { get; set; }
+        public int approved { get; set; }
     
         public virtual CVGSUser CVGSUser { get; set; }
         public virtual Game Game { get; set; }

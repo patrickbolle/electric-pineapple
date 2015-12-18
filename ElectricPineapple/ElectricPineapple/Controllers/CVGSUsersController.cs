@@ -54,7 +54,6 @@ namespace ElectricPineapple.Controllers
                 }
             }
 
-
             bool friends = false;
 
             if(db.Friends.Where(b => b.UserID == user.userID && b.FriendID == cVGSUser.userID).Count() > 0 || id == user.userID)
@@ -64,7 +63,6 @@ namespace ElectricPineapple.Controllers
 
             ViewData["userWishlist"] = wishlist;
             ViewData["areFriends"] = friends;
-
 
             return View(cVGSUser);
         }
@@ -229,7 +227,7 @@ namespace ElectricPineapple.Controllers
 
             CVGSUser user = db.CVGSUsers.Where(u => u.userLink == userIdValue).First();
 
-            var AllFriends = db.Friends.Where(a => a.UserID == user.userID);
+            var AllFriends = db.Friends.Where(a => a.UserID == user.userID).Distinct<Friend>();
 
             List<CVGSUser> friends = new List<CVGSUser>();
 

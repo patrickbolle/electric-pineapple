@@ -378,7 +378,26 @@ namespace ElectricPineapple.Controllers
         [HttpPost]
         public ActionResult Checkout()
         {
-            return RedirectToAction("Index", "Home");
+            if (Request["addressID"] == null || Request["cardID"] == null)
+            {
+                TempData["error"] = "Please fill out all required fields.";
+                return RedirectToAction("Checkout");
+            }
+
+            var claimsIdentity = User.Identity as ClaimsIdentity;
+            var userIdClaim = claimsIdentity.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier);
+            var userIdValue = "";
+
+            if (userIdClaim != null)
+            {
+                userIdValue = userIdClaim.Value;
+            }
+            CVGSUser user = db.CVGSUsers.Where(u => u.userLink == userIdValue).First();
+
+            Order order = db.Orders.Where(a => a.status == "1" && a.userID == user.userID).FirstOrDefault();
+            order.status = "2";
+            db.SaveChanges();
+            return View("OrderComplete");
         }
 
         //

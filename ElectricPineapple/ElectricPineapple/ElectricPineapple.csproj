@@ -448,6 +448,7 @@
     <Content Include="Views\ShippingAddresses\Details.cshtml" />
     <Content Include="Views\ShippingAddresses\Edit.cshtml" />
     <Content Include="Views\ShippingAddresses\Index.cshtml" />
+    <Content Include="Views\Account\OrderComplete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\images\genres\" />

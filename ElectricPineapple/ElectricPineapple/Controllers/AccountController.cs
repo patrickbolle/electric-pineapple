@@ -352,7 +352,17 @@ namespace ElectricPineapple.Controllers
                 }
             }
 
+            List<ShippingAddress> addresses = new List<ShippingAddress>();
+            foreach (ShippingAddress item in db.ShippingAddresses)
+            {
+                if(item.CVGSUsers.Contains(user))
+                {
+                    addresses.Add(item);
+                }
+            }
+
             ViewBag.CreditCard = new SelectList(cards,  "cardID", "name");
+            ViewBag.Addresses = new SelectList(addresses, "addressID", "address");
 
             try
             {

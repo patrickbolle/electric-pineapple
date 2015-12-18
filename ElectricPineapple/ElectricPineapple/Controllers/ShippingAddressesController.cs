@@ -38,7 +38,7 @@ namespace ElectricPineapple.Controllers
                     userShippingAddresses.Add(item);
                 }
             }
-            return View(db.ShippingAddresses.ToList());
+            return View(userShippingAddresses);
         }
 
         // GET: ShippingAddresses/Details/5
@@ -71,6 +71,18 @@ namespace ElectricPineapple.Controllers
         {
             if (ModelState.IsValid)
             {
+                var claimsIdentity = User.Identity as ClaimsIdentity;
+                var userIdClaim = claimsIdentity.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier);
+                var userIdValue = "";
+
+                if (userIdClaim != null)
+                {
+                    userIdValue = userIdClaim.Value;
+                }
+
+                CVGSUser user = db.CVGSUsers.Where(u => u.userLink == userIdValue).First();
+
+                user.ShippingAddresses.Add(shippingAddress);
                 db.ShippingAddresses.Add(shippingAddress);
                 db.SaveChanges();
                 return RedirectToAction("Index");

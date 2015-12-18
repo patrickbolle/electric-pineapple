@@ -277,14 +277,6 @@ namespace ElectricPineapple.Controllers
             var userId = User.Identity.GetUserId();
             CVGSUser user = db.CVGSUsers.Where(u => u.userLink == userId).First();
 
-
-            //userManager.AddToRole(userId: userId, role: "Admin");
-
-            //db2.SaveChanges();
-
-
-
-
             return RedirectToAction("Details", "CVGSUsers", new { id = user.userID });
         }
 
@@ -573,6 +565,22 @@ namespace ElectricPineapple.Controllers
         public ActionResult ChangePasswordConfirmation()
         {
             return View();
+        }
+
+        public ActionResult AddAdministrator(string id)
+        {
+        ApplicationDbContext db2 = new ApplicationDbContext();
+        UserManager<ApplicationUser> userManager2 = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db2));
+        RoleManager<IdentityRole> roleManager2 = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(db2));
+            
+        userManager2.AddToRole(id, "Admin");
+        db2.SaveChanges();
+
+        var user = db.CVGSUsers.Where(a => a.userLink == id).FirstOrDefault();
+        user.userType = 2;
+        db.SaveChanges();
+
+            return RedirectToAction("Index", "CVGSUsers");
         }
 
         protected override void Dispose(bool disposing)

@@ -36,6 +36,13 @@
                         First Name:   @item.firstName<br /><br />
                         Last Name:   @item.lastName<br /><br />
                         Province:   @item.province
+                        @if (User.IsInRole("Admin") && item.userType == 1)
+                        {
+                            using (Html.BeginForm("AddAdministrator", "Account", new { id = item.userLink }))
+                            {
+                                <br /><br /><input class="btn btn-add-to-wishlist" type="submit" value="Add Administrator" />
+                            }
+                        }    
                     </div>
                 </div>
             </div>

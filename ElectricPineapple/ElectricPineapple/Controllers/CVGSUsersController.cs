@@ -25,6 +25,16 @@ namespace ElectricPineapple.Controllers
         // GET: CVGSUsers/Details/5
         public ActionResult Details(int? id)
         {
+            var claimsIdentity = User.Identity as ClaimsIdentity;
+            var userIdClaim = claimsIdentity.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier);
+            var userIdValue = "";
+
+            if (userIdClaim != null)
+            {
+                userIdValue = userIdClaim.Value;
+            }
+            CVGSUser user = db.CVGSUsers.Where(u => u.userLink == userIdValue).First();
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -34,6 +44,28 @@ namespace ElectricPineapple.Controllers
             {
                 return HttpNotFound();
             }
+
+            List<Game> wishlist = new List<Game>();
+            foreach (Game_User item in db.Game_User)
+            {
+                if (item.CVGSUser == cVGSUser)
+                {
+                    wishlist.Add(item.Game);
+                }
+            }
+
+
+            bool friends = false;
+
+            if(db.Friends.Where(b => b.UserID == user.userID && b.FriendID == cVGSUser.userID).Count() > 0)
+            {
+                friends = true;
+            }
+
+            ViewData["userWishlist"] = wishlist;
+            ViewData["areFriends"] = friends;
+
+
             return View(cVGSUser);
         }
 

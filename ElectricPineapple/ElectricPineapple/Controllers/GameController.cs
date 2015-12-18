@@ -209,8 +209,9 @@ namespace ElectricPineapple.Controllers
         }
 
         [Authorize(Roles="Admin")]
-        public ActionResult ApproveReview(Rating rating)
+        public ActionResult ApproveReview(int? userID, int? gameID)
         {
+            Rating rating = db.Ratings.Where(a => a.userID == userID && a.gameID == gameID).FirstOrDefault();
             rating.approved = 1;
             db.SaveChanges();
 

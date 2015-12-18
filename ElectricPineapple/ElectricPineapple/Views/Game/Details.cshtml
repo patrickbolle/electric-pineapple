@@ -124,6 +124,7 @@
 
     @if (ViewData["RatingList"] != null)
     {
+        <br/>
         if (User.IsInRole("Admin"))
         {
             foreach (Rating item in (List<Rating>)ViewData["RatingList"])
@@ -143,10 +144,14 @@
                                         <br />
                                         @item.review
                                     }
-                                    
-                                    @using (Html.BeginForm("ApproveReview", "Game", new { rating = item }))
-                                    {
-                                    <input class="btn btn-add-to-wishlist" type="submit" value="Approve this review" />
+                                    @if (item.approved == 0)
+                                    { 
+                                        using (Html.BeginForm("ApproveReview", "Game"))
+                                        {
+                                            <input type="hidden" id="userID" name="userID" value="@item.userID"/>
+                                            <input type="hidden" id="gameID" name="gameID" value="@item.gameID"/>
+                                        <input class="btn btn-add-to-wishlist" type="submit" value="Approve this review" />
+                                        }
                                     }
                                 </div>
                             </div>

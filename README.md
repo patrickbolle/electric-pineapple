@@ -1,13 +1,10 @@
 #ELECTRIC PINEAPPLE GAMING STORE - 
-FOR ALL YOUR ICE NEEDS!
+Fully functioning ASP.NET / MVC gaming store.
 
-Team Members- 
-Patrick,
-Michael,
-Jimmy,
-Braedon,
-Jeff,
-Khaleel,
-Devon
+Features:
+- CRUD Games, Publishers, Genres
+- User Profiles, Friends
+- Wishlists, Carts
+- Administrators, regular users
 
-WE ALL DONE! GREAT SUCCESS! VERY NICE!
+

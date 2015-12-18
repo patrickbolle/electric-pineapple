@@ -13,6 +13,7 @@
     <EntitySetMapping Name="CVGSUsers">
       <EntityTypeMapping TypeName="CVGSModel.CVGSUser">
         <MappingFragment StoreEntitySet="CVGSUser">
+          <ScalarProperty Name="favouritePlatform" ColumnName="favouritePlatform" />
           <ScalarProperty Name="favouriteGenre" ColumnName="favouriteGenre" />
           <ScalarProperty Name="userLink" ColumnName="userLink" />
           <ScalarProperty Name="userID" ColumnName="userID" />

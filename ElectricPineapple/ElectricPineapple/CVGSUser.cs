@@ -47,6 +47,7 @@ namespace ElectricPineapple
         public int userType { get; set; }
         public string userLink { get; set; }
         public Nullable<int> favouriteGenre { get; set; }
+        public Nullable<int> favouritePlatform { get; set; }
     
         public virtual Province Province1 { get; set; }
         public virtual UserType UserType1 { get; set; }
@@ -75,5 +76,6 @@ namespace ElectricPineapple
         public virtual Genre Genre { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ShippingAddress> ShippingAddresses { get; set; }
+        public virtual Platform Platform { get; set; }
     }
 }

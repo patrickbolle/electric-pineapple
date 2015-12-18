@@ -44,6 +44,8 @@
     <Property Name="favouriteGenre" Type="Int32" />
     <NavigationProperty Name="Genre" Relationship="CVGSModel.FKCVGSUsergenres" FromRole="CVGSUser" ToRole="Genre" />
     <NavigationProperty Name="ShippingAddresses" Relationship="CVGSModel.ShippingAddress_User" FromRole="CVGSUser" ToRole="ShippingAddress" />
+    <Property Name="favouritePlatform" Type="Int32" />
+    <NavigationProperty Name="Platform" Relationship="CVGSModel.FKCVGSUserplatforms" FromRole="CVGSUser" ToRole="Platform" />
   </EntityType>
   <EntityType Name="ESRBRating">
     <Key>
@@ -150,6 +152,7 @@
     <Property Name="platform1" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
     <NavigationProperty Name="Games" Relationship="Self.FKGame305795" FromRole="Platform" ToRole="Game" />
     <NavigationProperty Name="CVGSUsers" Relationship="Self.FavouritePlatforms" FromRole="Platform" ToRole="CVGSUser" />
+    <NavigationProperty Name="CVGSUsers1" Relationship="CVGSModel.FKCVGSUserplatforms" FromRole="Platform" ToRole="CVGSUser" />
   </EntityType>
   <EntityType Name="Province">
     <Key>
@@ -488,6 +491,10 @@
       <End Role="ShippingAddress" EntitySet="ShippingAddresses" />
       <End Role="CVGSUser" EntitySet="CVGSUsers" />
     </AssociationSet>
+    <AssociationSet Name="FKCVGSUserplatforms" Association="CVGSModel.FKCVGSUserplatforms">
+      <End Role="Platform" EntitySet="Platforms" />
+      <End Role="CVGSUser" EntitySet="CVGSUsers" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="News">
     <Key>
@@ -532,5 +539,17 @@
   <Association Name="ShippingAddress_User">
     <End Type="CVGSModel.ShippingAddress" Role="ShippingAddress" Multiplicity="*" />
     <End Type="CVGSModel.CVGSUser" Role="CVGSUser" Multiplicity="*" />
+  </Association>
+  <Association Name="FKCVGSUserplatforms">
+    <End Type="CVGSModel.Platform" Role="Platform" Multiplicity="0..1" />
+    <End Type="CVGSModel.CVGSUser" Role="CVGSUser" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Platform">
+        <PropertyRef Name="platformID" />
+      </Principal>
+      <Dependent Role="CVGSUser">
+        <PropertyRef Name="favouritePlatform" />
+      </Dependent>
+    </ReferentialConstraint>
   </Association>
 </Schema>

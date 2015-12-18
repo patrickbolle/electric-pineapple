@@ -74,7 +74,8 @@ namespace ElectricPineapple.Controllers
                 receivePromotions = true;
             }
 
-            ViewData["GenreList"] = db.Genres.ToList();           
+            ViewBag.GenresList = new SelectList(db.Genres, "genreID", "genre1", user.favouriteGenre);
+            ViewBag.PlatformsList = new SelectList(db.Platforms, "platformID", "platform1", user.favouritePlatform);         
 
             var model = new IndexViewModel
             {
@@ -94,12 +95,13 @@ namespace ElectricPineapple.Controllers
             CVGSEntities db = new CVGSEntities();
 
             var userId = User.Identity.GetUserId();
-            CVGSUser user = db.CVGSUsers.Where(u => u.userLink == userId).First();
+            CVGSUser user = db.CVGSUsers.Where(u => u.userLink == userId).FirstOrDefault();
 
-            ViewData["GenreList"] = db.Genres.ToList();
-            //TODO save favourite genre. Requires new field in database
+            user.favouriteGenre = int.Parse(Request["GenresList"]);
+            user.favouritePlatform = int.Parse(Request["PlatformsList"]);
 
-
+            ViewBag.GenresList = new SelectList(db.Genres, "genreID", "genre1", user.favouriteGenre);
+            ViewBag.PlatformsList = new SelectList(db.Platforms, "platformID", "platform1", user.favouritePlatform);
 
             if (model.ReceivePromotions == true)
             {

@@ -45,6 +45,7 @@
         <EntityTypeShape EntityType="CVGSModel.ShippingAddress" Width="1.5" PointX="9.375" PointY="1" />
         <AssociationConnector Association="CVGSModel.FKCVGSUsergenres" />
         <AssociationConnector Association="CVGSModel.ShippingAddress_User" />
+        <AssociationConnector Association="CVGSModel.FKCVGSUserplatforms" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -79,6 +79,29 @@
 
     </dl>
 </div>
+@if ((bool)ViewData["areFriends"])
+{
+    <h3>Wishlist: </h3>
+    <table class="table table-bordered table-hover table-striped">
+        <thead>
+            <tr>
+                <td>Title</td>
+                <td>Price</td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Game item in (List<Game>)ViewData["userWishlist"])
+            {
+                <tr>
+                    <td>@item.title</td>
+                    <td>$@item.price</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+
 <p>
     @Html.ActionLink("Back to List", "Index")
 </p>

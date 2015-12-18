@@ -11,7 +11,6 @@ using System.IO;
 
 namespace ElectricPineapple.Controllers
 {      
-
     public class HomeController : Controller
     {
         private CVGSEntities db = new CVGSEntities();

@@ -58,6 +58,7 @@ namespace ElectricPineapple.Controllers
             {
                 if (publisherImage != null)
                 {
+                    //Shortens filename if too long
                     var fileName = Path.GetFileName(publisherImage.FileName);
                     if (fileName.Length > 30)
                     {
@@ -113,6 +114,7 @@ namespace ElectricPineapple.Controllers
 
                 if(publisherImage != null)
                 {
+                    //Shortens filename if too long
                     var fileName = Path.GetFileName(publisherImage.FileName);
                     if (fileName.Length > 30)
                     {

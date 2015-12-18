@@ -62,6 +62,7 @@ namespace ElectricPineapple.Controllers
             {
                 if (genreImage != null)
                 {
+                    //Shortens filename if too long
                     var fileName = Path.GetFileName(genreImage.FileName);
                     if (fileName.Length > 30)
                     {

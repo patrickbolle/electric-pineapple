@@ -75,7 +75,7 @@
                         <li>
                             <a href="#"><i class="fa fa-fighter-jet fa-fw"></i> Account Settings<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
-                                
+                                @*Show different links depending on if user is logged in or not*@
                                 @if (!Request.IsAuthenticated)
                                 {
                                     <li>

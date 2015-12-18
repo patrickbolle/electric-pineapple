@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using ElectricPineapple;
 using System.Security.Claims;
+using Microsoft.AspNet.Identity;
 
 namespace ElectricPineapple.Controllers
 {
@@ -18,19 +19,11 @@ namespace ElectricPineapple.Controllers
         // GET: ShippingAddresses
         public ActionResult Index()
         {
-            var claimsIdentity = User.Identity as ClaimsIdentity;
-            var userIdClaim = claimsIdentity.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier);
-            var userIdValue = "";
+            var userId = User.Identity.GetUserId();
+            CVGSUser user = db.CVGSUsers.Where(u => u.userLink == userId).First();
 
-            if (userIdClaim != null)
-            {
-                userIdValue = userIdClaim.Value;
-            }
-
-            CVGSUser user = db.CVGSUsers.Where(u => u.userLink == userIdValue).First();
-
+            //Show shipping addresses that belong to the user
             List<ShippingAddress> userShippingAddresses = new List<ShippingAddress>();
-
             foreach (ShippingAddress item in db.ShippingAddresses)
             {
                 if (item.CVGSUsers.Contains(user))
@@ -71,17 +64,10 @@ namespace ElectricPineapple.Controllers
         {
             if (ModelState.IsValid)
             {
-                var claimsIdentity = User.Identity as ClaimsIdentity;
-                var userIdClaim = claimsIdentity.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier);
-                var userIdValue = "";
+                var userId = User.Identity.GetUserId();
+                CVGSUser user = db.CVGSUsers.Where(u => u.userLink == userId).First();
 
-                if (userIdClaim != null)
-                {
-                    userIdValue = userIdClaim.Value;
-                }
-
-                CVGSUser user = db.CVGSUsers.Where(u => u.userLink == userIdValue).First();
-
+                //Add shipping address to the user
                 user.ShippingAddresses.Add(shippingAddress);
                 db.ShippingAddresses.Add(shippingAddress);
                 db.SaveChanges();

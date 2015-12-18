@@ -42,6 +42,20 @@
             @Html.DisplayFor(model => model.endTime)
         </dd>
     </dl>
+    <h3>Attending Users:</h3>
+    <table class="table table-bordered table-hover table-striped">
+        <thead>
+            <tr><th>Username:</th></tr>
+        </thead>
+        <tbody>
+            @foreach (CVGSUser item in Model.CVGSUsers)
+            {
+                <tr>
+                    <td>@item.userName</td>
+                </tr>
+            }
+        </tbody>
+    </table>
 @using (Html.BeginForm("Details", "Event", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {   
         @Html.HiddenFor(model => model.eventID)

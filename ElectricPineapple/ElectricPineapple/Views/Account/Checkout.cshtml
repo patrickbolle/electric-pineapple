@@ -8,15 +8,16 @@
 <!-- /.row -->
 <div class="row">
     <div class="col-lg-12">
+        @*Show error message if there is one*@
         @TempData["error"]
         @if (Model != null)
         {
             if (Model.Games.Count != 0)
             {
                 double total = 0;
+                @*Show user their cart again, + a total*@
                 using (Html.BeginForm("Checkout", "Account", FormMethod.Post, new { enctype = "multipart/form-data" }))
-                {                 
-                       
+                {                
                     <table class="table table-bordered table-hover table-striped table-thin">
                         <thead>
                             <tr>

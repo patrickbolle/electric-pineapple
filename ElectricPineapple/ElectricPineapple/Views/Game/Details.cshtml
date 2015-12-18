@@ -7,6 +7,7 @@
 </div>
 
 <div>
+    @*Shows whether item was added to wishlist successfully or not*@
     @TempData["message"]
 </div>
 <p>
@@ -24,8 +25,6 @@
                 <h3 class="panel-title">@Model.title</h3>
             </div>
             <div class="panel-body">
-                @*<img src="~/Content/images/batmanScreenshot.jpg" />*@
-                @*<img src="~/Content/images/screenshots/@Model.screenshotPath" width="800" height="450"/>*@
                 <div id="myCarousel" class="carousel slide" style="height: 500px; width:800px; position:absolute" data-ride=" carousel">
                     <!-- Indicators -->
                     <ol class="carousel-indicators">
@@ -60,12 +59,15 @@
                     </a>
                 </div>
                 <span class="panel-game-details">
+                    @*Shows the games info*@
                     <img src="~/Content/images/publishers/@Model.Publisher1.imagePath" width="250" height="250" />
                     @Model.price<br /><br />
                     @ViewData["GameRating"] <br /><br />
                     @Model.Platform1.platform1, @Model.Genre1.genre1<br /><br />
                     @Model.Publisher1.publisher1 <br /><br />
                     @Model.description<br /><br />
+
+                    @*If user is logged in, allow them to add to cart or wishlist*@
                     @if (Request.IsAuthenticated)
                     {
                         using (Html.BeginForm("AddToCart", "Game", FormMethod.Post, new { enctype = "multipart/form-data" }))
@@ -82,6 +84,7 @@
                 </span>
             </div>
         </div>
+        @*If user is logged in, allow them to leave a rating/review*@
         @if (Request.IsAuthenticated)
         {
             using (Html.BeginForm("Details", "Game", FormMethod.Post, new { enctype = "multipart/form-data" }))
@@ -125,6 +128,7 @@
     @if (ViewData["RatingList"] != null)
     {
         <br/>
+        @*If user is an admin, show all unapproved reviews, with a button to approve them*@
         if (User.IsInRole("Admin"))
         {
             foreach (Rating item in (List<Rating>)ViewData["RatingList"])
@@ -163,6 +167,7 @@
         {
             foreach (Rating item in (List<Rating>)ViewData["RatingList"])
             {
+                //If user is logged in but not an admin, only show approved reviews
                 if(item.approved == 1)
                 { 
             <div class="row">

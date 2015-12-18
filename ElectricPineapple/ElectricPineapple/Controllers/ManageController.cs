@@ -97,6 +97,7 @@ namespace ElectricPineapple.Controllers
             var userId = User.Identity.GetUserId();
             CVGSUser user = db.CVGSUsers.Where(u => u.userLink == userId).FirstOrDefault();
 
+            //Updates preferences
             user.favouriteGenre = int.Parse(Request["GenresList"]);
             user.favouritePlatform = int.Parse(Request["PlatformsList"]);
 

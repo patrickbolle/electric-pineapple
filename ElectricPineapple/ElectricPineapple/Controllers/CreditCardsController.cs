@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using ElectricPineapple;
 using System.Security.Claims;
+using Microsoft.AspNet.Identity;
 
 namespace ElectricPineapple.Controllers
 {
@@ -18,19 +19,13 @@ namespace ElectricPineapple.Controllers
         // GET: CreditCards
         public ActionResult Index()
         {
-            var claimsIdentity = User.Identity as ClaimsIdentity;
-            var userIdClaim = claimsIdentity.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier);
-            var userIdValue = "";
-
-            if (userIdClaim != null)
-            {
-                userIdValue = userIdClaim.Value;
-            }
-
-            CVGSUser user = db.CVGSUsers.Where(u => u.userLink == userIdValue).First();
+            //Get user ID
+            var userId = User.Identity.GetUserId();
+            CVGSUser user = db.CVGSUsers.Where(u => u.userLink == userId).First();
 
             List<CreditCard> userCreditCards = new List<CreditCard>();
 
+            //Get a list of all credit cards that belong to the current user
             foreach (CreditCard item in db.CreditCards)
 	        {
 		         if(item.CVGSUsers.Contains(user))
@@ -72,17 +67,10 @@ namespace ElectricPineapple.Controllers
         {
             if (ModelState.IsValid)
             {
-                var claimsIdentity = User.Identity as ClaimsIdentity;
-                var userIdClaim = claimsIdentity.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier);
-                var userIdValue = "";
+                var userId = User.Identity.GetUserId();
+                CVGSUser user = db.CVGSUsers.Where(u => u.userLink == userId).First();
 
-                if (userIdClaim != null)
-                {
-                    userIdValue = userIdClaim.Value;
-                }
-
-                CVGSUser user = db.CVGSUsers.Where(u => u.userLink == userIdValue).First();
-
+                //Add the credit card for the user
                 user.CreditCards.Add(creditCard);
                 db.CreditCards.Add(creditCard);
                 db.SaveChanges();

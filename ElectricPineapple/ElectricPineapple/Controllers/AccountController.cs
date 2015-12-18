@@ -167,12 +167,8 @@ namespace ElectricPineapple.Controllers
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
 
+                    //Adds the user to the CVGS database, since we wanted to use the ASP default user system
                     CVGSEntities db1 = new CVGSEntities();
-                    //UserType role = new UserType();
-                    //role.typeID = 1;
-                    //role.userType1 = 1;
-                    //db.UserTypes.Add(role);
-
                     CVGSUser newUser = new CVGSUser();
                     newUser.userID = 1;
                     newUser.firstName = model.FirstName;
@@ -264,7 +260,6 @@ namespace ElectricPineapple.Controllers
             return code == null ? View("Error") : View();
         }
 
-
         public ActionResult UserProfile(int? id)
         {
             return View();
@@ -272,8 +267,7 @@ namespace ElectricPineapple.Controllers
 
         public ActionResult MyProfile()
         {
-
-
+            //Gets the current users ID and goes to their profile
             var userId = User.Identity.GetUserId();
             CVGSUser user = db.CVGSUsers.Where(u => u.userLink == userId).First();
 
@@ -287,18 +281,12 @@ namespace ElectricPineapple.Controllers
 
         public ActionResult ViewCart()
         {
-            var claimsIdentity = User.Identity as ClaimsIdentity;
-            var userIdClaim = claimsIdentity.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier);
-            var userIdValue = "";
-
-            if (userIdClaim != null)
-            {
-                userIdValue = userIdClaim.Value;
-            }
-            CVGSUser user = db.CVGSUsers.Where(u => u.userLink == userIdValue).First();
+            var userId = User.Identity.GetUserId();
+            CVGSUser user = db.CVGSUsers.Where(u => u.userLink == userId).First();
 
             try
             {
+                //Searchs for a cart for that user where the status is 1 (not checked out)
                 Order order = db.Orders.Where(a => a.status == "1" && a.userID == user.userID).First();
                 return View(order);
             }
@@ -310,40 +298,30 @@ namespace ElectricPineapple.Controllers
 
         public ActionResult RemoveCartItem(int? id)
         {
-            var claimsIdentity = User.Identity as ClaimsIdentity;
-            var userIdClaim = claimsIdentity.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier);
-            var userIdValue = "";
+            var userId = User.Identity.GetUserId();
+            CVGSUser user = db.CVGSUsers.Where(u => u.userLink == userId).First();
 
-            if (userIdClaim != null)
-            {
-                userIdValue = userIdClaim.Value;
-            }
-            CVGSUser user = db.CVGSUsers.Where(u => u.userLink == userIdValue).First();
-
+            //Finds the order in progress for the current user
             Order order = db.Orders.Where(a => a.status == "1" && a.userID == user.userID).First();
 
+            //Removes that game from the order
             Game game = db.Games.Find(id);
 
             order.Games.Remove(game);
             db.SaveChanges();
 
+            //Go back to cart
             return View("ViewCart", order);
         }
 
         public ActionResult Checkout(int? id)
         {
-            var claimsIdentity = User.Identity as ClaimsIdentity;
-            var userIdClaim = claimsIdentity.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier);
-            var userIdValue = "";
-
-            if (userIdClaim != null)
-            {
-                userIdValue = userIdClaim.Value;
-            }
-            CVGSUser user = db.CVGSUsers.Where(u => u.userLink == userIdValue).First();
+            var userId = User.Identity.GetUserId();
+            CVGSUser user = db.CVGSUsers.Where(u => u.userLink == userId).First();
 
             List<CreditCard> cards = new List<CreditCard>();
 
+            //Creates a list of all credit cards that belong to the user
             foreach (CreditCard item in db.CreditCards)
             {
                 if(item.CVGSUsers.Contains(user))
@@ -352,6 +330,7 @@ namespace ElectricPineapple.Controllers
                 }
             }
 
+            //Creates a list of all shipping addresses that belong to the user
             List<ShippingAddress> addresses = new List<ShippingAddress>();
             foreach (ShippingAddress item in db.ShippingAddresses)
             {
@@ -366,6 +345,7 @@ namespace ElectricPineapple.Controllers
 
             try
             {
+                //Looks for an order from the user with status code 1 (in progress)
                 Order order = db.Orders.Where(a => a.status == "1" && a.userID == user.userID).First();
                 return View(order);
             }
@@ -378,22 +358,17 @@ namespace ElectricPineapple.Controllers
         [HttpPost]
         public ActionResult Checkout()
         {
+            //Go back if no address or credit card was entered
             if (Request["addressID"] == null || Request["cardID"] == null)
             {
                 TempData["error"] = "Please fill out all required fields.";
                 return RedirectToAction("Checkout");
             }
 
-            var claimsIdentity = User.Identity as ClaimsIdentity;
-            var userIdClaim = claimsIdentity.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier);
-            var userIdValue = "";
+            var userId = User.Identity.GetUserId();
+            CVGSUser user = db.CVGSUsers.Where(u => u.userLink == userId).First();
 
-            if (userIdClaim != null)
-            {
-                userIdValue = userIdClaim.Value;
-            }
-            CVGSUser user = db.CVGSUsers.Where(u => u.userLink == userIdValue).First();
-
+            //Sets the order status to 2 (sent)
             Order order = db.Orders.Where(a => a.status == "1" && a.userID == user.userID).FirstOrDefault();
             order.status = "2";
             db.SaveChanges();
@@ -598,16 +573,17 @@ namespace ElectricPineapple.Controllers
 
         public ActionResult AddAdministrator(string id)
         {
-        ApplicationDbContext db2 = new ApplicationDbContext();
-        UserManager<ApplicationUser> userManager2 = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db2));
-        RoleManager<IdentityRole> roleManager2 = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(db2));
+            //Adds the passed id to administrators
+            ApplicationDbContext db2 = new ApplicationDbContext();
+            UserManager<ApplicationUser> userManager2 = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db2));
+            RoleManager<IdentityRole> roleManager2 = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(db2));
             
-        userManager2.AddToRole(id, "Admin");
-        db2.SaveChanges();
+            userManager2.AddToRole(id, "Admin");
+            db2.SaveChanges();
 
-        var user = db.CVGSUsers.Where(a => a.userLink == id).FirstOrDefault();
-        user.userType = 2;
-        db.SaveChanges();
+            var user = db.CVGSUsers.Where(a => a.userLink == id).FirstOrDefault();
+            user.userType = 2;
+            db.SaveChanges();
 
             return RedirectToAction("Index", "CVGSUsers");
         }

@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using ElectricPineapple;
 using System.Security.Claims;
+using Microsoft.AspNet.Identity;
 
 namespace ElectricPineapple.Controllers
 {
@@ -50,16 +51,8 @@ namespace ElectricPineapple.Controllers
             {
                 return HttpNotFound();
             }
-            var claimsIdentity = User.Identity as ClaimsIdentity;
-            var userIdClaim = claimsIdentity.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier);
-            var userIdValue = "";
-
-            if (userIdClaim != null)
-            {
-                userIdValue = userIdClaim.Value;
-            }
-
-            CVGSUser user = db.CVGSUsers.Where(u => u.userLink == userIdValue).First();
+            var userId = User.Identity.GetUserId();
+            CVGSUser user = db.CVGSUsers.Where(u => u.userLink == userId).First();
 
             @event.CVGSUsers.Add(user);
             user.Events.Add(@event);

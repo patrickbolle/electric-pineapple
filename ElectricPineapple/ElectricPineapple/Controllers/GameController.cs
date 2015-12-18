@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using ElectricPineapple;
 using System.IO;
 using System.Security.Claims;
+using Microsoft.AspNet.Identity;
 
 namespace ElectricPineapple.Controllers
 {
@@ -36,8 +37,8 @@ namespace ElectricPineapple.Controllers
                 return HttpNotFound();
             }
 
+            //Create a list of game ratings for that game
             List<Rating> gameRatings = new List<Rating>();
-
             gameRatings = db.Ratings.Where(r => r.gameID == id).ToList();
 
             if (gameRatings.Count() > 0)
@@ -48,7 +49,7 @@ namespace ElectricPineapple.Controllers
                 {
                     gameRating += item.rating1;
                 }
-
+                //Get an average for game ratings
                 gameRating = gameRating / gameRatings.Count();
 
                 ViewData["GameRating"] = "Game rating: " + gameRating + "/10";
@@ -56,6 +57,7 @@ namespace ElectricPineapple.Controllers
             }
             else
             {
+                //If no ratings, just display "no ratings"
                 ViewData["GameRating"] = "Game has no ratings";
                 ViewData["RatingList"] = null;
             }
@@ -81,16 +83,8 @@ namespace ElectricPineapple.Controllers
             }
 
             //Gets user ID
-            var claimsIdentity = User.Identity as ClaimsIdentity;
-            var userIdClaim = claimsIdentity.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier);
-            var userIdValue = "";
-
-            if (userIdClaim != null)
-            {
-                userIdValue = userIdClaim.Value;
-            }
-
-            CVGSUser user = db.CVGSUsers.Where(u => u.userLink == userIdValue).First();
+            var userId = User.Identity.GetUserId();
+            CVGSUser user = db.CVGSUsers.Where(u => u.userLink == userId).First();
 
             Rating userRating = null;
 
@@ -129,18 +123,12 @@ namespace ElectricPineapple.Controllers
             Game game = db.Games.Find(id);
 
             //Gets user ID
-            var claimsIdentity = User.Identity as ClaimsIdentity;
-            var userIdClaim = claimsIdentity.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier);
-            var userIdValue = "";
+            var userId = User.Identity.GetUserId();
+            CVGSUser user = db.CVGSUsers.Where(u => u.userLink == userId).First();
 
-            if (userIdClaim != null)
-            {
-                userIdValue = userIdClaim.Value;
-            }
-
-            CVGSUser user = db.CVGSUsers.Where(u => u.userLink == userIdValue).First();
             Game_User gameUser = null;
 
+            //Check if item is already on wishlist
             try
             {
                 gameUser = db.Game_User.Where(a => a.gameID == id && a.userID == user.userID).First();
@@ -151,6 +139,7 @@ namespace ElectricPineapple.Controllers
 
             if (gameUser == null)
             {
+                //Otherwise add connection
                 gameUser = new Game_User();
                 gameUser.status = 2;
                 user.Game_User.Add(gameUser);
@@ -172,16 +161,9 @@ namespace ElectricPineapple.Controllers
             Game game = db.Games.Find(id);
 
             //Gets user ID
-            var claimsIdentity = User.Identity as ClaimsIdentity;
-            var userIdClaim = claimsIdentity.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier);
-            var userIdValue = "";
+            var userId = User.Identity.GetUserId();
+            CVGSUser user = db.CVGSUsers.Where(u => u.userLink == userId).First();
 
-            if (userIdClaim != null)
-            {
-                userIdValue = userIdClaim.Value;
-            }
-
-            CVGSUser user = db.CVGSUsers.Where(u => u.userLink == userIdValue).First();
             Order order = null;          
 
             try
@@ -193,15 +175,18 @@ namespace ElectricPineapple.Controllers
             {
             }
 
-            //If user does not
+            //If user does not have an open cart, create a new one
             if (order == null)
             {
                 order = new Order();
+                //Status code 1 is for carts in progress
                 order.status = "1";
                 order.date = DateTime.Now;
+                //Sets the cart to belong to the user
                 order.CVGSUser = user;
                 user.Orders.Add(order);
             }
+            //Add the game to the cart
             order.Games.Add(game);
             db.SaveChanges();                                               
 
@@ -211,10 +196,12 @@ namespace ElectricPineapple.Controllers
         [Authorize(Roles="Admin")]
         public ActionResult ApproveReview(int? userID, int? gameID)
         {
+            //Get the rating and set it to approved
             Rating rating = db.Ratings.Where(a => a.userID == userID && a.gameID == gameID).FirstOrDefault();
             rating.approved = 1;
             db.SaveChanges();
 
+            //Go back to same page
             return RedirectToAction("Details", new { id = rating.gameID });
         }
 
@@ -240,6 +227,7 @@ namespace ElectricPineapple.Controllers
             {
                 if (gameCover != null)
                 {
+                    //If filename is too long, shorten it
                     var fileName = Path.GetFileName(gameCover.FileName);
                     if(fileName.Length > 60)
                     {
@@ -250,7 +238,7 @@ namespace ElectricPineapple.Controllers
                     gameCover.SaveAs(path);
                     game.coverPath = fileName;
                 }
-
+                //Saves image files, then saves their path in database
                 if (gameScreenshot != null)
                 {
                     var fileName = Path.GetFileName(gameScreenshot.FileName);
@@ -262,7 +250,6 @@ namespace ElectricPineapple.Controllers
                     gameScreenshot.SaveAs(path);
                     game.screenshotPath = fileName;
                 }
-
 
                 db.Games.Add(game);
                 db.SaveChanges();
@@ -312,6 +299,7 @@ namespace ElectricPineapple.Controllers
                 }
                 else
                 {
+                    //Sets fields we always want to change
                     currentGame.title = game.title;
                     currentGame.genre = game.genre;
                     currentGame.publisher = game.publisher;
@@ -321,9 +309,8 @@ namespace ElectricPineapple.Controllers
                     currentGame.description = game.description;
                     currentGame.platform = game.platform;
                 }
-
-
-                //TO FIX: will crash if file name is too long
+                
+                //Only update images if a new image was uploaded to replace it
                 if (gameCover != null)
                 {
                     var fileName = Path.GetFileName(gameCover.FileName);
@@ -335,7 +322,6 @@ namespace ElectricPineapple.Controllers
                     gameCover.SaveAs(path);
                     currentGame.coverPath = fileName;
                 }
-
 
                 if (gameScreenshot != null)
                 {
@@ -398,6 +384,7 @@ namespace ElectricPineapple.Controllers
         [HttpPost]
         public ActionResult Search(string SearchText)
         {
+            //Search for a game
             ViewData["SearchTerm"] = SearchText;
             var games = db.Games.Include(g => g.ESRBRating1).Include(g => g.Publisher1).Include(g => g.Platform1).Include(g => g.Genre1).Where(n => n.title.Contains(SearchText) || n.description.Contains(SearchText) || n.Publisher1.publisher1.Contains(SearchText));
             return View(games.ToList());

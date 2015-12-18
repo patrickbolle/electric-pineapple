@@ -12,70 +12,7 @@
     @Html.ActionLink("Create New", "Create")
 }
 </p>
-@*<table class="table">
-    <tr>
-        <th>
-            Title
-        </th>
-        <th>
-            Genre
-        </th>
-        <th>
-            Platform
-        </th>
-        <th>
-            ESRB Rating
-        </th>
-        <th>
-            Release Date
-        </th>
-        <th>
-            Price
-        </th>
-        <th>
-            Description
-        </th>
-        <th>
-            Company
-        </th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.title)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Genre1.genre1)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Platform1.platform1)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ESRBRating1.rating)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.releaseDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.price)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.description)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Publisher1.publisher1)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.gameID }) |
-                @Html.ActionLink("Details", "Details", new { id = item.gameID }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.gameID })
-            </td>
-        </tr>
-    }
-</table>*@
-
+    @*Show a card for each game that shows its details*@
     @{int i = 0;}
     @foreach (var item in Model)
 	{
@@ -106,11 +43,13 @@
                         }
                         else
                         {
+                            //Shorten description it it's too long to fit
                             @item.description.Substring(0, 95);
                             @:...<br /><br />
                         }
                     </span>
                     <br /><br />
+                    @*If user is logged in, allow them to add to cart*@
                     @if (Request.IsAuthenticated)
                     {
                         using (Html.BeginForm("AddToCart", "Game", FormMethod.Post, new { enctype = "multipart/form-data" }))

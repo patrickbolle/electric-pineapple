@@ -659,6 +659,8 @@ C:\Users\Michael\Desktop\Merges\ElectricPineapple\ElectricPineapple\bin\Microsof
 C:\Users\Michael\Desktop\electric-pineapple\ElectricPineapple\ElectricPineapple\bin\ElectricPineapple.dll.config
 C:\Users\Michael\Desktop\electric-pineapple\ElectricPineapple\ElectricPineapple\bin\ElectricPineapple.dll
 C:\Users\Michael\Desktop\electric-pineapple\ElectricPineapple\ElectricPineapple\bin\ElectricPineapple.pdb
+C:\Users\Michael\Desktop\electric-pineapple\ElectricPineapple\ElectricPineapple\bin\ElectricPineapple.dll.CodeAnalysisLog.xml
+C:\Users\Michael\Desktop\electric-pineapple\ElectricPineapple\ElectricPineapple\bin\ElectricPineapple.dll.lastcodeanalysissucceeded
 C:\Users\Michael\Desktop\electric-pineapple\ElectricPineapple\ElectricPineapple\bin\Antlr3.Runtime.dll
 C:\Users\Michael\Desktop\electric-pineapple\ElectricPineapple\ElectricPineapple\bin\EntityFramework.dll
 C:\Users\Michael\Desktop\electric-pineapple\ElectricPineapple\ElectricPineapple\bin\EntityFramework.SqlServer.dll
@@ -710,4 +712,3 @@ C:\Users\Michael\Desktop\electric-pineapple\ElectricPineapple\ElectricPineapple\
 C:\Users\Michael\Desktop\electric-pineapple\ElectricPineapple\ElectricPineapple\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 C:\Users\Michael\Desktop\electric-pineapple\ElectricPineapple\ElectricPineapple\obj\Debug\ElectricPineapple.dll
 C:\Users\Michael\Desktop\electric-pineapple\ElectricPineapple\ElectricPineapple\obj\Debug\ElectricPineapple.pdb
-C:\Users\Michael\Desktop\electric-pineapple\ElectricPineapple\ElectricPineapple\obj\Debug\ElectricPineapple.csprojResolveAssemblyReference.cache

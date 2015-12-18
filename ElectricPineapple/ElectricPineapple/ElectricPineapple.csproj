@@ -170,6 +170,7 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\NewsController.cs" />
     <Compile Include="Controllers\PublisherController.cs" />
+    <Compile Include="Controllers\ShippingAddressesController.cs" />
     <Compile Include="CreditCard.cs">
       <DependentUpon>CVGSDatabase.tt</DependentUpon>
     </Compile>
@@ -447,6 +448,11 @@
     <Content Include="Views\CreditCards\Index.cshtml" />
     <Content Include="Views\Account\Checkout.cshtml" />
     <Content Include="Views\Account\ViewCart.cshtml" />
+    <Content Include="Views\ShippingAddresses\Create.cshtml" />
+    <Content Include="Views\ShippingAddresses\Delete.cshtml" />
+    <Content Include="Views\ShippingAddresses\Details.cshtml" />
+    <Content Include="Views\ShippingAddresses\Edit.cshtml" />
+    <Content Include="Views\ShippingAddresses\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\images\genres\" />

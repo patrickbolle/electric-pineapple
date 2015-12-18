@@ -28,6 +28,10 @@
         <dd>
             @Html.ActionLink("Credit Card Settings", "Index", "CreditCards")
         </dd>
+        <dt>Change Shipping Addresses:</dt>
+        <dd>
+            @Html.ActionLink("Edit Shipping Addresses", "Index", "ShippingAddresses")
+        </dd>
         <dd>
             @using (Html.BeginForm("Index", "Manage", FormMethod.Post, new { enctype = "multipart/form-data" }))
             {

@@ -12,16 +12,6 @@ Devon
 
 TODO LIST - 
 
--Finish Users 
-
--add roles  
-
--Wishlists and Carts    
+-add roles   
 
 -Friends list 
-
--Add user ratings for games - probably done, but needs further testing 
-
--User profiles, user list 
-
--create/update/delete a shipping address new 

@@ -72,6 +72,7 @@
                         <li>
                             <a href="#"><i class="fa fa-fighter-jet fa-fw"></i> Account Settings<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
+                                
                                 @if (!Request.IsAuthenticated)
                                 {
                                     <li>
@@ -92,15 +93,15 @@
                                                 <a href=@Url.Action("Index", "Manage")>Settings</a>
                                             </li>
                                             <li>
+                                                <a href=@Url.Action("FriendsList", "CVGSUsers")>Friends</a>
+                                            </li>
+                                            <li>
                                                 <a href="javascript:document.getElementById('logoutForm').submit()">Logout</a>
                                             </li>
                                         </ul>
                                     }
                                 }
                             </ul>
-                            <li>
-                            <a href=@Url.Action("FriendsList", "CVGSUsers")><i class="fa fa-edit fa-fw"></i> Friends</a>
-                            </li>
                             <!-- /.nav-second-level -->
                         </li>
                     </ul>

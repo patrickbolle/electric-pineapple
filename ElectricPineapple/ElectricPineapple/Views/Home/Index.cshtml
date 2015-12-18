@@ -128,7 +128,8 @@
                     <table>
                         <tr>
                             <td>
-                                @Html.ActionLink(item.Title, "Details", "News", new { id = item.newsID} ,new {@style="color:#000000;" })
+                                @Html.ActionLink(item.Title, "Details", "News", new { id = item.newsID }, new { @style = "color:#000000;" })<br />
+                                <p> - @Html.ActionLink(item.Description, "Details", "News", new { id = item.newsID }, new { @style = "color:#FFFFF;" })</p>
                             </td>
                         </tr>
                     </table>

@@ -97,6 +97,7 @@ namespace ElectricPineapple.Controllers
         }
 
         // GET: CVGSUsers/Edit/5
+        [Authorize(Roles="Admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -132,6 +133,7 @@ namespace ElectricPineapple.Controllers
         }
 
         // GET: CVGSUsers/Delete/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)

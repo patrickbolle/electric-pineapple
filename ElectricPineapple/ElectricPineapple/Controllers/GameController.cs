@@ -209,6 +209,7 @@ namespace ElectricPineapple.Controllers
         }
 
         // GET: Game/Create
+        [Authorize(Roles = "Admin")]
         public ActionResult Create()
         {
             ViewBag.ESRBRating = new SelectList(db.ESRBRatings, "ratingID", "rating");
@@ -227,8 +228,6 @@ namespace ElectricPineapple.Controllers
         {
             if (ModelState.IsValid)
             {
-
-                //TO FIX: will crash if file name is too long
                 if (gameCover != null)
                 {
                     var fileName = Path.GetFileName(gameCover.FileName);
@@ -241,7 +240,6 @@ namespace ElectricPineapple.Controllers
                     gameCover.SaveAs(path);
                     game.coverPath = fileName;
                 }
-
 
                 if (gameScreenshot != null)
                 {
@@ -269,6 +267,7 @@ namespace ElectricPineapple.Controllers
         }
 
         // GET: Game/Edit/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -351,6 +350,7 @@ namespace ElectricPineapple.Controllers
         }
 
         // GET: Game/Delete/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)

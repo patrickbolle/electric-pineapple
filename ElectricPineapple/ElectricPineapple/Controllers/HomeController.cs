@@ -10,9 +10,7 @@ using ElectricPineapple;
 using System.IO;
 
 namespace ElectricPineapple.Controllers
-{
-
-   
+{      
 
     public class HomeController : Controller
     {

@@ -10,6 +10,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using ElectricPineapple.Models;
 using System.Collections.Generic;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace ElectricPineapple.Controllers
 {
@@ -271,8 +272,18 @@ namespace ElectricPineapple.Controllers
 
         public ActionResult MyProfile()
         {
+
+
             var userId = User.Identity.GetUserId();
             CVGSUser user = db.CVGSUsers.Where(u => u.userLink == userId).First();
+
+
+            //userManager.AddToRole(userId: userId, role: "Admin");
+
+            //db2.SaveChanges();
+
+
+
 
             return RedirectToAction("Details", "CVGSUsers", new { id = user.userID });
         }

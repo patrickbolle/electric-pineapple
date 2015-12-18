@@ -269,6 +269,13 @@ namespace ElectricPineapple.Controllers
             return View();
         }
 
+        public ActionResult MyProfile()
+        {
+            var userId = User.Identity.GetUserId();
+            CVGSUser user = db.CVGSUsers.Where(u => u.userLink == userId).First();
+
+            return RedirectToAction("Details", "CVGSUsers", new { id = user.userID });
+        }
 
         public ActionResult Index()
         {

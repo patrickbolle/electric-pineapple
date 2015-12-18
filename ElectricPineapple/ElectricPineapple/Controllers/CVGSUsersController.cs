@@ -57,7 +57,7 @@ namespace ElectricPineapple.Controllers
 
             bool friends = false;
 
-            if(db.Friends.Where(b => b.UserID == user.userID && b.FriendID == cVGSUser.userID).Count() > 0)
+            if(db.Friends.Where(b => b.UserID == user.userID && b.FriendID == cVGSUser.userID).Count() > 0 || id == user.userID)
             {
                 friends = true;
             }

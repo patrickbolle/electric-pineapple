@@ -36,7 +36,7 @@
                     <!-- Wrapper for slides -->
                     <div class="carousel-inner" role="listbox">
                         <div class="item active">
-                            <img src="~/Content/images/screenshots/@Model.screenshotPath" />
+                            <img src="~/Content/images/screenshots/@Model.screenshotPath" height="500" width="800"/>
                         </div>
 
                         <div class="item">
@@ -61,7 +61,7 @@
                 <span class="panel-game-details">
                     @*Shows the games info*@
                     <img src="~/Content/images/publishers/@Model.Publisher1.imagePath" width="250" height="250" />
-                    @Model.price<br /><br />
+                    $@Model.price<br /><br />
                     @ViewData["GameRating"] <br /><br />
                     @Model.Platform1.platform1, @Model.Genre1.genre1<br /><br />
                     @Model.Publisher1.publisher1 <br /><br />

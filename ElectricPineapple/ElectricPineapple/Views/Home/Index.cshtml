@@ -97,7 +97,7 @@
                     </div>
                     <div class="col-xs-9 text-right">
                         <div class="huge">12</div>
-                        <div>New Sales</div>
+                        <div>News Stories</div>
                     </div>
                 </div>
             </div>
@@ -161,7 +161,7 @@
                                         @Html.ActionLink(item.name, "Details", "Event", new { id = item.eventID }, new { @style = "color:#000000;" })
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.description);
+                                        @Html.DisplayFor(modelItem => item.description)
                                     </td>
                                 </tr>
                             }}

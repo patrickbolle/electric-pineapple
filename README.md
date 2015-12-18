@@ -10,8 +10,4 @@ Jeff,
 Khaleel,
 Devon
 
-TODO LIST - 
-
--add roles   
-
--Friends list 
+WE ALL DONE! GREAT SUCCESS! VERY NICE!

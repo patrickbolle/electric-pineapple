@@ -5,10 +5,10 @@
         <h1 class="page-header">News</h1>
     </div>
 </div>
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+    @if(User.IsInRole("Admin"))
+    { 
+    @Html.ActionLink("Create New", "Create");
+    }
 @*<table class="table">
     <tr>
         <th>

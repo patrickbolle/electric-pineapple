@@ -5,6 +5,10 @@
         <h1 class="page-header">Genres</h1>
     </div>
 </div>
+@if(User.IsInRole("Admin"))
+{ 
+@Html.ActionLink("Create New", "Create")
+}
 
 @{int i = 0;}
 @foreach (var item in Model)

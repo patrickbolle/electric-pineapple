@@ -11,7 +11,11 @@
 </div>
 
 <p>
-    @Html.ActionLink("Genre List", "Index")
+    @if(User.IsInRole("Admin"))
+    { 
+    @Html.ActionLink("Edit", "Edit", new { id = Model.genreID }); @: | 
+    @Html.ActionLink("Back to List", "Index");
+    }
 </p>
 
 @{int i = 0;

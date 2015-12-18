@@ -10,12 +10,14 @@
     @TempData["message"]
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.gameID }) |
-    @Html.ActionLink("Back to List", "Index")
+@if (User.IsInRole("Admin"))
+{ 
+    @Html.ActionLink("Edit", "Edit", new { id = Model.gameID }); @: | 
+    @Html.ActionLink("Back to List", "Index");
+}
 </p>
 
 <div class="row">
-
     <div class="col-md-8">
         <div class="panel panel-default panel-center">
             <div class="panel-heading">
@@ -117,7 +119,6 @@
                         </div>
                     </div>
                 </div>
-
             }
         }
 
@@ -146,4 +147,4 @@
                 </div>
             </div>
         }
-        }
+     }

@@ -28,6 +28,7 @@ namespace ElectricPineapple
             this.Platforms = new HashSet<Platform>();
             this.CVGSUser1 = new HashSet<CVGSUser>();
             this.CVGSUsers = new HashSet<CVGSUser>();
+            this.ShippingAddresses = new HashSet<ShippingAddress>();
         }
     
         public int userID { get; set; }
@@ -45,6 +46,8 @@ namespace ElectricPineapple
         public string profileInfo { get; set; }
         public int userType { get; set; }
         public string userLink { get; set; }
+        public Nullable<int> favouriteGenre { get; set; }
+        public Nullable<int> favouritePlatform { get; set; }
     
         public virtual Province Province1 { get; set; }
         public virtual UserType UserType1 { get; set; }
@@ -70,5 +73,9 @@ namespace ElectricPineapple
         public virtual ICollection<CVGSUser> CVGSUser1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CVGSUser> CVGSUsers { get; set; }
+        public virtual Genre Genre { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ShippingAddress> ShippingAddresses { get; set; }
+        public virtual Platform Platform { get; set; }
     }
 }

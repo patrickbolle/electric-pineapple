@@ -54,6 +54,8 @@ namespace ElectricPineapple.Controllers
         // GET: /Manage/Index
         public async Task<ActionResult> Index(ManageMessageId? message)
         {
+            CVGSEntities db = new CVGSEntities();
+
             ViewBag.StatusMessage =
                 message == ManageMessageId.ChangePasswordSuccess ? "Your password has been changed."
                 : message == ManageMessageId.SetPasswordSuccess ? "Your password has been set."
@@ -64,14 +66,53 @@ namespace ElectricPineapple.Controllers
                 : "";
 
             var userId = User.Identity.GetUserId();
+            CVGSUser user = db.CVGSUsers.Where(u => u.userLink == userId).First();
+            bool receivePromotions = false;
+
+            if(user.recievePromotions == "1")
+            {
+                receivePromotions = true;
+            }
+
+            ViewBag.GenresList = new SelectList(db.Genres, "genreID", "genre1", user.favouriteGenre);
+            ViewBag.PlatformsList = new SelectList(db.Platforms, "platformID", "platform1", user.favouritePlatform);         
+
             var model = new IndexViewModel
             {
                 HasPassword = HasPassword(),
                 PhoneNumber = await UserManager.GetPhoneNumberAsync(userId),
                 TwoFactor = await UserManager.GetTwoFactorEnabledAsync(userId),
                 Logins = await UserManager.GetLoginsAsync(userId),
-                BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(userId)
+                BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(userId),
+                ReceivePromotions = receivePromotions                
             };
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult Index(IndexViewModel model)
+        {
+            CVGSEntities db = new CVGSEntities();
+
+            var userId = User.Identity.GetUserId();
+            CVGSUser user = db.CVGSUsers.Where(u => u.userLink == userId).FirstOrDefault();
+
+            user.favouriteGenre = int.Parse(Request["GenresList"]);
+            user.favouritePlatform = int.Parse(Request["PlatformsList"]);
+
+            ViewBag.GenresList = new SelectList(db.Genres, "genreID", "genre1", user.favouriteGenre);
+            ViewBag.PlatformsList = new SelectList(db.Platforms, "platformID", "platform1", user.favouritePlatform);
+
+            if (model.ReceivePromotions == true)
+            {
+                user.recievePromotions = "1";
+            }
+            else
+            {
+                user.recievePromotions = "0";
+            }
+            db.SaveChanges();
+
             return View(model);
         }
 

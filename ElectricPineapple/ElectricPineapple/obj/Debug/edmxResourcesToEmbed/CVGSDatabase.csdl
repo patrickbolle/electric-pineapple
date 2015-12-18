@@ -41,6 +41,11 @@
     <NavigationProperty Name="CVGSUser1" Relationship="Self.ContactList" FromRole="CVGSUser" ToRole="CVGSUser1" />
     <NavigationProperty Name="CVGSUsers" Relationship="Self.ContactList" FromRole="CVGSUser1" ToRole="CVGSUser" />
     <Property Name="userLink" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="favouriteGenre" Type="Int32" />
+    <NavigationProperty Name="Genre" Relationship="CVGSModel.FKCVGSUsergenres" FromRole="CVGSUser" ToRole="Genre" />
+    <NavigationProperty Name="ShippingAddresses" Relationship="CVGSModel.ShippingAddress_User" FromRole="CVGSUser" ToRole="ShippingAddress" />
+    <Property Name="favouritePlatform" Type="Int32" />
+    <NavigationProperty Name="Platform" Relationship="CVGSModel.FKCVGSUserplatforms" FromRole="CVGSUser" ToRole="Platform" />
   </EntityType>
   <EntityType Name="ESRBRating">
     <Key>
@@ -114,6 +119,7 @@
     <NavigationProperty Name="Games" Relationship="Self.FKGame366831" FromRole="Genre" ToRole="Game" />
     <NavigationProperty Name="CVGSUsers" Relationship="Self.FavouriteGenres" FromRole="Genre" ToRole="CVGSUser" />
     <Property Name="imagePath" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="CVGSUsers1" Relationship="CVGSModel.FKCVGSUsergenres" FromRole="Genre" ToRole="CVGSUser" />
   </EntityType>
   <EntityType Name="Message">
     <Key>
@@ -146,6 +152,7 @@
     <Property Name="platform1" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
     <NavigationProperty Name="Games" Relationship="Self.FKGame305795" FromRole="Platform" ToRole="Game" />
     <NavigationProperty Name="CVGSUsers" Relationship="Self.FavouritePlatforms" FromRole="Platform" ToRole="CVGSUser" />
+    <NavigationProperty Name="CVGSUsers1" Relationship="CVGSModel.FKCVGSUserplatforms" FromRole="Platform" ToRole="CVGSUser" />
   </EntityType>
   <EntityType Name="Province">
     <Key>
@@ -175,6 +182,7 @@
     <Property Name="review" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="CVGSUser" Relationship="Self.FKRating250023" FromRole="Rating" ToRole="CVGSUser" />
     <NavigationProperty Name="Game" Relationship="Self.FKRating529302" FromRole="Rating" ToRole="Game" />
+    <Property Name="approved" Type="Int32" Nullable="false" />
   </EntityType>
   <EntityType Name="UserType">
     <Key>
@@ -473,6 +481,20 @@
       <End Role="CVGSUser1" EntitySet="CVGSUsers" />
     </AssociationSet>
     <EntitySet Name="News" EntityType="CVGSModel.News" />
+    <EntitySet Name="Friends" EntityType="CVGSModel.Friend" />
+    <EntitySet Name="ShippingAddresses" EntityType="CVGSModel.ShippingAddress" />
+    <AssociationSet Name="FKCVGSUsergenres" Association="CVGSModel.FKCVGSUsergenres">
+      <End Role="Genre" EntitySet="Genres" />
+      <End Role="CVGSUser" EntitySet="CVGSUsers" />
+    </AssociationSet>
+    <AssociationSet Name="ShippingAddress_User" Association="CVGSModel.ShippingAddress_User">
+      <End Role="ShippingAddress" EntitySet="ShippingAddresses" />
+      <End Role="CVGSUser" EntitySet="CVGSUsers" />
+    </AssociationSet>
+    <AssociationSet Name="FKCVGSUserplatforms" Association="CVGSModel.FKCVGSUserplatforms">
+      <End Role="Platform" EntitySet="Platforms" />
+      <End Role="CVGSUser" EntitySet="CVGSUsers" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="News">
     <Key>
@@ -482,4 +504,52 @@
     <Property Name="Title" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
   </EntityType>
+  <EntityType Name="Friend">
+    <Key>
+      <PropertyRef Name="FriendshipID" />
+    </Key>
+    <Property Name="FriendshipID" Type="Int32" Nullable="false" />
+    <Property Name="UserID" Type="Int32" />
+    <Property Name="FriendID" Type="Int32" />
+  </EntityType>
+  <EntityType Name="ShippingAddress">
+    <Key>
+      <PropertyRef Name="addressID" />
+    </Key>
+    <Property Name="addressID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="address" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Province" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Postal_Code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="CVGSUsers" Relationship="CVGSModel.ShippingAddress_User" FromRole="ShippingAddress" ToRole="CVGSUser" />
+  </EntityType>
+  <Association Name="FKCVGSUsergenres">
+    <End Type="CVGSModel.Genre" Role="Genre" Multiplicity="0..1" />
+    <End Type="CVGSModel.CVGSUser" Role="CVGSUser" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Genre">
+        <PropertyRef Name="genreID" />
+      </Principal>
+      <Dependent Role="CVGSUser">
+        <PropertyRef Name="favouriteGenre" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ShippingAddress_User">
+    <End Type="CVGSModel.ShippingAddress" Role="ShippingAddress" Multiplicity="*" />
+    <End Type="CVGSModel.CVGSUser" Role="CVGSUser" Multiplicity="*" />
+  </Association>
+  <Association Name="FKCVGSUserplatforms">
+    <End Type="CVGSModel.Platform" Role="Platform" Multiplicity="0..1" />
+    <End Type="CVGSModel.CVGSUser" Role="CVGSUser" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Platform">
+        <PropertyRef Name="platformID" />
+      </Principal>
+      <Dependent Role="CVGSUser">
+        <PropertyRef Name="favouritePlatform" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

@@ -72,32 +72,34 @@
                         <li>
                             <a href="#"><i class="fa fa-fighter-jet fa-fw"></i> Account Settings<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
-                            @if (!Request.IsAuthenticated)
-                            { 
-                                <li>
-                                    <a href=@Url.Action("Register", "Account")>Register</a>
-                                </li>
-                            }
-                                <li>
-                                    <a href=@Url.Action("Index", "Manage")>Settings</a>
-                                </li>
+                                
+                                @if (!Request.IsAuthenticated)
+                                {
+                                    <li>
+                                        <a href=@Url.Action("Login", "Account")>Login</a>
+                                    </li>
+                                    <li>
+                                        <a href=@Url.Action("Register", "Account")>Register</a>
+                                    </li>
+                                }
+
 
                                 @if (Request.IsAuthenticated)
                                 {
                                     using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
                                     {
                                         <ul class="nav nav-second-level">
-                                        <li>
-                                            <a href="javascript:document.getElementById('logoutForm').submit()">Logout</a>
-                                        </li>
+                                            <li>
+                                                <a href=@Url.Action("Index", "Manage")>Settings</a>
+                                            </li>
+                                            <li>
+                                                <a href=@Url.Action("FriendsList", "CVGSUsers")>Friends</a>
+                                            </li>
+                                            <li>
+                                                <a href="javascript:document.getElementById('logoutForm').submit()">Logout</a>
+                                            </li>
                                         </ul>
                                     }
-                                }
-                                else
-                                {
-                                    <li>
-                                        <a href=@Url.Action("Login", "Account")>Login</a>
-                                    </li>
                                 }
                             </ul>
                             <!-- /.nav-second-level -->

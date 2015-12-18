@@ -19,6 +19,7 @@ namespace ElectricPineapple
         {
             this.Games = new HashSet<Game>();
             this.CVGSUsers = new HashSet<CVGSUser>();
+            this.CVGSUsers1 = new HashSet<CVGSUser>();
         }
     
         public int platformID { get; set; }
@@ -28,5 +29,7 @@ namespace ElectricPineapple
         public virtual ICollection<Game> Games { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CVGSUser> CVGSUsers { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CVGSUser> CVGSUsers1 { get; set; }
     }
 }

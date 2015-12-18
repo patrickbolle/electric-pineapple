@@ -170,7 +170,6 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\NewsController.cs" />
     <Compile Include="Controllers\PublisherController.cs" />
-    <Compile Include="Controllers\RatingsController.cs" />
     <Compile Include="CreditCard.cs">
       <DependentUpon>CVGSDatabase.tt</DependentUpon>
     </Compile>
@@ -198,6 +197,9 @@
     <Compile Include="Event.cs">
       <DependentUpon>CVGSDatabase.tt</DependentUpon>
     </Compile>
+    <Compile Include="Friend.cs">
+      <DependentUpon>CVGSDatabase.tt</DependentUpon>
+    </Compile>
     <Compile Include="Game.cs">
       <DependentUpon>CVGSDatabase.tt</DependentUpon>
     </Compile>
@@ -222,9 +224,6 @@
     <Compile Include="News.cs">
       <DependentUpon>CVGSDatabase.tt</DependentUpon>
     </Compile>
-    <Compile Include="obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
-    <Compile Include="obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
-    <Compile Include="obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
     <Compile Include="Order.cs">
       <DependentUpon>CVGSDatabase.tt</DependentUpon>
     </Compile>
@@ -239,6 +238,9 @@
       <DependentUpon>CVGSDatabase.tt</DependentUpon>
     </Compile>
     <Compile Include="Rating.cs">
+      <DependentUpon>CVGSDatabase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ShippingAddress.cs">
       <DependentUpon>CVGSDatabase.tt</DependentUpon>
     </Compile>
     <Compile Include="Startup.cs" />
@@ -435,16 +437,22 @@
     <Content Include="Views\Account\Index.cshtml">
       <SubType>Code</SubType>
     </Content>
+    <Content Include="Views\CVGSUsers\Search.cshtml" />
+    <Content Include="Views\CVGSUsers\SearchResults.cshtml" />
+    <Content Include="Views\CVGSUsers\FriendsList.cshtml" />
     <Content Include="Views\CreditCards\Create.cshtml" />
     <Content Include="Views\CreditCards\Delete.cshtml" />
     <Content Include="Views\CreditCards\Details.cshtml" />
     <Content Include="Views\CreditCards\Edit.cshtml" />
     <Content Include="Views\CreditCards\Index.cshtml" />
+    <Content Include="Views\Account\Checkout.cshtml" />
+    <Content Include="Views\Account\ViewCart.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\images\genres\" />
     <Folder Include="Content\images\publishers\" />
     <Folder Include="Content\images\screenshots\" />
+    <Folder Include="obj\Debug\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

@@ -1,0 +1,41 @@
+﻿@model IEnumerable<ElectricPineapple.CVGSUser>
+
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">Search results for @ViewData["SearchTerm"]</h1>
+    </div>
+</div>
+
+    @{int i = 0;}
+    @foreach (var item in Model)
+    {
+        if (i == 0)
+        {
+            @:<div class="row">
+                @:<div class="col-lg-12">
+	        }
+
+            <div class="col-md-3">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <a href=@Url.Action("Details", "CVGSUsers", new {id = item.userID})>
+                            <h3 class="panel-title">@item.userName</h3>
+                        </a>
+                    </div>
+                    <div class="panel-body">
+                        <a href=@Url.Action("Details", "CVGSUsers", new {id = item.userID})>
+                        </a>
+                        First Name:   @item.firstName<br /><br />
+                        Last Name:   @item.lastName<br /><br />
+                        Province:   @item.province<br/><br/>
+
+                        @if (Request.IsAuthenticated)
+                        {
+                            <a href="@Url.Action("AddFriend", "CVGSUsers", new {id = item.userID})">Add friend</a>
+                        }
+                        
+                    </div>
+                </div>
+            </div>        
+    }
+    </div></div>

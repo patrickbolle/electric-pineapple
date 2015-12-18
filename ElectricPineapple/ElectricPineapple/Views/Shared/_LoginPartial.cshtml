@@ -27,9 +27,17 @@ else
         using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
         {
         @Html.AntiForgeryToken()
-
+        
+        
+       
+        
+        
     <ul class="nav navbar-top-links navbar-right">
         <li class="dropdown">
+            <a class="nav" href="@Url.Action("ViewCart", "Account")"><i class="fa fa-shopping-cart"></i> Cart</a>
+        </li>
+
+        @*<li class="dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                 <i class="fa fa-bell fa-fw"></i>  <i class="fa fa-caret-down"></i>
             </a>
@@ -87,18 +95,15 @@ else
                 </li>
             </ul>
             <!-- /.dropdown-alerts -->
-        </li>
+        </li>*@
         <!-- /.dropdown -->
         <li class="dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                 <i class="fa fa-user fa-fw"></i> @User.Identity.GetUserName() <i class="fa fa-caret-down"></i>
             </a>
             <ul class="dropdown-menu dropdown-user">
-                @*<li>
-                    <a href="@Url.Action("Login", "Account")"><i class="fa fa-user fa-fw"></i> vut is das</a>
-                </li>*@
                 <li>
-                    <a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
+                    <a href="@Url.Action("Index", "Manage")"><i class="fa fa-gear fa-fw"></i> Settings</a>
                 </li>
                 <li class="divider"></li>
                 <li>
@@ -181,9 +186,6 @@ else
                 <ul class="dropdown-menu dropdown-user">
                     <li>
                         <a href=@Url.Action("Login", "Account")><i class="fa fa-user fa-fw"></i> Login</a>
-                    </li>
-                    <li>
-                        <a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
                     </li>
                     <li class="divider"></li>
                     <li>

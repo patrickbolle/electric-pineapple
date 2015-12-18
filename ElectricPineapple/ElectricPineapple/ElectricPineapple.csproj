@@ -450,6 +450,7 @@
     <Content Include="Views\CreditCards\Index.cshtml" />
     <Content Include="Views\Account\Checkout.cshtml" />
     <Content Include="Views\Account\ViewCart.cshtml" />
+    <Content Include="Views\Account\ViewWishList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\images\genres\" />

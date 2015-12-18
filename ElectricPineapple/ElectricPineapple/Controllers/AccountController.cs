@@ -275,6 +275,60 @@ namespace ElectricPineapple.Controllers
             return View();
         }
 
+        public ActionResult ViewWishList()
+        {
+            var claimsIdentity = User.Identity as ClaimsIdentity;
+            var userIdClaim = claimsIdentity.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier);
+            var userIdValue = "";
+
+            if (userIdClaim != null)
+            {
+                userIdValue = userIdClaim.Value;
+            }
+            CVGSUser user = db.CVGSUsers.Where(u => u.userLink == userIdValue).First();
+
+            List<Game> games = new List<Game>();
+            Game game = new Game();
+
+            foreach (Game_User item in db.Game_User)
+            {
+                if (item.userID == user.userID && item.status == 2)
+                {
+                    games.Add(db.Games.Where(a => a.gameID == item.gameID).First());
+                }
+            }
+
+            try
+            {          
+                return View(games);
+            }
+            catch
+            {
+                return View();
+            }   
+        }
+
+        public ActionResult RemoveFromWishList(int? id)
+        {
+            var claimsIdentity = User.Identity as ClaimsIdentity;
+            var userIdClaim = claimsIdentity.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier);
+            var userIdValue = "";
+
+            if (userIdClaim != null)
+            {
+                userIdValue = userIdClaim.Value;
+            }
+            CVGSUser user = db.CVGSUsers.Where(u => u.userLink == userIdValue).First();
+
+            Game_User game_user = db.Game_User.Where(a => a.gameID == id && a.userID == user.userID).First();
+
+            db.Game_User.Remove(game_user);
+
+            db.SaveChanges();
+
+            return RedirectToAction("ViewWishList");
+        }
+
         public ActionResult ViewCart()
         {
             var claimsIdentity = User.Identity as ClaimsIdentity;

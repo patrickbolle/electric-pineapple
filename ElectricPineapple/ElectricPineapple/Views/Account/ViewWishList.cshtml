@@ -1,0 +1,61 @@
+﻿@model IEnumerable<ElectricPineapple.Game>
+
+@{
+    ViewBag.Title = "Wishlist";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@{int i = 0;}
+@foreach (var item in Model)
+{
+    if (i == 0)
+    {
+        @:<div class="row">
+            @:<div class="col-lg-12">
+	    }
+
+        <div class="col-md-3">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <a href=@Url.Action("Details", "Game", new {id = item.gameID})>
+                        <h3 class="panel-title">@item.title</h3>
+                    </a>
+                </div>
+                <div class="panel-body">
+                    <a href=@Url.Action("Details", "Game", new {id = item.gameID})>
+                        <img src="~/Content/images/box covers/@item.coverPath" width="155" height="220" />
+                    </a>
+                    <span class="panel-game-info">
+                        $@item.price<br /><br />
+                        @item.Publisher1.publisher1<br /><br />
+                        @item.Platform1.platform1, @item.Genre1.genre1<br /><br />
+                        @if (item.description.Length < 95)
+                        {
+                            @item.description<br /><br />
+                        }
+                        else
+                        {
+                            @item.description.Substring(0, 95);
+                            @:...<br /><br />
+                        }
+                    </span>
+                    <br /><br />
+                    <a href="@Url.Action("RemoveFromWishList", "Account", new { id = item.gameID })" class="btn btn-add-to-cart">Remove From Wishlist</a>
+                </div>
+            </div>
+        </div>
+        i++;
+        if (i == 4)
+        {
+            i = 0;
+            @:</div>
+            @:</div>
+        }
+}
+@if (i != 0)
+{
+    @:</div>
+    @:</div>
+}
+

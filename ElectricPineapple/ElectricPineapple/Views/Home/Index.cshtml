@@ -140,60 +140,38 @@
         <!-- /.panel -->
         <div class="panel panel-default">
             <div class="panel-heading">
-                <i class="fa fa-clock-o fa-fw"></i> Top Stories
+                <i class="fa fa-clock-o fa-fw"></i> @Html.ActionLink("Upcoming Events", "Index", "Event")
             </div>
             <!-- /.panel-heading -->
             <div class="panel-body">
-                <ul class="timeline">
-                    <li>
-                        <div class="timeline-panel">
-                            <div class="timeline-heading">
-                                <h4 class="timeline-title">
-                                    <a href="http://ca.ign.com/articles/2015/11/20/sony-confirms-ps2-emulation-is-coming-to-playstation-4?utm_source=IGN%20hub%20page&utm_medium=IGN%20(front%20page)&utm_content=6&utm_campaign=Blogroll">
-                                        Call of Duty Black Ops 3: Optimizing Your Seraph Specialist
-                                    </a>
-                                </h4>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="timeline-panel">
-                            <div class="timeline-heading">
-                                <h4 class="timeline-title">
-                                    <a href="http://ca.ign.com/articles/2015/11/20/sony-confirms-ps2-emulation-is-coming-to-playstation-4?utm_source=IGN%20hub%20page&utm_medium=IGN%20(front%20page)&utm_content=6&utm_campaign=Blogroll">
-                                        Sony Confirms PS2 Emulation Is Coming to PlayStation 4
-                                    </a>
-                                </h4>
-                            </div>
-                        </div>
-                    </li>
-
-                    <li>
-                        <div class="timeline-panel">
-                            <div class="timeline-heading">
-                                <h4 class="timeline-title">
-                                    <a href="http://ca.ign.com/articles/2015/11/19/expect-fallout-4s-first-patch-as-soon-as-next-week">
-                                        Some of Fallout 4's Major Issues Are About to Be Resolved
-                                    </a>
-                                </h4>
-                            </div>
-                        </div>
-                    </li>
-
-                    <li>
-                        <div class="timeline-panel">
-                            <div class="timeline-heading">
-                                <h4 class="timeline-title">
-                                    <a href="http://ca.ign.com/wikis/star-wars-battlefront-next-gen/Tips_and_Tricks">
-                                        13 Tips to Make You Better at Star Wars Battlefront
-                                    </a>
-                                </h4>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover table-striped">
+                        <thead>
+                            <tr>
+                                <th>Event Name</th>
+                                <th>Release Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @{var events = (List<Event>)ViewData["EventList"];
+                            foreach (var item in events)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.ActionLink(item.name, "Details", "Event", new { id = item.eventID }, new { @style = "color:#000000;" })
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.description);
+                                    </td>
+                                </tr>
+                            }}
+                        </tbody>
+                    </table>
+                </div>
+                <!-- /.table-responsive -->
             </div>
-            <!-- /.panel-body -->
+            <!-- /.panel body -->
+            <!-- /.panel -->
         </div>
         <!-- /.panel -->
     </div>
@@ -307,41 +285,6 @@
                     </div>
                     <!-- /.table-responsive -->
                 </div>
-                </div>
-
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <i class="fa fa-clock-o fa-fw"></i> @Html.ActionLink("Upcoming Events", "Index", "Event")
-                    </div>
-                    <!-- /.panel-heading -->
-                    <div class="panel-body">
-                        <div class="table-responsive">
-                            <table class="table table-bordered table-hover table-striped">
-                                <thead>
-                                    <tr>
-                                        <th>Event Name</th>
-                                        <th>Release Date</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @{var events = (List<Event>)ViewData["EventList"];
-                                    foreach (var item in events)
-                                    {
-                                        <tr><td>
-                                        @Html.ActionLink(item.name, "Details", "Event", new { id = item.eventID }, new { @style = "color:#000000;" })
-                                            </td><td>
-                                        @Html.DisplayFor(modelItem => item.description);
-                                        </td></tr>
-                                    }}
-                                </tbody>
-                            </table>
-                        </div>
-                        <!-- /.table-responsive -->
-                    </div>
-                    <!-- /.panel body -->
-                    <!-- /.panel -->
-
-
                 </div>
             </div>
         <!-- /.col-lg-4 -->

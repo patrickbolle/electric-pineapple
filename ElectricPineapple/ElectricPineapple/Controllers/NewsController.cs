@@ -52,7 +52,14 @@ namespace ElectricPineapple.Controllers
             if (ModelState.IsValid)
             {
                 db.News.Add(news);
-                db.SaveChanges();
+                try
+                {
+                    db.SaveChanges();
+                }
+                catch (Exception)
+                {
+                    
+                }
                 return RedirectToAction("Index");
             }
 

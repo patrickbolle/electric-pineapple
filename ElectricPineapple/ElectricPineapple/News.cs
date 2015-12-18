@@ -11,11 +11,17 @@ namespace ElectricPineapple
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
     
     public partial class News
     {
         public int newsID { get; set; }
+
+        [Range(5, 50, ErrorMessage = "Title must be between 5 and 50 characters.")]
         public string Title { get; set; }
+        
+        
+        [Range(5, 60, ErrorMessage = "Description must be between 5 and 60 characters.")]
         public string Description { get; set; }
     }
 }

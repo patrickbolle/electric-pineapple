@@ -208,6 +208,16 @@ namespace ElectricPineapple.Controllers
             return RedirectToAction("ViewCart", "Account");
         }
 
+        [Authorize(Roles="Admin")]
+        public ActionResult ApproveReview(int? userID, int? gameID)
+        {
+            Rating rating = db.Ratings.Where(a => a.userID == userID && a.gameID == gameID).FirstOrDefault();
+            rating.approved = 1;
+            db.SaveChanges();
+
+            return RedirectToAction("Details", new { id = rating.gameID });
+        }
+
         // GET: Game/Create
         [Authorize(Roles = "Admin")]
         public ActionResult Create()

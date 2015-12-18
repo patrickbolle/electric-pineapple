@@ -122,11 +122,49 @@
             }
         }
 
-
-        @if (ViewData["RatingList"] != null)
-        { 
-        foreach (Rating item in (List<Rating>)ViewData["RatingList"])
+    @if (ViewData["RatingList"] != null)
+    {
+        <br/>
+        if (User.IsInRole("Admin"))
         {
+            foreach (Rating item in (List<Rating>)ViewData["RatingList"])
+            {                
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="panel panel-default panel-center">
+                                <div class="panel-heading">
+                                    <a href="@Url.Action("Details", "CVGSUsers", new { id = item.CVGSUser.userID})">
+                                        <h3 class="panel-title">@item.CVGSUser.userName</h3>
+                                    </a>
+                                </div>
+                                <div class="panel-body">
+                                    Rating: @item.rating1/10
+                                    @if (item.review != null)
+                                    {
+                                        <br />
+                                        @item.review
+                                    }
+                                    @if (item.approved == 0)
+                                    { 
+                                        using (Html.BeginForm("ApproveReview", "Game"))
+                                        {
+                                            <input type="hidden" id="userID" name="userID" value="@item.userID"/>
+                                            <input type="hidden" id="gameID" name="gameID" value="@item.gameID"/>
+                                        <input class="btn btn-add-to-wishlist" type="submit" value="Approve this review" />
+                                        }
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>                
+            }
+        }
+        else
+        {
+            foreach (Rating item in (List<Rating>)ViewData["RatingList"])
+            {
+                if(item.approved == 1)
+                { 
             <div class="row">
                 <div class="col-md-8">
                     <div class="panel panel-default panel-center">
@@ -142,9 +180,13 @@
                                 <br />
                                 @item.review
                             }
+                            
                         </div>
                     </div>
                 </div>
             </div>
+    }
+            
+            }
         }
      }

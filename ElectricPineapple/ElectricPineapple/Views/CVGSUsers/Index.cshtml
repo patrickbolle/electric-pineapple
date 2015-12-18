@@ -33,13 +33,13 @@
                      Province:   @item.province  
                     @if (Request.IsAuthenticated)
                     {
-                        <a href="@Url.Action("AddFriend", "CVGSUsers", new {id = item.userID})">Add friend</a>
+                        <br/><br /><a href="@Url.Action("AddFriend", "CVGSUsers", new {id = item.userID})">Add friend</a>
                     }
                     @if (User.IsInRole("Admin") && item.userType == 1)
                     {
                         using (Html.BeginForm("AddAdministrator", "Account", new {id = item.userLink}))
                         {
-                            <br /><br /><input class="btn btn-add-to-wishlist" type="submit" value="Add Administrator" />
+                            <br /><input class="btn btn-add-to-wishlist" type="submit" value="Add Administrator" />
                         }
                     }              
                 </div>       
